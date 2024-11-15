@@ -2,7 +2,7 @@
 
 ___
 
-### Fabric port of [Steel Armor Blocks](https://www.curseforge.com/minecraft/mc-mods/steel-armor-blocks). Elegant metal blocks designed for use with Create: Big Cannons & Valkyrien Skies.
+### Fabric port of [Steel Armor Blocks](https://www.curseforge.com/minecraft/mc-mods/steel-armor-blocks) with added stuff. Elegant metal blocks designed for use with Create: Big Cannons & Valkyrien Skies.
 
 <img alt="Mod Loader" src="https://img.shields.io/badge/mod_loader-fabric-ffe8e9?style=for-the-badge&labelColor=ffced2">
 <img alt="Game Version" src="https://img.shields.io/badge/game_version-1.20.1-ffe8e9?style=for-the-badge&labelColor=ffced2">
@@ -32,8 +32,15 @@ Lorem ipsum
 
 ___
 
+# 📖 Information
+- Comes with 4 types of armor blocks: Light Steel, Steel, Layered Steel, and Reinforced Steel!
+- Each type of armor block is coloured with a default colour scheme, the 16 Minecraft dye colours, and miscellaneous patterns!
+- Every type of armor block comes with a full block variant, slabs, stairs, vertical slabs, and vertical stairs in all the previously mentioned colours!
+
+---
+
 # 🤝 Compatibility
-- Comes with built-in Valkyrien Skies data!
+- Comes with built-in Valkyrien Skies data for things like mass!
 
 ---
 

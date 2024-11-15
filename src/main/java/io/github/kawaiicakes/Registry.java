@@ -1,5 +1,7 @@
 package io.github.kawaiicakes;
 
+import io.github.kawaiicakes.block.VerticalSlabBlock;
+import io.github.kawaiicakes.block.VerticalStairsBlock;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -85,9 +87,9 @@ public class Registry implements DataGeneratorEntrypoint {
 
         toReturn.add(registerBasic(baseId, hardness, blastResistance));
         toReturn.add(registerSlab(baseId, hardness, blastResistance));
-        // toReturn.add(registerVerticalSlab(baseId, hardness, blastResistance));
+        toReturn.add(registerVerticalSlab(baseId, hardness, blastResistance));
         toReturn.add(registerStairs(baseId, hardness, blastResistance));
-        // toReturn.add(registerVerticalStairs(baseId, hardness, blastResistance));
+        toReturn.add(registerVerticalStairs(baseId, hardness, blastResistance));
 
         return toReturn;
     }
@@ -132,8 +134,6 @@ public class Registry implements DataGeneratorEntrypoint {
         );
     }
 
-    /*
-    // TODO
     private static BlockItem registerVerticalSlab(String id, float hardness, float blastResistance) {
         final Block block = new VerticalSlabBlock(
                 FabricBlockSettings.copyOf(NETHERITE_BLOCK)
@@ -153,7 +153,6 @@ public class Registry implements DataGeneratorEntrypoint {
                 new BlockItem(block, new FabricItemSettings())
         );
     }
-     */
 
     private static BlockItem registerStairs(String id, float hardness, float blastResistance) {
         final Block block = new StairsBlock(
@@ -176,8 +175,6 @@ public class Registry implements DataGeneratorEntrypoint {
         );
     }
 
-    /*
-    // TODO
     private static BlockItem registerVerticalStairs(String id, float hardness, float blastResistance) {
         final Block block = new VerticalStairsBlock(
                 NETHERITE_BLOCK.getDefaultState(),
@@ -198,7 +195,6 @@ public class Registry implements DataGeneratorEntrypoint {
                 new BlockItem(block, new FabricItemSettings())
         );
     }
-     */
 
     private static String[] colors() {
         return new String[] {
