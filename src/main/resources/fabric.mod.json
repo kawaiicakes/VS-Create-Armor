@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "vscarmor",
+	"version": "${version}",
+	"name": "VS Create Armor",
+	"description": "Elegant metal blocks designed for use with Create: Big Cannons & Valkyrien Skies. Credit owed to the FabricMC team and to arhos_minucios on CurseForge. See homepage for more details.",
+	"authors": [
+		"kawaiicakes"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/vs-create-armor",
+		"sources": "https://github.com/kawaiicakes/VS-Create-Armor"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/vscarmor/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.kawaiicakes.VSCreateArmor"
+		],
+		"fabric-datagen": [
+			"io.github.kawaiicakes.Registry"
+		]
+	},
+	"mixins": [],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

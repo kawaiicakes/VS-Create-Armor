@@ -1,0 +1,12 @@
+.gradle
+build
+out/
+classes/
+.idea
+*.DS_Store
+run
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
+/.github/
