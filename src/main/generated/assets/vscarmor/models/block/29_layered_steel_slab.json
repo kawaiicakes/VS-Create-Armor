@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "vscarmor:block/29_layered_steel",
+    "side": "vscarmor:block/29_layered_steel",
+    "top": "vscarmor:block/29_layered_steel"
+  }
+}

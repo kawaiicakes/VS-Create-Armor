@@ -1,7 +1,6 @@
 package io.github.kawaiicakes;
 
 import io.github.kawaiicakes.block.VerticalSlabBlock;
-import io.github.kawaiicakes.block.VerticalStairsBlock;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -15,22 +14,27 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static io.github.kawaiicakes.VSCreateArmor.MOD_ID;
 import static net.minecraft.block.Blocks.NETHERITE_BLOCK;
 
 public class Registry implements DataGeneratorEntrypoint {
-    static BlockItem[] REGISTERED = {};
+    static List<BlockItem> REGISTERED = new ArrayList<>();
+    static final Map<Block, BlockFamily> BLOCK_FAMILIES = new HashMap<>();
 
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
@@ -41,14 +45,14 @@ public class Registry implements DataGeneratorEntrypoint {
     }
 
     static void register() {
-        REGISTERED = init();
+        registerArmor();
 
         net.minecraft.registry.Registry.register(
                 Registries.ITEM_GROUP,
                 new Identifier(MOD_ID, "vscarmor_group"),
                 FabricItemGroup.builder()
                         .displayName(Text.translatable("itemGroup.vscarmor_group"))
-                        .icon(() -> REGISTERED[0].getDefaultStack())
+                        .icon(() -> REGISTERED.get(0).getDefaultStack())
                         .entries(
                                 (context, entries) -> {
                                     for (Item item : REGISTERED) {
@@ -60,151 +64,89 @@ public class Registry implements DataGeneratorEntrypoint {
         );
     }
 
-    private static BlockItem[] init() {
-        List<BlockItem> toReturn = new ArrayList<>();
-
-        toReturn.addAll(registerFullSeries("light_steel", 3.0F, 5.0F));
-        toReturn.addAll(registerFullSeries("steel", 10.0F, 7.0F));
-        toReturn.addAll(registerFullSeries("layered_steel", 28.0F, 8.0F));
-        toReturn.addAll(registerFullSeries("reinforced_steel", 50.0F, 20.0F));
-
-        return toReturn.toArray(BlockItem[]::new);
-    }
-
     /*
         --HELPER METHODS BELOW--
      */
 
-    private static List<BlockItem> registerFullSeries(String baseId, float hardness, float blastResistance) {
-        final List<BlockItem> toReturn = new ArrayList<>(registerBlockSeries(baseId, hardness, blastResistance));
+    private static void registerArmor() {
+        registerArmorBlockFamily("light_steel", 3.0F, 5.0F);
+        registerArmorBlockFamily("steel", 10.0F, 7.0F);
+        registerArmorBlockFamily("layered_steel", 28.0F, 8.0F);
+        registerArmorBlockFamily("reinforced_steel", 50.0F, 20.0F);
 
         for (String color : colors()) {
-            // Eminem's been silent since this local dropped
-            List<BlockItem> iterationCreation = registerBlockSeries(
-                    color + "_" + baseId,
-                    hardness,
-                    blastResistance
-            );
-
-            toReturn.addAll(iterationCreation);
+            registerArmorBlockFamily(color + "_" + "light_steel", 3.0F, 5.0F);
+            registerArmorBlockFamily(color + "_" + "steel", 10.0F, 7.0F);
+            registerArmorBlockFamily(color + "_" + "layered_steel", 28.0F, 8.0F);
+            registerArmorBlockFamily(color + "_" + "reinforced_steel", 50.0F, 20.0F);
         }
 
-        // TODO: special camo series + special colours here in the next commits
-
-        return toReturn;
+        // TODO: add custom patterns prn
     }
 
-    private static List<BlockItem> registerBlockSeries(String baseId, float hardness, float blastResistance) {
-        final List<BlockItem> toReturn = new ArrayList<>();
-
-        toReturn.add(registerBasic(baseId, hardness, blastResistance));
-        toReturn.add(registerSlab(baseId, hardness, blastResistance));
-        toReturn.add(registerVerticalSlab(baseId, hardness, blastResistance));
-        toReturn.add(registerStairs(baseId, hardness, blastResistance));
-        toReturn.add(registerVerticalStairs(baseId, hardness, blastResistance));
-
-        return toReturn;
-    }
-
-    private static BlockItem registerBasic(String id, float hardness, float blastResistance) {
-        final Block block = new Block(
+    private static void registerArmorBlockFamily(String id, float hardness, float blastResistance) {
+        final Block baseBlock = new Block(
                 FabricBlockSettings.copyOf(NETHERITE_BLOCK)
                         .hardness(hardness)
                         .resistance(blastResistance)
         );
 
+        final SlabBlock slabBlock = new SlabBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+        );
+
+        final VerticalSlabBlock verticalSlabBlock = new VerticalSlabBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+        );
+
+        final StairsBlock stairsBlock = new StairsBlock(
+                baseBlock.getDefaultState(),
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.875F)
+                        .resistance(blastResistance * 0.875F)
+        );
+
+        /*
+        final VerticalStairsBlock verticalStairsBlock = new VerticalStairsBlock(
+                baseBlock.getDefaultState(),
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.875F)
+                        .resistance(blastResistance * 0.875F)
+        );
+         */
+
+        registerBlockWithItem(id, baseBlock);
+        registerBlockWithItem(id + "_slab", slabBlock);
+        registerBlockWithItem(id + "_vertical_slab", verticalSlabBlock);
+        registerBlockWithItem(id + "_stairs", stairsBlock);
+        // registerBlockWithItem(id + "_vertical_stairs", verticalStairsBlock);
+
+        BLOCK_FAMILIES.put(
+                baseBlock,
+                new BlockFamily.Builder(baseBlock)
+                        .slab(slabBlock)
+                        .stairs(stairsBlock)
+                        .build()
+        );
+    }
+
+    private static void registerBlockWithItem(String id, Block baseBlock) {
         net.minecraft.registry.Registry.register(
                 Registries.BLOCK,
                 new Identifier(MOD_ID, id),
-                block
+                baseBlock
         );
 
-        return net.minecraft.registry.Registry.register(
-                Registries.ITEM,
-                new Identifier(MOD_ID, id),
-                new BlockItem(block, new FabricItemSettings())
-        );
-    }
-
-    private static BlockItem registerSlab(String id, float hardness, float blastResistance) {
-        final Block block = new SlabBlock(
-                FabricBlockSettings.copyOf(NETHERITE_BLOCK)
-                        .hardness(hardness)
-                        .resistance(blastResistance)
-        );
-
-        net.minecraft.registry.Registry.register(
-                Registries.BLOCK,
-                new Identifier(MOD_ID, id + "_slab"),
-                block
-        );
-
-        return net.minecraft.registry.Registry.register(
-                Registries.ITEM,
-                new Identifier(MOD_ID, id + "_slab"),
-                new BlockItem(block, new FabricItemSettings())
-        );
-    }
-
-    private static BlockItem registerVerticalSlab(String id, float hardness, float blastResistance) {
-        final Block block = new VerticalSlabBlock(
-                FabricBlockSettings.copyOf(NETHERITE_BLOCK)
-                        .hardness(hardness)
-                        .resistance(blastResistance)
-        );
-
-        net.minecraft.registry.Registry.register(
-                Registries.BLOCK,
-                new Identifier(MOD_ID, id + "_vertical_slab"),
-                block
-        );
-
-        return net.minecraft.registry.Registry.register(
-                Registries.ITEM,
-                new Identifier(MOD_ID, id + "_vertical_slab"),
-                new BlockItem(block, new FabricItemSettings())
-        );
-    }
-
-    private static BlockItem registerStairs(String id, float hardness, float blastResistance) {
-        final Block block = new StairsBlock(
-                NETHERITE_BLOCK.getDefaultState(),
-                FabricBlockSettings.copyOf(NETHERITE_BLOCK)
-                        .hardness(hardness)
-                        .resistance(blastResistance)
-        );
-
-        net.minecraft.registry.Registry.register(
-                Registries.BLOCK,
-                new Identifier(MOD_ID, id + "_stairs"),
-                block
-        );
-
-        return net.minecraft.registry.Registry.register(
-                Registries.ITEM,
-                new Identifier(MOD_ID, id + "_stairs"),
-                new BlockItem(block, new FabricItemSettings())
-        );
-    }
-
-    private static BlockItem registerVerticalStairs(String id, float hardness, float blastResistance) {
-        final Block block = new VerticalStairsBlock(
-                NETHERITE_BLOCK.getDefaultState(),
-                FabricBlockSettings.copyOf(NETHERITE_BLOCK)
-                        .hardness(hardness)
-                        .resistance(blastResistance)
-        );
-
-        net.minecraft.registry.Registry.register(
-                Registries.BLOCK,
-                new Identifier(MOD_ID, id + "_vertical_stairs"),
-                block
-        );
-
-        return net.minecraft.registry.Registry.register(
-                Registries.ITEM,
-                new Identifier(MOD_ID, id + "_vertical_stairs"),
-                new BlockItem(block, new FabricItemSettings())
+        REGISTERED.add(
+                net.minecraft.registry.Registry.register(
+                        Registries.ITEM,
+                        new Identifier(MOD_ID, id),
+                        new BlockItem(baseBlock, new FabricItemSettings())
+                )
         );
     }
 
@@ -225,7 +167,25 @@ public class Registry implements DataGeneratorEntrypoint {
                 "blue",
                 "purple",
                 "magenta",
-                "pink"
+                "pink",
+                "4bo",
+                "29",
+                "31",
+                "32",
+                "33",
+                "gelb",
+                "panzergrau",
+                "parade",
+                "rotbraun",
+                "ship_lower",
+                "camo_desert",
+                "camo_forest",
+                "camo_jungle",
+                "camo_mesa",
+                "camo_plains",
+                "camo_snow",
+                "camo_swamp",
+                "camo_taiga"
         };
     }
 
@@ -236,7 +196,11 @@ public class Registry implements DataGeneratorEntrypoint {
 
         @Override
         public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-
+            // TODO: BlockFamily subclass w/ access wideners to allow generation of vertical stuff
+            for (Map.Entry<Block, BlockFamily> familyEntry : BLOCK_FAMILIES.entrySet()) {
+                blockStateModelGenerator.registerCubeAllModelTexturePool(familyEntry.getKey())
+                        .family(familyEntry.getValue());
+            }
         }
 
         @Override
@@ -250,21 +214,23 @@ public class Registry implements DataGeneratorEntrypoint {
 
         @SuppressWarnings("deprecation")
         private static String sanitizeName(String name) {
-            return WordUtils.capitalize(name.replace("_", " "));
+            return WordUtils.capitalize(
+                    name.replace("block.vscarmor.", "").replace("_", " ")
+            );
         }
 
         @Override
         public void generateTranslations(TranslationBuilder translationBuilder) {
             for (BlockItem blockItem : REGISTERED) {
                 String name = sanitizeName(blockItem.getTranslationKey());
-                translationBuilder.add(blockItem, name);
                 translationBuilder.add(blockItem.getBlock(), name);
+                translationBuilder.add(Util.createTranslationKey("item", Registries.ITEM.getId(blockItem)), name);
             }
 
             try {
                 Path existingFilePath = this.dataOutput
                         .getModContainer()
-                        .findPath("assets/vscarmor/lang/en_us.json")
+                        .findPath("assets/vscarmor/lang/en_us.existing.json")
                         .orElseThrow();
 
                 translationBuilder.add(existingFilePath);

@@ -10,3 +10,4 @@ replay_*.log
 *.hprof
 *.jfr
 /.github/
+/src/main/generated/logs/

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "vscarmor:block/panzergrau_light_steel",
+    "side": "vscarmor:block/panzergrau_light_steel",
+    "top": "vscarmor:block/panzergrau_light_steel"
+  }
+}

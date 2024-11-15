@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "vscarmor:block/4bo_reinforced_steel"
+  }
+}

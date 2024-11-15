@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/rotbraun_layered_steel",
+    "side": "vscarmor:block/rotbraun_layered_steel",
+    "top": "vscarmor:block/rotbraun_layered_steel"
+  }
+}

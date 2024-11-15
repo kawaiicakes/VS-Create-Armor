@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "vscarmor:block/panzergrau_reinforced_steel_slab"
+    },
+    "type=double": {
+      "model": "vscarmor:block/panzergrau_reinforced_steel"
+    },
+    "type=top": {
+      "model": "vscarmor:block/panzergrau_reinforced_steel_slab_top"
+    }
+  }
+}

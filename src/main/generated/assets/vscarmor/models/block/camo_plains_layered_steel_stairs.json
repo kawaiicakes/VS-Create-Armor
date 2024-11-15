@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "vscarmor:block/camo_plains_layered_steel",
+    "side": "vscarmor:block/camo_plains_layered_steel",
+    "top": "vscarmor:block/camo_plains_layered_steel"
+  }
+}

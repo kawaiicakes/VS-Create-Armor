@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "vscarmor:block/lime_light_steel_slab"
+    },
+    "type=double": {
+      "model": "vscarmor:block/lime_light_steel"
+    },
+    "type=top": {
+      "model": "vscarmor:block/lime_light_steel_slab_top"
+    }
+  }
+}

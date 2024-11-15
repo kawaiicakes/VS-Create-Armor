@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/magenta_steel",
+    "side": "vscarmor:block/magenta_steel",
+    "top": "vscarmor:block/magenta_steel"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "vscarmor:block/green_light_steel",
+    "side": "vscarmor:block/green_light_steel",
+    "top": "vscarmor:block/green_light_steel"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/4bo_layered_steel",
+    "side": "vscarmor:block/4bo_layered_steel",
+    "top": "vscarmor:block/4bo_layered_steel"
+  }
+}
