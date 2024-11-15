@@ -12,7 +12,7 @@ ___
     <img alt="CurseForge Downloads" src="https://img.shields.io/curseforge/dt/694201337?style=for-the-badge&logo=curseforge&labelColor=ffceea&color=ffe8f5">
 </a>
 <a href="https://github.com/kawaiicakes/VS-Create-Armor/blob/1.20.1-dev/LICENSE" rel="nofollow">
-    <img alt="Software License" src="https://img.shields.io/badge/license-CC%20BY%2FNC%2FSA%204.0-ffe8f5?style=for-the-badge&labelColor=ffceea">
+    <img alt="Software License" src="https://img.shields.io/badge/license-MIT-ffe8f5?style=for-the-badge&labelColor=ffceea">
 </a>
 <a href="https://www.curseforge.com/minecraft/mc-mods/vs-create-armor" rel="nofollow">
     <img alt="GitHub Issues" src="https://img.shields.io/github/issues/kawaiicakes/VS-Create-Armor?style=for-the-badge&logo=github&labelColor=ffceea&color=ffe8f5&link=https%3A%2F%2Fgithub.com%2Fkawaiicakes%2FVS-Create-Armor">
@@ -39,7 +39,7 @@ ___
 
 # 💗 Credits & Thanks
 
-This mod is licensed under the Creative Commons Attribution-Noncommercial-Sharealike 4.0 International license as the development workspace of this mod was a [template taken from Fabric's official website.](https://fabricmc.net/develop/template/) Textures were mostly taken from [Steel Armor Blocks,](https://www.curseforge.com/minecraft/mc-mods/steel-armor-blocks) which is licensed under CC BY 4.0. Other textures were otherwise made or recoloured by me using the aforementioned assets.
+Textures were mostly taken from [Steel Armor Blocks,](https://www.curseforge.com/minecraft/mc-mods/steel-armor-blocks) which is used & licensed under CC BY 4.0. Other textures were otherwise made or recoloured by me using the aforementioned assets.
 
 Also, I want to commend Kaupenjoe for his free tutorials on YouTube to brief me on how some things work lol
 
