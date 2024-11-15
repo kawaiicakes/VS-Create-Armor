@@ -4,18 +4,25 @@ import io.github.kawaiicakes.block.VerticalSlabBlock;
 import io.github.kawaiicakes.block.VerticalStairsBlock;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
+import net.minecraft.data.client.BlockStateModelGenerator;
+import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.apache.commons.lang3.text.WordUtils;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,23 +30,28 @@ import static io.github.kawaiicakes.VSCreateArmor.MOD_ID;
 import static net.minecraft.block.Blocks.NETHERITE_BLOCK;
 
 public class Registry implements DataGeneratorEntrypoint {
+    static BlockItem[] REGISTERED = {};
+
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
+        FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
+        pack.addProvider(VSCArmorModelProvider::new);
+        pack.addProvider(VSCArmorLangProvider::new);
     }
 
     static void register() {
-        final BlockItem[] initArr = init();
+        REGISTERED = init();
 
         net.minecraft.registry.Registry.register(
                 Registries.ITEM_GROUP,
                 new Identifier(MOD_ID, "vscarmor_group"),
                 FabricItemGroup.builder()
                         .displayName(Text.translatable("itemGroup.vscarmor_group"))
-                        .icon(() -> initArr[0].getDefaultStack())
+                        .icon(() -> REGISTERED[0].getDefaultStack())
                         .entries(
                                 (context, entries) -> {
-                                    for (Item item : initArr) {
+                                    for (Item item : REGISTERED) {
                                         entries.add(item);
                                     }
                                 }
@@ -215,5 +227,50 @@ public class Registry implements DataGeneratorEntrypoint {
                 "magenta",
                 "pink"
         };
+    }
+
+    private static class VSCArmorModelProvider extends FabricModelProvider {
+        public VSCArmorModelProvider(FabricDataOutput output) {
+            super(output);
+        }
+
+        @Override
+        public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+
+        }
+
+        @Override
+        public void generateItemModels(ItemModelGenerator itemModelGenerator) {}
+    }
+
+    private static class VSCArmorLangProvider extends FabricLanguageProvider {
+        private VSCArmorLangProvider(FabricDataOutput dataGenerator) {
+            super(dataGenerator, "en_us");
+        }
+
+        @SuppressWarnings("deprecation")
+        private static String sanitizeName(String name) {
+            return WordUtils.capitalize(name.replace("_", " "));
+        }
+
+        @Override
+        public void generateTranslations(TranslationBuilder translationBuilder) {
+            for (BlockItem blockItem : REGISTERED) {
+                String name = sanitizeName(blockItem.getTranslationKey());
+                translationBuilder.add(blockItem, name);
+                translationBuilder.add(blockItem.getBlock(), name);
+            }
+
+            try {
+                Path existingFilePath = this.dataOutput
+                        .getModContainer()
+                        .findPath("assets/vscarmor/lang/en_us.json")
+                        .orElseThrow();
+
+                translationBuilder.add(existingFilePath);
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to add existing language file!", e);
+            }
+        }
     }
 }
