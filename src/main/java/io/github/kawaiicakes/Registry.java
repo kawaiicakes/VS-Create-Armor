@@ -4,8 +4,7 @@ import io.github.kawaiicakes.block.VerticalSlabBlock;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.fabricmc.fabric.api.datagen.v1.provider.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -15,9 +14,14 @@ import net.minecraft.block.StairsBlock;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.family.BlockFamily;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.TagBuilder;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -28,6 +32,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 import static io.github.kawaiicakes.VSCreateArmor.MOD_ID;
 import static net.minecraft.block.Blocks.NETHERITE_BLOCK;
@@ -40,7 +46,11 @@ public class Registry implements DataGeneratorEntrypoint {
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
+        pack.addProvider(VSCArmorBlockLootTables::new);
         pack.addProvider(VSCArmorModelProvider::new);
+        pack.addProvider(VSCArmorBlockTagProvider::new);
+        pack.addProvider(VSCArmorItemTagProvider::new);
+        pack.addProvider(VSCArmorRecipeProvider::new);
         pack.addProvider(VSCArmorLangProvider::new);
     }
 
@@ -189,6 +199,19 @@ public class Registry implements DataGeneratorEntrypoint {
         };
     }
 
+    private static class VSCArmorBlockLootTables extends FabricBlockLootTableProvider {
+        public VSCArmorBlockLootTables(FabricDataOutput dataOutput) {
+            super(dataOutput);
+        }
+
+        @Override
+        public void generate() {
+            for (BlockItem blockItem : REGISTERED) {
+                addDrop(blockItem.getBlock(), drops(blockItem));
+            }
+        }
+    }
+
     private static class VSCArmorModelProvider extends FabricModelProvider {
         public VSCArmorModelProvider(FabricDataOutput output) {
             super(output);
@@ -205,6 +228,49 @@ public class Registry implements DataGeneratorEntrypoint {
 
         @Override
         public void generateItemModels(ItemModelGenerator itemModelGenerator) {}
+    }
+
+    private static class VSCArmorBlockTagProvider extends FabricTagProvider<Block> {
+        public VSCArmorBlockTagProvider(
+                FabricDataOutput output,
+                CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture
+        ) {
+            super(output, RegistryKeys.BLOCK, registriesFuture);
+        }
+
+        @Override
+        protected void configure(RegistryWrapper.WrapperLookup arg) {
+            TagBuilder builder = getTagBuilder(BlockTags.PICKAXE_MINEABLE);
+
+            for (BlockItem blockItem : REGISTERED) {
+                builder.add(Registries.BLOCK.getId(blockItem.getBlock()));
+            }
+        }
+    }
+
+    private static class VSCArmorItemTagProvider extends FabricTagProvider<Item> {
+        public VSCArmorItemTagProvider(
+                FabricDataOutput output,
+                CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture
+        ) {
+            super(output, RegistryKeys.ITEM, registriesFuture);
+        }
+
+        @Override
+        protected void configure(RegistryWrapper.WrapperLookup arg) {
+
+        }
+    }
+
+    private static class VSCArmorRecipeProvider extends FabricRecipeProvider {
+        public VSCArmorRecipeProvider(FabricDataOutput output) {
+            super(output);
+        }
+
+        @Override
+        public void generate(Consumer<RecipeJsonProvider> exporter) {
+
+        }
     }
 
     private static class VSCArmorLangProvider extends FabricLanguageProvider {

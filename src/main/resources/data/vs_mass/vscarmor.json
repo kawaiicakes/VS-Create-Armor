@@ -1,0 +1,75 @@
+[
+  {
+    "example": "this file is an example only"
+  },
+  {
+    "block": "minecraft:gold_block",
+    "mass": 19280.0,
+    "friction": 0.2
+  },
+  {
+  "block": "minecraft:iron_block",
+  "mass": 7840.0,
+  "friction": 0.2
+  },
+  {
+  "block": "minecraft:diamond_block",
+  "mass": 3520.0,
+  "friction": 0.1
+  },
+  {
+  "block": "minecraft:emerald_block",
+  "mass": 2670.0,
+  "friction": 0.1
+  },
+  {
+  "block": "minecraft:coal_block",
+  "mass": 1400.0,
+  "friction": 0.7
+  },
+  {
+  "block": "minecraft:netherite_block",
+  "mass": 89680.0,
+  "friction": 0.2
+  },
+  {
+  "block": "minecraft:lapis_block",
+  "mass": 2750.0,
+  "friction": 0.5
+  },
+  {
+  "block": "minecraft:coal_ore",
+  "mass": 2465.0,
+  "friction": 0.6
+  },
+  {
+  "block": "minecraft:diamond_ore",
+  "mass": 2700.0,
+  "friction": 0.6
+  },
+  {
+  "block": "minecraft:emerald_ore",
+  "mass": 2605.0,
+  "friction": 0.6
+  },
+  {
+  "block": "minecraft:ancient_debris",
+  "mass": 3140.0,
+  "friction": 0.8
+  },
+  {
+  "block": "minecraft:iron_ore",
+  "mass": 3180.0,
+  "friction": 0.6
+  },
+  {
+  "block": "minecraft:gold_ore",
+  "mass": 4450.0,
+  "friction": 0.6
+  },
+  {
+  "block": "minecraft:lapis_ore",
+  "mass": 2700.0,
+  "friction": 0.6
+  }
+]

@@ -11,3 +11,4 @@ replay_*.log
 *.jfr
 /.github/
 /src/main/generated/logs/
+/src/main/generated/mods/
