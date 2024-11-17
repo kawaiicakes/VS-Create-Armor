@@ -14,6 +14,7 @@
 	"license": "MIT",
 	"icon": "assets/vscarmor/icon.png",
 	"environment": "*",
+	"accessWidener" : "vscarmor.accesswidener",
 	"entrypoints": {
 		"main": [
 			"io.github.kawaiicakes.VSCreateArmor"
@@ -22,7 +23,15 @@
 			"io.github.kawaiicakes.Registry"
 		]
 	},
-	"mixins": [],
+	"mixins": [
+		"vscarmor.mixins.json"
+	],
+	"custom": {
+		"loom:injected_interfaces": {
+			"net/minecraft/data/client/BlockStateModelGenerator\u0024BlockTexturePool": ["io/github/kawaiicakes/data/ArmorTexturePool"],
+			"net/minecraft/data/client/BlockStateModelGenerator": ["io/github/kawaiicakes/data/ArmorStateModelGenerator"]
+		}
+	},
 	"depends": {
 		"fabricloader": ">=0.16.9",
 		"minecraft": "~1.20.1",

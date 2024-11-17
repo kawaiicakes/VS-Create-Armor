@@ -1,6 +1,7 @@
 package io.github.kawaiicakes;
 
 import io.github.kawaiicakes.block.VerticalSlabBlock;
+import io.github.kawaiicakes.data.ArmorFamily;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -137,8 +138,9 @@ public class Registry implements DataGeneratorEntrypoint {
 
         BLOCK_FAMILIES.put(
                 baseBlock,
-                new BlockFamily.Builder(baseBlock)
+                new ArmorFamily.Builder(baseBlock)
                         .slab(slabBlock)
+                        .verticalSlab(verticalSlabBlock)
                         .stairs(stairsBlock)
                         .build()
         );

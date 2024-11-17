@@ -33,6 +33,10 @@ dependencies {
 	
 }
 
+loom {
+	accessWidenerPath = file("src/main/resources/vscarmor.accesswidener")
+}
+
 processResources {
 	inputs.property "version", project.version
 

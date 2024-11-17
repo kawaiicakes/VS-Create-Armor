@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-15T18:09:49.0334002	VS Create Armor/Block Loot Tables
+// 1.20.1	2024-11-16T21:12:55.9849123	VS Create Armor/Block Loot Tables
 27fc97552e8c0ee5759cf6ee17bf2e1ac249492e data\vscarmor\loot_tables\blocks\yellow_reinforced_steel.json
 e10144c0543b7eb87ddc094acefd4db3d55e5ca1 data\vscarmor\loot_tables\blocks\orange_reinforced_steel_vertical_slab.json
 9ab770d4abf4988f95cbcec5a8ca20865493f8a0 data\vscarmor\loot_tables\blocks\camo_swamp_layered_steel.json
@@ -139,8 +139,8 @@ f5a3c50a9c398c537430c0c68ee88aa1fe014fa9 data\vscarmor\loot_tables\blocks\camo_s
 08fbf9759f0866cc8c216ba16ee19dbd3219c261 data\vscarmor\loot_tables\blocks\panzergrau_reinforced_steel.json
 cc727d9c6a44733a94a8851ac109b664c3d0e5e6 data\vscarmor\loot_tables\blocks\reinforced_steel_stairs.json
 64fe93dc1a658c96388b35bac58e073089e62835 data\vscarmor\loot_tables\blocks\camo_forest_light_steel.json
-f3051cbc06e3794958585f4851d55809d2e3e8df data\vscarmor\loot_tables\blocks\gelb_reinforced_steel_vertical_slab.json
 776479782d0f8166d8c1bc76a00f553bbee415e4 data\vscarmor\loot_tables\blocks\blue_reinforced_steel.json
+f3051cbc06e3794958585f4851d55809d2e3e8df data\vscarmor\loot_tables\blocks\gelb_reinforced_steel_vertical_slab.json
 093e95fdac8fe6221f6d635d6632cdd52a9c44eb data\vscarmor\loot_tables\blocks\camo_taiga_steel_vertical_slab.json
 e77f54b77d24b7b811f73bdafb74f3940ebdad4c data\vscarmor\loot_tables\blocks\orange_light_steel_vertical_slab.json
 839da58446bfe8841d06847d7d3a766308de6320 data\vscarmor\loot_tables\blocks\29_light_steel_vertical_slab.json

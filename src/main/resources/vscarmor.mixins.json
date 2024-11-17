@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "io.github.kawaiicakes.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [],
+  "client": [
+    "BlockStateModelGeneratorMixin",
+    "BlockTexturePoolMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
