@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_west",
-  "textures": {
-    "bottom": "vscarmor:block/camo_forest_reinforced_steel",
-    "side": "vscarmor:block/camo_forest_reinforced_steel",
-    "top": "vscarmor:block/camo_forest_reinforced_steel"
-  }
-}

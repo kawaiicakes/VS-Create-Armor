@@ -1,8 +1,11 @@
 {
-  "parent": "minecraft:block/slab",
+  "parent": "vscarmor:block/vertical_slab",
   "textures": {
     "bottom": "vscarmor:block/yellow_light_steel",
-    "side": "vscarmor:block/yellow_light_steel",
-    "top": "vscarmor:block/yellow_light_steel"
+    "east": "vscarmor:block/yellow_light_steel",
+    "north": "vscarmor:block/yellow_light_steel",
+    "south": "vscarmor:block/yellow_light_steel",
+    "top": "vscarmor:block/yellow_light_steel",
+    "west": "vscarmor:block/yellow_light_steel"
   }
 }

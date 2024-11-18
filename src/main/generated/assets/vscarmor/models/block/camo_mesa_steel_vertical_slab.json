@@ -1,8 +1,11 @@
 {
-  "parent": "minecraft:block/slab",
+  "parent": "vscarmor:block/vertical_slab",
   "textures": {
     "bottom": "vscarmor:block/camo_mesa_steel",
-    "side": "vscarmor:block/camo_mesa_steel",
-    "top": "vscarmor:block/camo_mesa_steel"
+    "east": "vscarmor:block/camo_mesa_steel",
+    "north": "vscarmor:block/camo_mesa_steel",
+    "south": "vscarmor:block/camo_mesa_steel",
+    "top": "vscarmor:block/camo_mesa_steel",
+    "west": "vscarmor:block/camo_mesa_steel"
   }
 }

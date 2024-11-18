@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_east",
-  "textures": {
-    "bottom": "vscarmor:block/light_steel",
-    "side": "vscarmor:block/light_steel",
-    "top": "vscarmor:block/light_steel"
-  }
-}

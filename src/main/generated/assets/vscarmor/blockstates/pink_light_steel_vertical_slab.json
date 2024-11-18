@@ -1,16 +1,22 @@
 {
   "variants": {
     "doublet=false,facing=east": {
-      "model": "vscarmor:block/pink_light_steel_vertical_slab_east"
+      "model": "vscarmor:block/pink_light_steel_vertical_slab",
+      "uvlock": true,
+      "y": 270
     },
     "doublet=false,facing=north": {
-      "model": "vscarmor:block/pink_light_steel_vertical_slab_north"
+      "model": "vscarmor:block/pink_light_steel_vertical_slab",
+      "uvlock": true,
+      "y": 180
     },
     "doublet=false,facing=south": {
       "model": "vscarmor:block/pink_light_steel_vertical_slab"
     },
     "doublet=false,facing=west": {
-      "model": "vscarmor:block/pink_light_steel_vertical_slab_west"
+      "model": "vscarmor:block/pink_light_steel_vertical_slab",
+      "uvlock": true,
+      "y": 90
     },
     "doublet=true,facing=east": {
       "model": "vscarmor:block/pink_light_steel"

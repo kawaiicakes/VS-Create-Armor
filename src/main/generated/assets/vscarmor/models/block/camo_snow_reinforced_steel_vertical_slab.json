@@ -1,8 +1,11 @@
 {
-  "parent": "minecraft:block/slab",
+  "parent": "vscarmor:block/vertical_slab",
   "textures": {
     "bottom": "vscarmor:block/camo_snow_reinforced_steel",
-    "side": "vscarmor:block/camo_snow_reinforced_steel",
-    "top": "vscarmor:block/camo_snow_reinforced_steel"
+    "east": "vscarmor:block/camo_snow_reinforced_steel",
+    "north": "vscarmor:block/camo_snow_reinforced_steel",
+    "south": "vscarmor:block/camo_snow_reinforced_steel",
+    "top": "vscarmor:block/camo_snow_reinforced_steel",
+    "west": "vscarmor:block/camo_snow_reinforced_steel"
   }
 }

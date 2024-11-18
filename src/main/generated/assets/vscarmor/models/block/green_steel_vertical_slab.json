@@ -1,8 +1,11 @@
 {
-  "parent": "minecraft:block/slab",
+  "parent": "vscarmor:block/vertical_slab",
   "textures": {
     "bottom": "vscarmor:block/green_steel",
-    "side": "vscarmor:block/green_steel",
-    "top": "vscarmor:block/green_steel"
+    "east": "vscarmor:block/green_steel",
+    "north": "vscarmor:block/green_steel",
+    "south": "vscarmor:block/green_steel",
+    "top": "vscarmor:block/green_steel",
+    "west": "vscarmor:block/green_steel"
   }
 }

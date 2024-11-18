@@ -1,8 +1,11 @@
 {
-  "parent": "minecraft:block/slab",
+  "parent": "vscarmor:block/vertical_slab",
   "textures": {
     "bottom": "vscarmor:block/parade_steel",
-    "side": "vscarmor:block/parade_steel",
-    "top": "vscarmor:block/parade_steel"
+    "east": "vscarmor:block/parade_steel",
+    "north": "vscarmor:block/parade_steel",
+    "south": "vscarmor:block/parade_steel",
+    "top": "vscarmor:block/parade_steel",
+    "west": "vscarmor:block/parade_steel"
   }
 }

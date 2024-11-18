@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_west",
-  "textures": {
-    "bottom": "vscarmor:block/parade_steel",
-    "side": "vscarmor:block/parade_steel",
-    "top": "vscarmor:block/parade_steel"
-  }
-}

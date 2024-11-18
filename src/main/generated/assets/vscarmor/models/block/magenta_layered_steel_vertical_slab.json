@@ -1,8 +1,11 @@
 {
-  "parent": "minecraft:block/slab",
+  "parent": "vscarmor:block/vertical_slab",
   "textures": {
     "bottom": "vscarmor:block/magenta_layered_steel",
-    "side": "vscarmor:block/magenta_layered_steel",
-    "top": "vscarmor:block/magenta_layered_steel"
+    "east": "vscarmor:block/magenta_layered_steel",
+    "north": "vscarmor:block/magenta_layered_steel",
+    "south": "vscarmor:block/magenta_layered_steel",
+    "top": "vscarmor:block/magenta_layered_steel",
+    "west": "vscarmor:block/magenta_layered_steel"
   }
 }

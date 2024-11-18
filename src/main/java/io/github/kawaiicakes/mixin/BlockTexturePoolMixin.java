@@ -56,12 +56,9 @@ public abstract class BlockTexturePoolMixin implements ArmorTexturePool {
         if (this.baseModelId == null) {
             throw new IllegalStateException("Full block not generated yet");
         } else {
-            Identifier south = this.ensureModel(VerticalModels.VSLAB_SOUTH, block);
-            Identifier north = this.ensureModel(VerticalModels.VSLAB_NORTH, block);
-            Identifier east = this.ensureModel(VerticalModels.VSLAB_EAST, block);
-            Identifier west = this.ensureModel(VerticalModels.VSLAB_WEST, block);
+            Identifier south = this.ensureModel(VerticalModels.VSLAB, block);
             this.field_22836.blockStateCollector.accept(ArmorStateModelGenerator.createVerticalSlabBlockState(
-                    block, south, north, east, west, this.baseModelId
+                    block, south, this.baseModelId
             ));
             this.field_22836.registerParentedItemModel(block, south);
             return ((BlockStateModelGenerator.BlockTexturePool)(Object) this);

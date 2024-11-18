@@ -1,8 +1,11 @@
 {
-  "parent": "minecraft:block/slab",
+  "parent": "vscarmor:block/vertical_slab",
   "textures": {
     "bottom": "vscarmor:block/camo_jungle_steel",
-    "side": "vscarmor:block/camo_jungle_steel",
-    "top": "vscarmor:block/camo_jungle_steel"
+    "east": "vscarmor:block/camo_jungle_steel",
+    "north": "vscarmor:block/camo_jungle_steel",
+    "south": "vscarmor:block/camo_jungle_steel",
+    "top": "vscarmor:block/camo_jungle_steel",
+    "west": "vscarmor:block/camo_jungle_steel"
   }
 }

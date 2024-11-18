@@ -1,8 +1,11 @@
 {
-  "parent": "minecraft:block/slab",
+  "parent": "vscarmor:block/vertical_slab",
   "textures": {
     "bottom": "vscarmor:block/rotbraun_reinforced_steel",
-    "side": "vscarmor:block/rotbraun_reinforced_steel",
-    "top": "vscarmor:block/rotbraun_reinforced_steel"
+    "east": "vscarmor:block/rotbraun_reinforced_steel",
+    "north": "vscarmor:block/rotbraun_reinforced_steel",
+    "south": "vscarmor:block/rotbraun_reinforced_steel",
+    "top": "vscarmor:block/rotbraun_reinforced_steel",
+    "west": "vscarmor:block/rotbraun_reinforced_steel"
   }
 }
