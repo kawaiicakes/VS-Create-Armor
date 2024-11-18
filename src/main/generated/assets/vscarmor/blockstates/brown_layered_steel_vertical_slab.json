@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "doublet=false,facing=east": {
+      "model": "vscarmor:block/brown_layered_steel_vertical_slab_east"
+    },
+    "doublet=false,facing=north": {
+      "model": "vscarmor:block/brown_layered_steel_vertical_slab_north"
+    },
+    "doublet=false,facing=south": {
+      "model": "vscarmor:block/brown_layered_steel_vertical_slab"
+    },
+    "doublet=false,facing=west": {
+      "model": "vscarmor:block/brown_layered_steel_vertical_slab_west"
+    },
+    "doublet=true,facing=east": {
+      "model": "vscarmor:block/brown_layered_steel"
+    },
+    "doublet=true,facing=north": {
+      "model": "vscarmor:block/brown_layered_steel"
+    },
+    "doublet=true,facing=south": {
+      "model": "vscarmor:block/brown_layered_steel"
+    },
+    "doublet=true,facing=west": {
+      "model": "vscarmor:block/brown_layered_steel"
+    }
+  }
+}

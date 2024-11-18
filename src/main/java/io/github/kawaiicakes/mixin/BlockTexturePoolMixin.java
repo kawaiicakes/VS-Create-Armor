@@ -1,7 +1,5 @@
 package io.github.kawaiicakes.mixin;
 
-import io.github.kawaiicakes.block.VerticalSlabBlock;
-import io.github.kawaiicakes.block.VerticalStairsBlock;
 import io.github.kawaiicakes.client.model.VerticalModels;
 import io.github.kawaiicakes.data.ArmorFamily;
 import io.github.kawaiicakes.data.ArmorStateModelGenerator;
@@ -9,7 +7,6 @@ import io.github.kawaiicakes.data.ArmorTexturePool;
 import net.minecraft.block.Block;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.Model;
-import net.minecraft.data.client.Models;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Final;
@@ -21,6 +18,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.BiConsumer;
 
+/*
+    NOTE: vscarmor.mixins.json should keep these mixins in the common array even though these classes are
+    in net.minecraft.data.client, otherwise they do not inject. If this causes issues in the future,
+    welp... have fun, I guess
+ */
 @Mixin(BlockStateModelGenerator.BlockTexturePool.class)
 public abstract class BlockTexturePoolMixin implements ArmorTexturePool {
     @Shadow @Final BlockStateModelGenerator field_22836;

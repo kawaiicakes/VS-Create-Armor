@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "vscarmor:block/gelb_steel",
+    "side": "vscarmor:block/gelb_steel",
+    "top": "vscarmor:block/gelb_steel"
+  }
+}

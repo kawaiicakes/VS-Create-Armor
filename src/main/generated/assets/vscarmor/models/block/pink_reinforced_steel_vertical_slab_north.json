@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_north",
+  "textures": {
+    "bottom": "vscarmor:block/pink_reinforced_steel",
+    "side": "vscarmor:block/pink_reinforced_steel",
+    "top": "vscarmor:block/pink_reinforced_steel"
+  }
+}

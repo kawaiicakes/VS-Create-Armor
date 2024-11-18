@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "vscarmor:block/camo_snow_steel",
+    "side": "vscarmor:block/camo_snow_steel",
+    "top": "vscarmor:block/camo_snow_steel"
+  }
+}

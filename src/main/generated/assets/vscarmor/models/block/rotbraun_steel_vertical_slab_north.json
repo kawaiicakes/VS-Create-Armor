@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_north",
+  "textures": {
+    "bottom": "vscarmor:block/rotbraun_steel",
+    "side": "vscarmor:block/rotbraun_steel",
+    "top": "vscarmor:block/rotbraun_steel"
+  }
+}
