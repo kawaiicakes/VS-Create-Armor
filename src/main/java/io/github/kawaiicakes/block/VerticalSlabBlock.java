@@ -23,19 +23,19 @@ import static net.minecraft.block.SlabBlock.WATERLOGGED;
 @SuppressWarnings("deprecation")
 public class VerticalSlabBlock extends HorizontalFacingBlock implements Waterloggable {
     public static final BooleanProperty DOUBLET = BooleanProperty.of("doublet");
-    protected static final VoxelShape NORTH = Block.createCuboidShape(
+    public static final VoxelShape NORTH = Block.createCuboidShape(
             0.0, 0.0, 0.0,
             16.0, 16.0, 8.0
     );
-    protected static final VoxelShape EAST = Block.createCuboidShape(
+    public static final VoxelShape EAST = Block.createCuboidShape(
             8.0, 0.0, 0.0,
             16.0, 16.0, 16.0
     );
-    protected static final VoxelShape SOUTH = Block.createCuboidShape(
+    public static final VoxelShape SOUTH = Block.createCuboidShape(
             0.0, 0.0, 8.0,
             16.0, 16.0, 16.0
     );
-    protected static final VoxelShape WEST = Block.createCuboidShape(
+    public static final VoxelShape WEST = Block.createCuboidShape(
             0.0, 0.0, 0.0,
             8.0, 16.0, 16.0
     );
