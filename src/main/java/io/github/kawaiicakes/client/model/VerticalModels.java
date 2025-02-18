@@ -6,24 +6,15 @@ import net.minecraft.util.Identifier;
 
 import java.util.Optional;
 
+import static io.github.kawaiicakes.VSCreateArmor.MOD_ID;
+
 public class VerticalModels {
-    public static final Model VSLAB_SOUTH = block(TextureKey.BOTTOM, TextureKey.TOP, TextureKey.SIDE);
-    public static final Model VSLAB_NORTH = block("slab_north", "_north", TextureKey.BOTTOM, TextureKey.TOP, TextureKey.SIDE);
-    public static final Model VSLAB_EAST = block("slab_east", "_east", TextureKey.BOTTOM, TextureKey.TOP, TextureKey.SIDE);
-    public static final Model VSLAB_WEST = block("slab_west", "_west", TextureKey.BOTTOM, TextureKey.TOP, TextureKey.SIDE);
+    public static final Model VSLAB = block(TextureKey.BOTTOM, TextureKey.TOP, TextureKey.NORTH, TextureKey.EAST, TextureKey.SOUTH, TextureKey.WEST);
 
     private static Model block(TextureKey... requiredTextureKeys) {
         return new Model(
-                Optional.of(new Identifier("minecraft", "block/" + "slab")),
+                Optional.of(new Identifier(MOD_ID, "block/vertical_slab")),
                 Optional.empty(),
-                requiredTextureKeys
-        );
-    }
-
-    private static Model block(String parent, String variant, TextureKey... requiredTextureKeys) {
-        return new Model(
-                Optional.of(new Identifier("minecraft", "block/" + parent)),
-                Optional.of(variant),
                 requiredTextureKeys
         );
     }
