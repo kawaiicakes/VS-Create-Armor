@@ -3,3 +3,6 @@ accessWidener   v2  named
 extendable  method  net/minecraft/data/family/BlockFamily   <init>    (Lnet/minecraft/block/Block;)V
 accessible  field   net/minecraft/data/family/BlockFamily$Builder   family  Lnet/minecraft/data/family/BlockFamily;
 mutable     field   net/minecraft/data/family/BlockFamily$Builder   family  Lnet/minecraft/data/family/BlockFamily;
+accessible  field   net/minecraft/block/StairsBlock     SHAPE_INDICES  [I
+accessible  method  net/minecraft/block/StairsBlock     composeShapes   (Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;)[Lnet/minecraft/util/shape/VoxelShape;
+accessible  method  net/minecraft/block/StairsBlock     composeShape   (ILnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;)Lnet/minecraft/util/shape/VoxelShape;
