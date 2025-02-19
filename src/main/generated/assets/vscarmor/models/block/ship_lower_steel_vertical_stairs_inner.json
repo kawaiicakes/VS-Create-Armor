@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/inner_vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/ship_lower_steel",
+    "east": "vscarmor:block/ship_lower_steel",
+    "north": "vscarmor:block/ship_lower_steel",
+    "south": "vscarmor:block/ship_lower_steel",
+    "top": "vscarmor:block/ship_lower_steel",
+    "west": "vscarmor:block/ship_lower_steel"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/inner_vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/black_light_steel",
+    "east": "vscarmor:block/black_light_steel",
+    "north": "vscarmor:block/black_light_steel",
+    "south": "vscarmor:block/black_light_steel",
+    "top": "vscarmor:block/black_light_steel",
+    "west": "vscarmor:block/black_light_steel"
+  }
+}

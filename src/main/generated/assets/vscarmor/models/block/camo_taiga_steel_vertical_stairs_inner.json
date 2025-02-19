@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/inner_vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/camo_taiga_steel",
+    "east": "vscarmor:block/camo_taiga_steel",
+    "north": "vscarmor:block/camo_taiga_steel",
+    "south": "vscarmor:block/camo_taiga_steel",
+    "top": "vscarmor:block/camo_taiga_steel",
+    "west": "vscarmor:block/camo_taiga_steel"
+  }
+}

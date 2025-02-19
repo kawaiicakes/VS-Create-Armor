@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/inner_vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/orange_steel",
+    "east": "vscarmor:block/orange_steel",
+    "north": "vscarmor:block/orange_steel",
+    "south": "vscarmor:block/orange_steel",
+    "top": "vscarmor:block/orange_steel",
+    "west": "vscarmor:block/orange_steel"
+  }
+}

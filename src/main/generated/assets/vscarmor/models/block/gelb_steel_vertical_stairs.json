@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/gelb_steel",
+    "east": "vscarmor:block/gelb_steel",
+    "north": "vscarmor:block/gelb_steel",
+    "south": "vscarmor:block/gelb_steel",
+    "top": "vscarmor:block/gelb_steel",
+    "west": "vscarmor:block/gelb_steel"
+  }
+}

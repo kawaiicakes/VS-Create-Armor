@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/outer_vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/camo_mesa_layered_steel",
+    "east": "vscarmor:block/camo_mesa_layered_steel",
+    "north": "vscarmor:block/camo_mesa_layered_steel",
+    "south": "vscarmor:block/camo_mesa_layered_steel",
+    "top": "vscarmor:block/camo_mesa_layered_steel",
+    "west": "vscarmor:block/camo_mesa_layered_steel"
+  }
+}

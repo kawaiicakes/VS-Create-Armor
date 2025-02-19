@@ -56,7 +56,7 @@ public abstract class BlockTexturePoolMixin implements ArmorTexturePool {
         if (this.baseModelId == null) {
             throw new IllegalStateException("Full block not generated yet");
         } else {
-            Identifier south = this.ensureModel(VerticalModels.VSLAB, block);
+            Identifier south = this.ensureModel(VerticalModels.V_SLAB, block);
             this.field_22836.blockStateCollector.accept(ArmorStateModelGenerator.createVerticalSlabBlockState(
                     block, south, this.baseModelId
             ));
@@ -67,6 +67,17 @@ public abstract class BlockTexturePoolMixin implements ArmorTexturePool {
 
     @Override
     public BlockStateModelGenerator.BlockTexturePool vSCreateArmor$verticalStairs(Block block) {
-        return ((BlockStateModelGenerator.BlockTexturePool)(Object) this);
+        if (this.baseModelId == null) {
+            throw new IllegalStateException("Full block not generated yet");
+        } else {
+            Identifier inner = this.ensureModel(VerticalModels.V_STAIRS_INNER, block);
+            Identifier regular = this.ensureModel(VerticalModels.V_STAIRS, block);
+            Identifier outer = this.ensureModel(VerticalModels.V_STAIRS_OUTER, block);
+            this.field_22836.blockStateCollector.accept(ArmorStateModelGenerator.createVerticalStairsBlockState(
+                    block, inner, regular, outer
+            ));
+            this.field_22836.registerParentedItemModel(block, regular);
+            return ((BlockStateModelGenerator.BlockTexturePool)(Object) this);
+        }
     }
 }

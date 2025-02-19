@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/outer_vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/rotbraun_reinforced_steel",
+    "east": "vscarmor:block/rotbraun_reinforced_steel",
+    "north": "vscarmor:block/rotbraun_reinforced_steel",
+    "south": "vscarmor:block/rotbraun_reinforced_steel",
+    "top": "vscarmor:block/rotbraun_reinforced_steel",
+    "west": "vscarmor:block/rotbraun_reinforced_steel"
+  }
+}

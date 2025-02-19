@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/magenta_reinforced_steel",
+    "east": "vscarmor:block/magenta_reinforced_steel",
+    "north": "vscarmor:block/magenta_reinforced_steel",
+    "south": "vscarmor:block/magenta_reinforced_steel",
+    "top": "vscarmor:block/magenta_reinforced_steel",
+    "west": "vscarmor:block/magenta_reinforced_steel"
+  }
+}
