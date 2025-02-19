@@ -6,3 +6,11 @@ mutable     field   net/minecraft/data/family/BlockFamily$Builder   family  Lnet
 accessible  field   net/minecraft/block/StairsBlock     SHAPE_INDICES  [I
 accessible  method  net/minecraft/block/StairsBlock     composeShapes   (Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;)[Lnet/minecraft/util/shape/VoxelShape;
 accessible  method  net/minecraft/block/StairsBlock     composeShape   (ILnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;Lnet/minecraft/util/shape/VoxelShape;)Lnet/minecraft/util/shape/VoxelShape;
+accessible  field   net/minecraft/block/StairsBlock     BOTTOM_SOUTH_EAST_CORNER_SHAPE      Lnet/minecraft/util/shape/VoxelShape;
+accessible  field   net/minecraft/block/StairsBlock     BOTTOM_SOUTH_WEST_CORNER_SHAPE      Lnet/minecraft/util/shape/VoxelShape;
+accessible  field   net/minecraft/block/StairsBlock     BOTTOM_NORTH_WEST_CORNER_SHAPE      Lnet/minecraft/util/shape/VoxelShape;
+accessible  field   net/minecraft/block/StairsBlock     BOTTOM_NORTH_EAST_CORNER_SHAPE      Lnet/minecraft/util/shape/VoxelShape;
+accessible  field   net/minecraft/block/StairsBlock     TOP_SOUTH_EAST_CORNER_SHAPE      Lnet/minecraft/util/shape/VoxelShape;
+accessible  field   net/minecraft/block/StairsBlock     TOP_SOUTH_WEST_CORNER_SHAPE      Lnet/minecraft/util/shape/VoxelShape;
+accessible  field   net/minecraft/block/StairsBlock     TOP_NORTH_WEST_CORNER_SHAPE      Lnet/minecraft/util/shape/VoxelShape;
+accessible  field   net/minecraft/block/StairsBlock     TOP_NORTH_EAST_CORNER_SHAPE      Lnet/minecraft/util/shape/VoxelShape;

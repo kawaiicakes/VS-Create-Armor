@@ -1,19 +1,32 @@
 package io.github.kawaiicakes.block;
 
 import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.explosion.Explosion;
 
-public class VerticalStairsBlock extends StairsBlock implements Waterloggable {
+import static net.minecraft.block.HorizontalFacingBlock.FACING;
+import static net.minecraft.block.StairsBlock.*;
+import static net.minecraft.state.property.Properties.WATERLOGGED;
+
+@SuppressWarnings("deprecation")
+public class VerticalStairsBlock extends Block implements Waterloggable {
     public static final EnumProperty<BlockHalf> HALF = EnumProperty.of("half", BlockHalf.class);
     public static final EnumProperty<VerticalStairShape> V_SHAPE
             = EnumProperty.of("shape", VerticalStairShape.class);
@@ -46,8 +59,11 @@ public class VerticalStairsBlock extends StairsBlock implements Waterloggable {
             BOTTOM_SOUTH_EAST_CORNER_SHAPE, TOP_SOUTH_EAST_CORNER_SHAPE
     );
 
+    private final Block baseBlock;
+    private final BlockState baseBlockState;
+
     public VerticalStairsBlock(BlockState baseBlockState, Settings settings) {
-        super(baseBlockState, settings);
+        super(settings);
         this.setDefaultState(
                 this.stateManager
                         .getDefaultState()
@@ -56,6 +72,13 @@ public class VerticalStairsBlock extends StairsBlock implements Waterloggable {
                         .with(V_SHAPE, VerticalStairShape.STRAIGHT)
                         .with(WATERLOGGED, Boolean.FALSE)
         );
+        this.baseBlock = baseBlockState.getBlock();
+        this.baseBlockState = baseBlockState;
+    }
+
+    @Override
+    public boolean hasSidedTransparency(BlockState state) {
+        return true;
     }
 
     @Override
@@ -69,6 +92,71 @@ public class VerticalStairsBlock extends StairsBlock implements Waterloggable {
         };
 
         return directionShapes[indices[state.get(V_SHAPE).ordinal()]];
+    }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        this.baseBlock.randomDisplayTick(state, world, pos, random);
+    }
+
+    @Override
+    public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
+        this.baseBlockState.onBlockBreakStart(world, pos, player);
+    }
+
+    @Override
+    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+        this.baseBlock.onBroken(world, pos, state);
+    }
+
+    @Override
+    public float getBlastResistance() {
+        return this.baseBlock.getBlastResistance();
+    }
+
+    @Override
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        if (!state.isOf(state.getBlock())) {
+            world.updateNeighbor(this.baseBlockState, pos, Blocks.AIR, pos, false);
+            this.baseBlock.onBlockAdded(this.baseBlockState, world, pos, oldState, false);
+        }
+    }
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (!state.isOf(newState.getBlock())) {
+            this.baseBlockState.onStateReplaced(world, pos, newState, moved);
+        }
+    }
+
+    @Override
+    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+        this.baseBlock.onSteppedOn(world, pos, state, entity);
+    }
+
+    @Override
+    public boolean hasRandomTicks(BlockState state) {
+        return this.baseBlock.hasRandomTicks(state);
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        this.baseBlock.randomTick(state, world, pos, random);
+    }
+
+    @Override
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        this.baseBlock.scheduledTick(state, world, pos, random);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        return this.baseBlockState.onUse(world, player, hand, hit);
+    }
+
+    @Override
+    public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
+        this.baseBlock.onDestroyedByExplosion(world, pos, explosion);
     }
 
     @Override
@@ -144,9 +232,52 @@ public class VerticalStairsBlock extends StairsBlock implements Waterloggable {
         return !isStairs(blockState) || blockState.get(FACING) != state.get(FACING) || blockState.get(HALF) != state.get(HALF);
     }
 
+    public static boolean isStairs(BlockState state) {
+        return state.getBlock() instanceof VerticalStairsBlock;
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
+    }
+
+    // FIXME
+    @Override
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
+        Direction direction = state.get(FACING);
+        VerticalStairShape stairShape = state.get(V_SHAPE);
+        switch (mirror) {
+            case LEFT_RIGHT:
+                if (direction.getAxis() == Direction.Axis.Z) {
+                    return switch (stairShape) {
+                        default -> state.rotate(BlockRotation.CLOCKWISE_180);
+                    };
+                }
+                break;
+            case FRONT_BACK:
+                if (direction.getAxis() == Direction.Axis.X) {
+                    switch (stairShape) {
+                        default: return state.rotate(BlockRotation.CLOCKWISE_180);
+                    }
+                }
+        }
+
+        return super.mirror(state, mirror);
+    }
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, HALF, V_SHAPE, WATERLOGGED);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+    }
+
+    @Override
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+        return false;
     }
 
     public enum BlockHalf implements StringIdentifiable {

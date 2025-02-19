@@ -1,6 +1,7 @@
 package io.github.kawaiicakes;
 
 import io.github.kawaiicakes.block.VerticalSlabBlock;
+import io.github.kawaiicakes.block.VerticalStairsBlock;
 import io.github.kawaiicakes.data.ArmorFamily;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -121,20 +122,18 @@ public class Registry implements DataGeneratorEntrypoint {
                         .resistance(blastResistance * 0.875F)
         );
 
-        /*
         final VerticalStairsBlock verticalStairsBlock = new VerticalStairsBlock(
                 baseBlock.getDefaultState(),
                 FabricBlockSettings.copyOf(baseBlock)
                         .hardness(hardness * 0.875F)
                         .resistance(blastResistance * 0.875F)
         );
-         */
 
         registerBlockWithItem(id, baseBlock);
         registerBlockWithItem(id + "_slab", slabBlock);
         registerBlockWithItem(id + "_vertical_slab", verticalSlabBlock);
         registerBlockWithItem(id + "_stairs", stairsBlock);
-        // registerBlockWithItem(id + "_vertical_stairs", verticalStairsBlock);
+        registerBlockWithItem(id + "_vertical_stairs", verticalStairsBlock);
 
         BLOCK_FAMILIES.put(
                 baseBlock,
@@ -142,6 +141,7 @@ public class Registry implements DataGeneratorEntrypoint {
                         .slab(slabBlock)
                         .verticalSlab(verticalSlabBlock)
                         .stairs(stairsBlock)
+                        .verticalStairs(verticalStairsBlock)
                         .build()
         );
     }
@@ -221,7 +221,6 @@ public class Registry implements DataGeneratorEntrypoint {
 
         @Override
         public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-            // TODO: BlockFamily subclass w/ access wideners to allow generation of vertical stuff
             for (Map.Entry<Block, BlockFamily> familyEntry : BLOCK_FAMILIES.entrySet()) {
                 blockStateModelGenerator.registerCubeAllModelTexturePool(familyEntry.getKey())
                         .family(familyEntry.getValue());
