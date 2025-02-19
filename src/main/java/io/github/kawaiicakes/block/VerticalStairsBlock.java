@@ -32,11 +32,11 @@ public class VerticalStairsBlock extends Block implements Waterloggable {
             = EnumProperty.of("shape", VerticalStairShape.class);
 
     public static final int[] RIGHT_INDICES = new int[] {
-            3, 2, 1, 7, 11
+            3, 7, 11, 2, 1
     };
 
     public static final int[] LEFT_INDICES = new int[] {
-            12, 4, 8, 14, 13
+            12, 14, 13, 1, 8
     };
 
     protected static final VoxelShape[] NORTH_SHAPES = composeShapes(
