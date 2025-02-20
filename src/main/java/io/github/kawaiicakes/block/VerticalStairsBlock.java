@@ -283,25 +283,22 @@ public class VerticalStairsBlock extends Block implements Waterloggable {
         return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
-    // FIXME
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         Direction direction = state.get(FACING);
-        VerticalStairShape stairShape = state.get(V_SHAPE);
 
         switch (mirror) {
             case LEFT_RIGHT:
                 if (direction.getAxis() == Direction.Axis.Z) {
-                    return switch (stairShape) {
-                        default -> state.rotate(BlockRotation.CLOCKWISE_180);
-                    };
+                    return state.with(HALF, state.get(HALF).opposite());
+                } else {
+                    return state.with(HALF, state.get(HALF).opposite()).with(FACING, direction.getOpposite());
                 }
-                break;
             case FRONT_BACK:
                 if (direction.getAxis() == Direction.Axis.X) {
-                    switch (stairShape) {
-                        default: return state.rotate(BlockRotation.CLOCKWISE_180);
-                    }
+                    return state.with(HALF, state.get(HALF).opposite());
+                } else {
+                    return state.with(HALF, state.get(HALF).opposite()).with(FACING, direction.getOpposite());
                 }
         }
 
@@ -335,6 +332,10 @@ public class VerticalStairsBlock extends Block implements Waterloggable {
 
         public String toString() {
             return this.name;
+        }
+
+        public BlockHalf opposite() {
+            return this.equals(LEFT) ? RIGHT : LEFT;
         }
 
         @Override
