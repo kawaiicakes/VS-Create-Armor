@@ -19,6 +19,13 @@ import net.minecraft.data.family.BlockFamily;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.predicate.StatePredicate;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -206,10 +213,33 @@ public class Registry implements DataGeneratorEntrypoint {
             super(dataOutput);
         }
 
+        public LootTable.Builder verticalSlabDrops(Block drop) {
+            return LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
+                    .with(this.applyExplosionDecay(
+                            drop,
+                            ItemEntry.builder(drop).apply(
+                                    SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))
+                                            .conditionally(BlockStatePropertyLootCondition.builder(drop)
+                                                    .properties(StatePredicate.Builder.create()
+                                                            .exactMatch(VerticalSlabBlock.DOUBLET, true))
+                                            ))
+                    ))
+            );
+        }
+
         @Override
         public void generate() {
             for (BlockItem blockItem : REGISTERED) {
-                // FIXME slab loot
+                if (blockItem.getBlock() instanceof SlabBlock slab) {
+                    addDrop(slab, slabDrops(slab));
+                    continue;
+                }
+
+                if (blockItem.getBlock() instanceof VerticalSlabBlock verticalSlab) {
+                    addDrop(verticalSlab, verticalSlabDrops(verticalSlab));
+                    continue;
+                }
+
                 addDrop(blockItem.getBlock(), drops(blockItem));
             }
         }
