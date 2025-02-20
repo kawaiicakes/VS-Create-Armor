@@ -209,6 +209,7 @@ public class Registry implements DataGeneratorEntrypoint {
         @Override
         public void generate() {
             for (BlockItem blockItem : REGISTERED) {
+                // FIXME slab loot
                 addDrop(blockItem.getBlock(), drops(blockItem));
             }
         }

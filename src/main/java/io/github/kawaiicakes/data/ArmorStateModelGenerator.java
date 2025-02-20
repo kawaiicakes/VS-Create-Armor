@@ -152,6 +152,7 @@ public interface ArmorStateModelGenerator {
                                                 .put(VariantSettings.X, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.MODEL, outerModelId)
+                                                .put(VariantSettings.UVLOCK, true)
                                 )
                                 .register(
                                         Direction.NORTH,
@@ -224,6 +225,7 @@ public interface ArmorStateModelGenerator {
                                                 .put(VariantSettings.X, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.MODEL, innerModelId)
+                                                .put(VariantSettings.UVLOCK, true)
                                 )
                                 .register(
                                         Direction.NORTH,

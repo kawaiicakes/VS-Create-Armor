@@ -138,6 +138,7 @@
     },
     "facing=south,half=right,shape=inner_top": {
       "model": "vscarmor:block/layered_steel_vertical_stairs_inner",
+      "uvlock": true,
       "x": 90,
       "y": 90
     },
@@ -148,6 +149,7 @@
     },
     "facing=south,half=right,shape=outer_top": {
       "model": "vscarmor:block/layered_steel_vertical_stairs_outer",
+      "uvlock": true,
       "x": 90,
       "y": 90
     },
