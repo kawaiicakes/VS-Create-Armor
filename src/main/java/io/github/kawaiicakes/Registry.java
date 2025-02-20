@@ -112,28 +112,28 @@ public class Registry implements DataGeneratorEntrypoint {
 
         final SlabBlock slabBlock = new SlabBlock(
                 FabricBlockSettings.copyOf(baseBlock)
-                        .hardness(hardness * 0.75F)
-                        .resistance(blastResistance * 0.75F)
+                        .hardness(hardness * 0.5F)
+                        .resistance(blastResistance * 0.5F)
         );
 
         final VerticalSlabBlock verticalSlabBlock = new VerticalSlabBlock(
                 FabricBlockSettings.copyOf(baseBlock)
-                        .hardness(hardness * 0.75F)
-                        .resistance(blastResistance * 0.75F)
+                        .hardness(hardness * 0.5F)
+                        .resistance(blastResistance * 0.5F)
         );
 
         final StairsBlock stairsBlock = new StairsBlock(
                 baseBlock.getDefaultState(),
                 FabricBlockSettings.copyOf(baseBlock)
-                        .hardness(hardness * 0.875F)
-                        .resistance(blastResistance * 0.875F)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
         );
 
         final VerticalStairsBlock verticalStairsBlock = new VerticalStairsBlock(
                 baseBlock.getDefaultState(),
                 FabricBlockSettings.copyOf(baseBlock)
-                        .hardness(hardness * 0.875F)
-                        .resistance(blastResistance * 0.875F)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
         );
 
         registerBlockWithItem(id, baseBlock);
