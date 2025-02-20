@@ -3,8 +3,7 @@
     "facing=east,half=left,shape=inner_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
       "uvlock": true,
-      "x": 180,
-      "y": 90
+      "x": 270
     },
     "facing=east,half=left,shape=inner_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
@@ -14,8 +13,7 @@
     "facing=east,half=left,shape=outer_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
       "uvlock": true,
-      "x": 180,
-      "y": 90
+      "x": 270
     },
     "facing=east,half=left,shape=outer_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
@@ -33,7 +31,7 @@
     "facing=east,half=right,shape=inner_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
       "uvlock": true,
-      "y": 270
+      "x": 90
     },
     "facing=east,half=right,shape=outer_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer"
@@ -41,7 +39,7 @@
     "facing=east,half=right,shape=outer_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
       "uvlock": true,
-      "y": 270
+      "x": 90
     },
     "facing=east,half=right,shape=straight": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs"
@@ -49,7 +47,8 @@
     "facing=north,half=left,shape=inner_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
       "uvlock": true,
-      "x": 180
+      "x": 270,
+      "y": 270
     },
     "facing=north,half=left,shape=inner_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
@@ -60,7 +59,8 @@
     "facing=north,half=left,shape=outer_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
       "uvlock": true,
-      "x": 180
+      "x": 270,
+      "y": 270
     },
     "facing=north,half=left,shape=outer_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
@@ -82,7 +82,8 @@
     "facing=north,half=right,shape=inner_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
       "uvlock": true,
-      "y": 180
+      "x": 90,
+      "y": 270
     },
     "facing=north,half=right,shape=outer_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
@@ -92,7 +93,8 @@
     "facing=north,half=right,shape=outer_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
       "uvlock": true,
-      "y": 180
+      "x": 90,
+      "y": 270
     },
     "facing=north,half=right,shape=straight": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs",
@@ -102,8 +104,8 @@
     "facing=south,half=left,shape=inner_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
       "uvlock": true,
-      "x": 180,
-      "y": 180
+      "x": 270,
+      "y": 90
     },
     "facing=south,half=left,shape=inner_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
@@ -114,8 +116,8 @@
     "facing=south,half=left,shape=outer_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
       "uvlock": true,
-      "x": 180,
-      "y": 180
+      "x": 270,
+      "y": 90
     },
     "facing=south,half=left,shape=outer_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
@@ -135,7 +137,9 @@
       "y": 90
     },
     "facing=south,half=right,shape=inner_top": {
-      "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner"
+      "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
+      "x": 90,
+      "y": 90
     },
     "facing=south,half=right,shape=outer_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
@@ -143,7 +147,9 @@
       "y": 90
     },
     "facing=south,half=right,shape=outer_top": {
-      "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer"
+      "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
+      "x": 90,
+      "y": 90
     },
     "facing=south,half=right,shape=straight": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs",
@@ -153,8 +159,8 @@
     "facing=west,half=left,shape=inner_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
       "uvlock": true,
-      "x": 180,
-      "y": 270
+      "x": 270,
+      "y": 180
     },
     "facing=west,half=left,shape=inner_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
@@ -165,8 +171,8 @@
     "facing=west,half=left,shape=outer_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
       "uvlock": true,
-      "x": 180,
-      "y": 270
+      "x": 270,
+      "y": 180
     },
     "facing=west,half=left,shape=outer_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
@@ -188,7 +194,8 @@
     "facing=west,half=right,shape=inner_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_inner",
       "uvlock": true,
-      "y": 90
+      "x": 90,
+      "y": 180
     },
     "facing=west,half=right,shape=outer_bottom": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
@@ -198,7 +205,8 @@
     "facing=west,half=right,shape=outer_top": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs_outer",
       "uvlock": true,
-      "y": 90
+      "x": 90,
+      "y": 180
     },
     "facing=west,half=right,shape=straight": {
       "model": "vscarmor:block/brown_reinforced_steel_vertical_stairs",

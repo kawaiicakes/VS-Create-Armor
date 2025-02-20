@@ -48,7 +48,6 @@ public interface ArmorStateModelGenerator {
                 );
     }
 
-    // FIXME - Something is horrifically wrong either here, in the VerticalStairsBlock blockstate code, and/or the JSON model.
     static BlockStateSupplier createVerticalStairsBlockState(Block stairsBlock, Identifier innerModelId, Identifier regularModelId, Identifier outerModelId) {
         return VariantsBlockStateSupplier.create(stairsBlock)
                 .coordinate(
@@ -132,7 +131,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, outerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
                                 .register(
@@ -141,7 +140,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, outerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R180)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
@@ -150,7 +149,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.BlockHalf.RIGHT,
                                         VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
                                         BlockStateVariant.create()
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.MODEL, outerModelId)
                                 )
@@ -160,7 +159,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, outerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
@@ -204,7 +203,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.INNER_TOP,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, innerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
                                 .register(
@@ -213,7 +212,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.INNER_TOP,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, innerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R180)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
@@ -222,7 +221,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.BlockHalf.RIGHT,
                                         VerticalStairsBlock.VerticalStairShape.INNER_TOP,
                                         BlockStateVariant.create()
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.MODEL, innerModelId)
                                 )
@@ -232,7 +231,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.INNER_TOP,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, innerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
@@ -281,7 +280,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, outerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
                                 .register(
@@ -290,7 +289,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, outerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R180)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
@@ -300,7 +299,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, outerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
@@ -310,7 +309,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, outerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
@@ -359,7 +358,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, innerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
                                 .register(
@@ -368,7 +367,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, innerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R180)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
@@ -378,7 +377,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, innerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R90)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
@@ -388,7 +387,7 @@ public interface ArmorStateModelGenerator {
                                         VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
                                         BlockStateVariant.create()
                                                 .put(VariantSettings.MODEL, innerModelId)
-                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.UVLOCK, true)
                                 )
