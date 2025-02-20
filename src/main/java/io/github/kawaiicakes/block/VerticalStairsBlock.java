@@ -1,6 +1,7 @@
 package io.github.kawaiicakes.block;
 
 import net.minecraft.block.*;
+import net.minecraft.block.enums.StairShape;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -161,21 +162,24 @@ public class VerticalStairsBlock extends Block implements Waterloggable {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        Direction direction = ctx.getSide();
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-        BlockState blockState = this.getDefaultState()
-                .with(FACING, ctx.getHorizontalPlayerFacing())
-                .with(
-                        HALF,
-                        // FIXME
-                        direction != Direction.DOWN
-                                && (direction == Direction.UP || !(ctx.getHitPos().y - (double)blockPos.getY() > 0.5))
-                                ? BlockHalf.RIGHT
-                                : BlockHalf.LEFT
-                )
+
+        Direction playerFacing = ctx.getHorizontalPlayerFacing();
+
+        boolean isRight = switch (playerFacing) {
+            case NORTH -> (ctx.getHitPos().x - (double) blockPos.getX()) >= 0.5;
+            case SOUTH -> (ctx.getHitPos().x - (double) blockPos.getX()) <= 0.5;
+            case WEST -> (ctx.getHitPos().z - (double) blockPos.getZ()) <= 0.5;
+            default -> (ctx.getHitPos().z - (double) blockPos.getZ()) >= 0.5;
+        };
+
+        BlockState toReturn = this.getDefaultState()
+                .with(FACING, playerFacing)
+                .with(HALF, isRight ? BlockHalf.RIGHT : BlockHalf.LEFT)
                 .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-        return blockState.with(V_SHAPE, getVerticalStairShape(blockState, ctx.getWorld(), blockPos));
+
+        return toReturn.with(V_SHAPE, getVerticalStairShape(toReturn, ctx.getWorld(), blockPos));
     }
 
     @Override
@@ -187,52 +191,90 @@ public class VerticalStairsBlock extends Block implements Waterloggable {
             world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
-        return direction.getAxis().isHorizontal()
+        Direction originalFacing = state.get(FACING);
+
+        return !direction.getAxis().equals(originalFacing.getAxis())
                 ? state.with(V_SHAPE, getVerticalStairShape(state, world, pos))
                 : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
-    private static VerticalStairShape getVerticalStairShape(BlockState state, BlockView world, BlockPos pos) {
-        Direction direction = state.get(FACING);
-        BlockState blockState = world.getBlockState(pos.offset(direction));
-        if (isStairs(blockState) && state.get(HALF) == blockState.get(HALF)) {
-            Direction direction2 = blockState.get(FACING);
-            if (
-                    direction2.getAxis() != state.get(FACING).getAxis()
-                            && isDifferentOrientation(state, world, pos, direction2.getOpposite())
-            ) {
-                if (direction2 == direction.rotateYCounterclockwise()) {
-                    return VerticalStairShape.OUTER_TOP;
-                }
+    private static VerticalStairShape getVerticalStairShape(BlockState placedState, BlockView world, BlockPos placedPos) {
+        VerticalStairShape defaultReturn = VerticalStairShape.STRAIGHT;
 
-                return VerticalStairShape.OUTER_BOTTOM;
+        Direction placedFacing = placedState.get(FACING);
+
+        BlockState rightState = world.getBlockState(placedPos.offset(placedFacing.rotateYClockwise()));
+        BlockState leftState = world.getBlockState(placedPos.offset(placedFacing.rotateYCounterclockwise()));
+
+        if (!isStairs(rightState) && !isStairs(leftState))
+            return defaultReturn;
+
+        BlockState aboveState = world.getBlockState(placedPos.offset(Direction.UP));
+        BlockState belowState = world.getBlockState(placedPos.offset(Direction.DOWN));
+
+        BlockHalf placedHalf = placedState.get(HALF);
+
+        boolean aboveForcesStraight = isVStairs(aboveState)
+                && aboveState.get(HALF).equals(placedHalf)
+                && aboveState.get(FACING).equals(placedFacing)
+                && isForcingShape(aboveState.get(V_SHAPE));
+
+        // cut calculation early if above already forces straight
+        boolean belowForcesStraight = !aboveForcesStraight
+                && isVStairs(belowState)
+                && belowState.get(HALF).equals(placedHalf)
+                && belowState.get(FACING).equals(placedFacing)
+                && isForcingShape(belowState.get(V_SHAPE));
+
+        if (aboveForcesStraight || belowForcesStraight) return defaultReturn;
+
+        if (placedHalf.equals(BlockHalf.RIGHT)) {
+            if (shapeIsCongruent(rightState, BlockHalf.RIGHT, placedFacing)) {
+                return rightState.get(StairsBlock.HALF).equals(net.minecraft.block.enums.BlockHalf.TOP)
+                        ? VerticalStairShape.OUTER_TOP
+                        : VerticalStairShape.OUTER_BOTTOM;
+            } else if (shapeIsCongruent(leftState, BlockHalf.LEFT, placedFacing)) {
+                return leftState.get(StairsBlock.HALF).equals(net.minecraft.block.enums.BlockHalf.TOP)
+                        ? VerticalStairShape.INNER_TOP
+                        : VerticalStairShape.INNER_BOTTOM;
+            }
+        } else {
+            if (shapeIsCongruent(leftState, BlockHalf.LEFT, placedFacing)) {
+                return leftState.get(StairsBlock.HALF).equals(net.minecraft.block.enums.BlockHalf.TOP)
+                        ? VerticalStairShape.OUTER_TOP
+                        : VerticalStairShape.OUTER_BOTTOM;
+            } else if (shapeIsCongruent(rightState, BlockHalf.RIGHT, placedFacing)) {
+                return rightState.get(StairsBlock.HALF).equals(net.minecraft.block.enums.BlockHalf.TOP)
+                        ? VerticalStairShape.INNER_TOP
+                        : VerticalStairShape.INNER_BOTTOM;
             }
         }
 
-        BlockState blockState2 = world.getBlockState(pos.offset(direction.getOpposite()));
-        if (isStairs(blockState2) && state.get(HALF) == blockState2.get(HALF)) {
-            Direction direction3 = blockState2.get(FACING);
-            if (
-                    direction3.getAxis() != state.get(FACING).getAxis()
-                            && isDifferentOrientation(state, world, pos, direction3)
-            ) {
-                if (direction3 == direction.rotateYCounterclockwise()) {
-                    return VerticalStairShape.INNER_TOP;
-                }
+        return defaultReturn;
+    }
 
-                return VerticalStairShape.INNER_BOTTOM;
-            }
+    public static boolean shapeIsCongruent(BlockState stairs, BlockHalf half, Direction horizontal) {
+        if (!isStairs(stairs)) return false;
+        if (!stairs.get(FACING).equals(horizontal)) return false;
+
+        StairShape shape = stairs.get(SHAPE);
+
+        if (shape.equals(StairShape.STRAIGHT)) return true;
+
+        if (half.equals(BlockHalf.RIGHT)) {
+            return shape.equals(StairShape.OUTER_LEFT) || shape.equals(StairShape.INNER_RIGHT);
+        } else {
+            return shape.equals(StairShape.OUTER_RIGHT) || shape.equals(StairShape.INNER_LEFT);
         }
-
-        return VerticalStairShape.STRAIGHT;
     }
 
-    private static boolean isDifferentOrientation(BlockState state, BlockView world, BlockPos pos, Direction dir) {
-        BlockState blockState = world.getBlockState(pos.offset(dir));
-        return !isStairs(blockState) || blockState.get(FACING) != state.get(FACING) || blockState.get(HALF) != state.get(HALF);
+    public static boolean isForcingShape(VerticalStairShape shape) {
+        return shape.equals(VerticalStairShape.STRAIGHT)
+                || shape.equals(VerticalStairShape.INNER_TOP)
+                || shape.equals(VerticalStairShape.OUTER_BOTTOM);
     }
 
-    public static boolean isStairs(BlockState state) {
+    public static boolean isVStairs(BlockState state) {
         return state.getBlock() instanceof VerticalStairsBlock;
     }
 
@@ -246,6 +288,7 @@ public class VerticalStairsBlock extends Block implements Waterloggable {
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         Direction direction = state.get(FACING);
         VerticalStairShape stairShape = state.get(V_SHAPE);
+
         switch (mirror) {
             case LEFT_RIGHT:
                 if (direction.getAxis() == Direction.Axis.Z) {
