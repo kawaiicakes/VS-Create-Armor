@@ -63,6 +63,7 @@ public class Registry implements DataGeneratorEntrypoint {
         pack.addProvider(VSCArmorLangProvider::new);
     }
 
+    // TODO - new organization scheme
     static void register() {
         registerArmor();
 
@@ -100,7 +101,111 @@ public class Registry implements DataGeneratorEntrypoint {
             registerArmorBlockFamily(color + "_" + "reinforced_steel", 50.0F, 20.0F);
         }
 
-        // TODO: add custom patterns prn
+        for (String pattern : steelExclusive()) {
+            registerArmorBlockFamily(pattern + "_" + "steel", 10.0F, 7.0F);
+        }
+
+        for (String pattern : waterlinePatterns()) {
+            registerBlockWithItem(pattern + "_" + "light_steel", 3.0F, 5.0F);
+            registerBlockWithItem(pattern + "_" + "steel", 10.0F, 7.0F);
+            registerBlockWithItem(pattern + "_" + "reinforced_steel", 50.0F, 20.0F);
+        }
+
+        for (String pattern : steelBlockOnly()) {
+            registerBlockWithItem(pattern + "_" + "steel", 10.0F, 7.0F);
+        }
+    }
+
+    // Does not generate a full family of blocks, and skips over layered steel.
+    private static String[] waterlinePatterns() {
+        return new String[] {
+                "wl_29",
+                "wl_31",
+                "wl_32",
+                "wl_33",
+                "wl_black",
+                "wl_clear",
+                "wl_gray"
+        };
+    }
+
+    // FIXME - Waterline blocks lack item models since they aren't generated for the family
+    // TODO - Redo waterline textures to make them black; but make more so these can all be moved to #waterlinePatterns()
+    private static String[] steelBlockOnly() {
+        return new String[] {
+                "wl_4b0",
+                "wl_bottom",
+                "wl_brown",
+                "wl_cyan",
+                "wl_desert",
+                "wl_forest",
+                "wl_gelb",
+                "wl_green",
+                "wl_jungle",
+                "wl_lime",
+                "wl_magenta",
+                "wl_mesa",
+                "wl_orange",
+                "wl_panzergrau",
+                "wl_parade",
+                "wl_pink",
+                "wl_plains",
+                "wl_potbraun",
+                "wl_purple",
+                "wl_red",
+                "wl_snow",
+                "wl_swamp",
+                "wl_taiga",
+                "wl_yellow"
+        };
+    }
+
+    // TODO - Create these for all families.
+    private static String[] steelExclusive() {
+        return new String[] {
+                "rainbow",
+                "range"
+        };
+    }
+
+    // TODO - Add normal orange steel texture.
+    private static String[] colors() {
+        return new String[] {
+                "white",
+                "light_gray",
+                "gray",
+                "black",
+                "brown",
+                "red",
+                "orange",
+                "yellow",
+                "lime",
+                "green",
+                "cyan",
+                "light_blue",
+                "blue",
+                "purple",
+                "magenta",
+                "pink",
+                "4bo",
+                "29",
+                "31",
+                "32",
+                "33",
+                "gelb",
+                "panzergrau",
+                "parade",
+                "rotbraun",
+                "ship_lower",
+                "camo_desert",
+                "camo_forest",
+                "camo_jungle",
+                "camo_mesa",
+                "camo_plains",
+                "camo_snow",
+                "camo_swamp",
+                "camo_taiga"
+        };
     }
 
     private static void registerArmorBlockFamily(String id, float hardness, float blastResistance) {
@@ -169,43 +274,26 @@ public class Registry implements DataGeneratorEntrypoint {
         );
     }
 
-    private static String[] colors() {
-        return new String[] {
-                "white",
-                "light_gray",
-                "gray",
-                "black",
-                "brown",
-                "red",
-                "orange",
-                "yellow",
-                "lime",
-                "green",
-                "cyan",
-                "light_blue",
-                "blue",
-                "purple",
-                "magenta",
-                "pink",
-                "4bo",
-                "29",
-                "31",
-                "32",
-                "33",
-                "gelb",
-                "panzergrau",
-                "parade",
-                "rotbraun",
-                "ship_lower",
-                "camo_desert",
-                "camo_forest",
-                "camo_jungle",
-                "camo_mesa",
-                "camo_plains",
-                "camo_snow",
-                "camo_swamp",
-                "camo_taiga"
-        };
+    private static void registerBlockWithItem(String id, float hardness, float resistance) {
+        final Block baseBlock = new Block(
+                FabricBlockSettings.copyOf(NETHERITE_BLOCK)
+                        .hardness(hardness)
+                        .resistance(resistance)
+        );
+
+        net.minecraft.registry.Registry.register(
+                Registries.BLOCK,
+                new Identifier(MOD_ID, id),
+                baseBlock
+        );
+
+        REGISTERED.add(
+                net.minecraft.registry.Registry.register(
+                        Registries.ITEM,
+                        new Identifier(MOD_ID, id),
+                        new BlockItem(baseBlock, new FabricItemSettings())
+                )
+        );
     }
 
     private static class VSCArmorBlockLootTables extends FabricBlockLootTableProvider {
@@ -262,6 +350,7 @@ public class Registry implements DataGeneratorEntrypoint {
         public void generateItemModels(ItemModelGenerator itemModelGenerator) {}
     }
 
+    // TODO - more block and item tags; e.g. beacon base
     private static class VSCArmorBlockTagProvider extends FabricTagProvider<Block> {
         public VSCArmorBlockTagProvider(
                 FabricDataOutput output,
@@ -294,6 +383,7 @@ public class Registry implements DataGeneratorEntrypoint {
         }
     }
 
+    // TODO - rudimentary recipes
     private static class VSCArmorRecipeProvider extends FabricRecipeProvider {
         public VSCArmorRecipeProvider(FabricDataOutput output) {
             super(output);
@@ -305,6 +395,7 @@ public class Registry implements DataGeneratorEntrypoint {
         }
     }
 
+    // TODO - Add special handling for alphabet stuff, number-only colours, waterline, etc...
     private static class VSCArmorLangProvider extends FabricLanguageProvider {
         private VSCArmorLangProvider(FabricDataOutput dataGenerator) {
             super(dataGenerator, "en_us");

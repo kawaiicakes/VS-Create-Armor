@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/vertical_slab",
+  "textures": {
+    "bottom": "vscarmor:block/rainbow_steel",
+    "east": "vscarmor:block/rainbow_steel",
+    "north": "vscarmor:block/rainbow_steel",
+    "south": "vscarmor:block/rainbow_steel",
+    "top": "vscarmor:block/rainbow_steel",
+    "west": "vscarmor:block/rainbow_steel"
+  }
+}
