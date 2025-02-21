@@ -168,7 +168,6 @@ public class Registry implements DataGeneratorEntrypoint {
         };
     }
 
-    // TODO - Add normal orange steel texture.
     private static String[] colors() {
         return new String[] {
                 "white",
