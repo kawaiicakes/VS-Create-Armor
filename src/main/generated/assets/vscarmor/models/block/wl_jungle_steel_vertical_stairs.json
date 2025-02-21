@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/white_steel",
+    "east": "vscarmor:block/wl_jungle_steel",
+    "north": "vscarmor:block/wl_jungle_steel",
+    "south": "vscarmor:block/wl_jungle_steel",
+    "top": "vscarmor:block/jungle_steel",
+    "west": "vscarmor:block/wl_jungle_steel"
+  }
+}

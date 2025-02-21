@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/outer_vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/white_steel",
+    "east": "vscarmor:block/wl_panzergrau_steel",
+    "north": "vscarmor:block/wl_panzergrau_steel",
+    "south": "vscarmor:block/wl_panzergrau_steel",
+    "top": "vscarmor:block/panzergrau_steel",
+    "west": "vscarmor:block/wl_panzergrau_steel"
+  }
+}

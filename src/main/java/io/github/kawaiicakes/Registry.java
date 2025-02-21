@@ -13,8 +13,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.client.*;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.item.BlockItem;
@@ -50,6 +49,7 @@ import static net.minecraft.block.Blocks.NETHERITE_BLOCK;
 public class Registry implements DataGeneratorEntrypoint {
     static List<BlockItem> REGISTERED = new ArrayList<>();
     static final Map<Block, BlockFamily> BLOCK_FAMILIES = new HashMap<>();
+    static final Map<Block, BlockFamily> WATERLINE_BLOCK_FAMILIES = new HashMap<>();
 
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
@@ -106,13 +106,13 @@ public class Registry implements DataGeneratorEntrypoint {
         }
 
         for (String pattern : waterlinePatterns()) {
-            registerBlockWithItem(pattern + "_" + "light_steel", 3.0F, 5.0F);
-            registerBlockWithItem(pattern + "_" + "steel", 10.0F, 7.0F);
-            registerBlockWithItem(pattern + "_" + "reinforced_steel", 50.0F, 20.0F);
+            registerWaterlineArmorFamily(pattern + "_" + "light_steel", 3.0F, 5.0F);
+            registerWaterlineArmorFamily(pattern + "_" + "steel", 10.0F, 7.0F);
+            registerWaterlineArmorFamily(pattern + "_" + "reinforced_steel", 50.0F, 20.0F);
         }
 
         for (String pattern : steelBlockOnly()) {
-            registerBlockWithItem(pattern + "_" + "steel", 10.0F, 7.0F);
+            registerWaterlineArmorFamily(pattern + "_" + "steel", 10.0F, 7.0F);
         }
     }
 
@@ -129,7 +129,6 @@ public class Registry implements DataGeneratorEntrypoint {
         };
     }
 
-    // FIXME - Waterline blocks lack item models since they aren't generated for the family. Also, they need new generated models since the tops/bottoms are different.
     // TODO (1.1) - Redo waterline textures to make them black; but make more so these can all be moved to #waterlinePatterns()
     private static String[] steelBlockOnly() {
         return new String[] {
@@ -257,29 +256,57 @@ public class Registry implements DataGeneratorEntrypoint {
         );
     }
 
-    private static void registerBlockWithItem(String id, Block baseBlock) {
-        net.minecraft.registry.Registry.register(
-                Registries.BLOCK,
-                new Identifier(MOD_ID, id),
-                baseBlock
-        );
-
-        REGISTERED.add(
-                net.minecraft.registry.Registry.register(
-                        Registries.ITEM,
-                        new Identifier(MOD_ID, id),
-                        new BlockItem(baseBlock, new FabricItemSettings())
-                )
-        );
-    }
-
-    private static void registerBlockWithItem(String id, float hardness, float resistance) {
+    private static void registerWaterlineArmorFamily(String id, float hardness, float blastResistance) {
         final Block baseBlock = new Block(
                 FabricBlockSettings.copyOf(NETHERITE_BLOCK)
                         .hardness(hardness)
-                        .resistance(resistance)
+                        .resistance(blastResistance)
         );
 
+        final SlabBlock slabBlock = new SlabBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.5F)
+                        .resistance(blastResistance * 0.5F)
+        );
+
+        final VerticalSlabBlock verticalSlabBlock = new VerticalSlabBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.5F)
+                        .resistance(blastResistance * 0.5F)
+        );
+
+        final StairsBlock stairsBlock = new StairsBlock(
+                baseBlock.getDefaultState(),
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+        );
+
+        final VerticalStairsBlock verticalStairsBlock = new VerticalStairsBlock(
+                baseBlock.getDefaultState(),
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+        );
+
+        registerBlockWithItem(id, baseBlock);
+        registerBlockWithItem(id + "_slab", slabBlock);
+        registerBlockWithItem(id + "_vertical_slab", verticalSlabBlock);
+        registerBlockWithItem(id + "_stairs", stairsBlock);
+        registerBlockWithItem(id + "_vertical_stairs", verticalStairsBlock);
+
+        WATERLINE_BLOCK_FAMILIES.put(
+                baseBlock,
+                new ArmorFamily.Builder(baseBlock)
+                        .slab(slabBlock)
+                        .verticalSlab(verticalSlabBlock)
+                        .stairs(stairsBlock)
+                        .verticalStairs(verticalStairsBlock)
+                        .build()
+        );
+    }
+
+    private static void registerBlockWithItem(String id, Block baseBlock) {
         net.minecraft.registry.Registry.register(
                 Registries.BLOCK,
                 new Identifier(MOD_ID, id),
@@ -333,6 +360,34 @@ public class Registry implements DataGeneratorEntrypoint {
     }
 
     private static class VSCArmorModelProvider extends FabricModelProvider {
+        public static final TexturedModel.Factory WATERLINE_CUBE
+                = TexturedModel.makeFactory(VSCArmorModelProvider::waterlineCube, Models.CUBE_BOTTOM_TOP);
+
+        // Even more scuffed String handling lol
+        public static TextureMap waterlineCube(Block block) {
+            Identifier blockId = Registries.BLOCK.getId(block);
+
+            String bottomPath = "white";
+            if (blockId.getPath().contains("_reinforced_steel")) {
+                bottomPath += "_reinforced_steel";
+            } else if (blockId.getPath().contains("_light_steel")) {
+                bottomPath += "_light_steel";
+            } else if (blockId.getPath().contains("_steel")) {
+                bottomPath += "_steel";
+            }
+            Identifier bottom = new Identifier(blockId.getNamespace(), bottomPath);
+
+            Identifier top = new Identifier(
+                    blockId.getNamespace(),
+                    blockId.getPath().replace("wl_", "")
+            );
+
+            return new TextureMap()
+                    .put(TextureKey.SIDE, TextureMap.getId(block))
+                    .put(TextureKey.TOP, top.withPrefixedPath("block/"))
+                    .put(TextureKey.BOTTOM, bottom.withPrefixedPath("block/"));
+        }
+
         public VSCArmorModelProvider(FabricDataOutput output) {
             super(output);
         }
@@ -341,6 +396,14 @@ public class Registry implements DataGeneratorEntrypoint {
         public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
             for (Map.Entry<Block, BlockFamily> familyEntry : BLOCK_FAMILIES.entrySet()) {
                 blockStateModelGenerator.registerCubeAllModelTexturePool(familyEntry.getKey())
+                        .family(familyEntry.getValue());
+            }
+
+            for (Map.Entry<Block, BlockFamily> familyEntry : WATERLINE_BLOCK_FAMILIES.entrySet()) {
+                TexturedModel baseModel = WATERLINE_CUBE.get(familyEntry.getKey());
+
+                blockStateModelGenerator.new BlockTexturePool(baseModel.getTextures())
+                        .base(familyEntry.getKey(), baseModel.getModel())
                         .family(familyEntry.getValue());
             }
         }
