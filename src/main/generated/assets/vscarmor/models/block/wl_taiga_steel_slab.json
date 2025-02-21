@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "vscarmor:block/white_steel",
-    "side": "vscarmor:block/wl_taiga_steel",
-    "top": "vscarmor:block/taiga_steel"
-  }
-}

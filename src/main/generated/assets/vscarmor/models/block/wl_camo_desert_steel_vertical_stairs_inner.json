@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/inner_vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/white_steel",
+    "east": "vscarmor:block/wl_camo_desert_steel",
+    "north": "vscarmor:block/wl_camo_desert_steel",
+    "south": "vscarmor:block/wl_camo_desert_steel",
+    "top": "vscarmor:block/camo_desert_steel",
+    "west": "vscarmor:block/wl_camo_desert_steel"
+  }
+}

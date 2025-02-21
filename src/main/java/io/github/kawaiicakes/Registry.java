@@ -124,7 +124,7 @@ public class Registry implements DataGeneratorEntrypoint {
                 "wl_32",
                 "wl_33",
                 "wl_black",
-                "wl_clear",
+                "wl",
                 "wl_gray"
         };
     }
@@ -132,33 +132,34 @@ public class Registry implements DataGeneratorEntrypoint {
     // TODO (1.1) - Redo waterline textures to make them black; but make more so these can all be moved to #waterlinePatterns()
     private static String[] steelBlockOnly() {
         return new String[] {
-                "wl_4b0",
+                "wl_4bo",
                 "wl_bottom",
                 "wl_brown",
                 "wl_cyan",
-                "wl_desert",
-                "wl_forest",
+                "wl_camo_desert",
+                "wl_camo_forest",
                 "wl_gelb",
                 "wl_green",
-                "wl_jungle",
+                "wl_camo_jungle",
                 "wl_lime",
                 "wl_magenta",
-                "wl_mesa",
+                "wl_camo_mesa",
                 "wl_orange",
                 "wl_panzergrau",
                 "wl_parade",
                 "wl_pink",
-                "wl_plains",
+                "wl_camo_plains",
                 "wl_potbraun",
                 "wl_purple",
                 "wl_red",
-                "wl_snow",
-                "wl_swamp",
-                "wl_taiga",
+                "wl_camo_snow",
+                "wl_camo_swamp",
+                "wl_camo_taiga",
                 "wl_yellow"
         };
     }
 
+    // TODO - Potbraun, Bottom steel exclusive
     // TODO (1.1) - Create these for all families.
     private static String[] steelExclusive() {
         return new String[] {
@@ -477,6 +478,7 @@ public class Registry implements DataGeneratorEntrypoint {
             super(dataGenerator, "en_us");
         }
 
+        // TODO - Swap "Camo " around with following word
         // Surely nothing can go horribly wrong here!
         @SuppressWarnings("deprecation")
         private static String sanitizeName(String rawId) {
@@ -491,7 +493,7 @@ public class Registry implements DataGeneratorEntrypoint {
                     .replaceFirst("31 ", "Gray #31 ")
                     .replaceFirst("32 ", "Gray #32 ")
                     .replaceFirst("33 ", "Blue #33 ")
-                    .replaceFirst("4bo ", "Soviet 4BO Green ");
+                    .replaceFirst("4bo ", "Soviet 4B0 Green ");
         }
 
         @Override
