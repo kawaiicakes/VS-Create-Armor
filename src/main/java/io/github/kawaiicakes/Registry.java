@@ -129,7 +129,7 @@ public class Registry implements DataGeneratorEntrypoint {
         };
     }
 
-    // FIXME - Waterline blocks lack item models since they aren't generated for the family
+    // FIXME - Waterline blocks lack item models since they aren't generated for the family. Also, they need new generated models since the tops/bottoms are different.
     // TODO (1.1) - Redo waterline textures to make them black; but make more so these can all be moved to #waterlinePatterns()
     private static String[] steelBlockOnly() {
         return new String[] {
@@ -410,17 +410,26 @@ public class Registry implements DataGeneratorEntrypoint {
         }
     }
 
-    // TODO - Add special handling for alphabet stuff, number-only colours, waterline, etc...
     private static class VSCArmorLangProvider extends FabricLanguageProvider {
         private VSCArmorLangProvider(FabricDataOutput dataGenerator) {
             super(dataGenerator, "en_us");
         }
 
+        // Surely nothing can go horribly wrong here!
         @SuppressWarnings("deprecation")
-        private static String sanitizeName(String name) {
-            return WordUtils.capitalize(
-                    name.replace("block.vscarmor.", "").replace("_", " ")
+        private static String sanitizeName(String rawId) {
+            String toReturn = WordUtils.capitalize(
+                    rawId.replace("block.vscarmor.", "").replace("_", " ")
             );
+
+            return toReturn
+                    .replaceFirst("Ab ", "Alphabet ")
+                    .replaceFirst("Wl ", "Waterline ")
+                    .replaceFirst("29 ", "Blue #29 ")
+                    .replaceFirst("31 ", "Gray #31 ")
+                    .replaceFirst("32 ", "Gray #32 ")
+                    .replaceFirst("33 ", "Blue #33 ")
+                    .replaceFirst("4bo ", "Soviet 4BO Green ");
         }
 
         @Override
