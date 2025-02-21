@@ -63,7 +63,7 @@ public class Registry implements DataGeneratorEntrypoint {
         pack.addProvider(VSCArmorLangProvider::new);
     }
 
-    // TODO - new organization scheme
+    // TODO (1.1) - new organization scheme
     static void register() {
         registerArmor();
 
@@ -130,7 +130,7 @@ public class Registry implements DataGeneratorEntrypoint {
     }
 
     // FIXME - Waterline blocks lack item models since they aren't generated for the family
-    // TODO - Redo waterline textures to make them black; but make more so these can all be moved to #waterlinePatterns()
+    // TODO (1.1) - Redo waterline textures to make them black; but make more so these can all be moved to #waterlinePatterns()
     private static String[] steelBlockOnly() {
         return new String[] {
                 "wl_4b0",
@@ -160,7 +160,7 @@ public class Registry implements DataGeneratorEntrypoint {
         };
     }
 
-    // TODO - Create these for all families.
+    // TODO (1.1) - Create these for all families.
     private static String[] steelExclusive() {
         return new String[] {
                 "rainbow",
@@ -350,7 +350,6 @@ public class Registry implements DataGeneratorEntrypoint {
         public void generateItemModels(ItemModelGenerator itemModelGenerator) {}
     }
 
-    // TODO - more block and item tags; e.g. beacon base
     private static class VSCArmorBlockTagProvider extends FabricTagProvider<Block> {
         public VSCArmorBlockTagProvider(
                 FabricDataOutput output,
@@ -361,11 +360,27 @@ public class Registry implements DataGeneratorEntrypoint {
 
         @Override
         protected void configure(RegistryWrapper.WrapperLookup arg) {
-            TagBuilder builder = getTagBuilder(BlockTags.PICKAXE_MINEABLE);
+            TagBuilder pickaxeMineable = getTagBuilder(BlockTags.PICKAXE_MINEABLE);
+            TagBuilder beaconBase = getTagBuilder(BlockTags.BEACON_BASE_BLOCKS);
+            TagBuilder diamondTools = getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL);
+            TagBuilder witherImmune = getTagBuilder(BlockTags.WITHER_IMMUNE);
 
             for (BlockItem blockItem : REGISTERED) {
-                builder.add(Registries.BLOCK.getId(blockItem.getBlock()));
+                pickaxeMineable.add(Registries.BLOCK.getId(blockItem.getBlock()));
+                diamondTools.add(Registries.BLOCK.getId(blockItem.getBlock()));
+                witherImmune.add(Registries.BLOCK.getId(blockItem.getBlock()));
+
+                if (isFullBlock(blockItem.getBlock())) {
+                    beaconBase.add(Registries.BLOCK.getId(blockItem.getBlock()));
+                }
             }
+        }
+
+        public static boolean isFullBlock(Block block) {
+            return !(block instanceof SlabBlock)
+                    && !(block instanceof VerticalSlabBlock)
+                    && !(block instanceof StairsBlock)
+                    && !(block instanceof VerticalStairsBlock);
         }
     }
 
@@ -383,7 +398,7 @@ public class Registry implements DataGeneratorEntrypoint {
         }
     }
 
-    // TODO - rudimentary recipes
+    // TODO (1.1) - rudimentary recipes
     private static class VSCArmorRecipeProvider extends FabricRecipeProvider {
         public VSCArmorRecipeProvider(FabricDataOutput output) {
             super(output);
