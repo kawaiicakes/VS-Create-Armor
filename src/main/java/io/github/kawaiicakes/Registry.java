@@ -101,9 +101,8 @@ public class Registry implements DataGeneratorEntrypoint {
             registerArmorBlockFamily(color + "_" + "reinforced_steel", 50.0F, 20.0F);
         }
 
-        for (String pattern : steelExclusive()) {
-            registerArmorBlockFamily(pattern + "_" + "steel", 10.0F, 7.0F);
-        }
+        // TODO (1.1) - Create for all families.
+        registerArmorBlockFamily("rainbow_steel", 10.0F, 7.0F);
 
         for (String pattern : waterlinePatterns()) {
             registerWaterlineArmorFamily(pattern + "_" + "light_steel", 3.0F, 5.0F);
@@ -149,22 +148,13 @@ public class Registry implements DataGeneratorEntrypoint {
                 "wl_parade",
                 "wl_pink",
                 "wl_camo_plains",
-                "wl_potbraun",
+                "wl_rotbraun",
                 "wl_purple",
                 "wl_red",
                 "wl_camo_snow",
                 "wl_camo_swamp",
                 "wl_camo_taiga",
                 "wl_yellow"
-        };
-    }
-
-    // TODO (1.1) - Create these for all families.
-    private static String[] steelExclusive() {
-        return new String[] {
-                "rainbow",
-                "range",
-                "potbraun"
         };
     }
 

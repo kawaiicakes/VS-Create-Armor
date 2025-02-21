@@ -1,5 +1,5 @@
-// 1.20.1	2025-02-21T10:52:44.1792204	VS Create Armor/Tags for minecraft:block
-66b10c573f817ab741ea25387dc7342bd248d4ce data\minecraft\tags\blocks\beacon_base_blocks.json
-4be7c04f71bb288f20785f466fb4746fba235c7c data\minecraft\tags\blocks\wither_immune.json
-4be7c04f71bb288f20785f466fb4746fba235c7c data\minecraft\tags\blocks\mineable\pickaxe.json
-4be7c04f71bb288f20785f466fb4746fba235c7c data\minecraft\tags\blocks\needs_diamond_tool.json
+// 1.20.1	2025-02-21T12:26:30.0862987	VS Create Armor/Tags for minecraft:block
+a72dd251389fbedba9397089787af1b4e2779be3 data\minecraft\tags\blocks\beacon_base_blocks.json
+c6b30f97d9d83aae3b5d436579d3b8088aa79817 data\minecraft\tags\blocks\wither_immune.json
+c6b30f97d9d83aae3b5d436579d3b8088aa79817 data\minecraft\tags\blocks\mineable\pickaxe.json
+c6b30f97d9d83aae3b5d436579d3b8088aa79817 data\minecraft\tags\blocks\needs_diamond_tool.json
