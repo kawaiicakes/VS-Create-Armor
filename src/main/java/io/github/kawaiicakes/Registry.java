@@ -133,7 +133,7 @@ public class Registry implements DataGeneratorEntrypoint {
     private static String[] steelBlockOnly() {
         return new String[] {
                 "wl_4bo",
-                "wl_bottom",
+                "wl_ship_lower",
                 "wl_brown",
                 "wl_cyan",
                 "wl_camo_desert",
@@ -159,12 +159,12 @@ public class Registry implements DataGeneratorEntrypoint {
         };
     }
 
-    // TODO - Potbraun, Bottom steel exclusive
     // TODO (1.1) - Create these for all families.
     private static String[] steelExclusive() {
         return new String[] {
                 "rainbow",
-                "range"
+                "range",
+                "potbraun"
         };
     }
 

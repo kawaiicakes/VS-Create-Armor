@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/vertical_slab",
+  "textures": {
+    "bottom": "vscarmor:block/potbraun_steel",
+    "east": "vscarmor:block/potbraun_steel",
+    "north": "vscarmor:block/potbraun_steel",
+    "south": "vscarmor:block/potbraun_steel",
+    "top": "vscarmor:block/potbraun_steel",
+    "west": "vscarmor:block/potbraun_steel"
+  }
+}
