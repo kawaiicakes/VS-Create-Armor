@@ -30,6 +30,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagBuilder;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -417,6 +418,14 @@ public class Registry implements DataGeneratorEntrypoint {
             TagBuilder beaconBase = getTagBuilder(BlockTags.BEACON_BASE_BLOCKS);
             TagBuilder diamondTools = getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL);
             TagBuilder witherImmune = getTagBuilder(BlockTags.WITHER_IMMUNE);
+            TagBuilder light
+                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "light_steel")));
+            TagBuilder normal
+                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "steel")));
+            TagBuilder layered
+                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "layered_steel")));
+            TagBuilder reinforced
+                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "reinforced_steel")));
 
             for (BlockItem blockItem : REGISTERED) {
                 pickaxeMineable.add(Registries.BLOCK.getId(blockItem.getBlock()));
@@ -425,6 +434,17 @@ public class Registry implements DataGeneratorEntrypoint {
 
                 if (isFullBlock(blockItem.getBlock())) {
                     beaconBase.add(Registries.BLOCK.getId(blockItem.getBlock()));
+                }
+
+                // I made this scuffed ass if-else chain to only tag the normal steel as such after all checks are made
+                if (Registries.BLOCK.getId(blockItem.getBlock()).getPath().contains("light_steel")) {
+                    light.add(Registries.BLOCK.getId(blockItem.getBlock()));
+                } else if (Registries.BLOCK.getId(blockItem.getBlock()).getPath().contains("layered_steel")) {
+                    layered.add(Registries.BLOCK.getId(blockItem.getBlock())) ;
+                } else if (Registries.BLOCK.getId(blockItem.getBlock()).getPath().contains("reinforced_steel")) {
+                    reinforced.add(Registries.BLOCK.getId(blockItem.getBlock()));
+                } else if (Registries.BLOCK.getId(blockItem.getBlock()).getPath().contains("steel")) {
+                    normal.add(Registries.BLOCK.getId(blockItem.getBlock()));
                 }
             }
         }
