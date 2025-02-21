@@ -478,7 +478,6 @@ public class Registry implements DataGeneratorEntrypoint {
             super(dataGenerator, "en_us");
         }
 
-        // TODO - Swap "Camo " around with following word
         // Surely nothing can go horribly wrong here!
         @SuppressWarnings("deprecation")
         private static String sanitizeName(String rawId) {
@@ -486,7 +485,7 @@ public class Registry implements DataGeneratorEntrypoint {
                     rawId.replace("block.vscarmor.", "").replace("_", " ")
             );
 
-            return toReturn
+            toReturn = toReturn
                     .replaceFirst("Ab ", "Alphabet ")
                     .replaceFirst("Wl ", "Waterline ")
                     .replaceFirst("29 ", "Blue #29 ")
@@ -494,6 +493,19 @@ public class Registry implements DataGeneratorEntrypoint {
                     .replaceFirst("32 ", "Gray #32 ")
                     .replaceFirst("33 ", "Blue #33 ")
                     .replaceFirst("4bo ", "Soviet 4B0 Green ");
+
+            if (toReturn.contains("Camo ")) {
+                String waterline = toReturn.contains("Waterline ") ? "Waterline " : "";
+                toReturn = toReturn.replaceFirst("Waterline ", "");
+
+                toReturn = toReturn.replaceFirst("Camo ", "");
+
+                String[] split = toReturn.split(" ", 2);
+
+                toReturn = waterline + split[0] + " Camo " + split[1];
+            }
+
+            return toReturn;
         }
 
         @Override
