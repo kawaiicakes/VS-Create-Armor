@@ -300,6 +300,8 @@ public class Registry implements DataGeneratorEntrypoint {
     }
 
     // TODO - new model for steel armour cubes
+    // TODO - Waterline Black shouldn't exist
+    // TODO - Fix flipped top/bottom textures for waterline vertical stair states
     private static class VSCArmorModelProvider extends FabricModelProvider {
         public static final TexturedModel.Factory WATERLINE_CUBE
                 = TexturedModel.makeFactory(VSCArmorModelProvider::waterlineCube, Models.CUBE_BOTTOM_TOP);
@@ -308,13 +310,16 @@ public class Registry implements DataGeneratorEntrypoint {
             Identifier blockId = Registries.BLOCK.getId(block);
 
             String bottomPath = "black";
-            if (blockId.getPath().contains("_reinforced_armor")) {
+            if (blockId.getPath().contains("reinforced_armor")) {
                 bottomPath += "_reinforced_armor";
-            } else if (blockId.getPath().contains("_light_armor")) {
+            } else if (blockId.getPath().contains("light_armor")) {
                 bottomPath += "_light_armor";
-            } else if (blockId.getPath().contains("_steel_armor")) {
+            } else if (blockId.getPath().contains("steel_armor")) {
                 bottomPath += "_steel_armor";
+            } else if (blockId.getPath().contains("composite_armor")) {
+                bottomPath += "_composite_armor";
             }
+
             Identifier bottom = new Identifier(blockId.getNamespace(), bottomPath);
 
             Identifier top = new Identifier(

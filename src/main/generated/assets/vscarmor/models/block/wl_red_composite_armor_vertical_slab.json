@@ -1,7 +1,7 @@
 {
   "parent": "vscarmor:block/vertical_slab",
   "textures": {
-    "bottom": "vscarmor:block/black",
+    "bottom": "vscarmor:block/black_composite_armor",
     "east": "vscarmor:block/wl_red_composite_armor",
     "north": "vscarmor:block/wl_red_composite_armor",
     "south": "vscarmor:block/wl_red_composite_armor",
