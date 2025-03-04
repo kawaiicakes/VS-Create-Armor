@@ -70,13 +70,22 @@ public abstract class BlockTexturePoolMixin implements ArmorTexturePool {
         if (this.baseModelId == null) {
             throw new IllegalStateException("Full block not generated yet");
         } else {
-            Identifier inner = this.ensureModel(VerticalModels.V_STAIRS_INNER, block);
-            Identifier regular = this.ensureModel(VerticalModels.V_STAIRS, block);
-            Identifier outer = this.ensureModel(VerticalModels.V_STAIRS_OUTER, block);
+            Identifier innerRightBottom = this.ensureModel(VerticalModels.V_STAIRS_INNER_RIGHT_BOTTOM, block);
+            Identifier regularRight = this.ensureModel(VerticalModels.V_STAIRS_RIGHT, block);
+            Identifier outerRightBottom = this.ensureModel(VerticalModels.V_STAIRS_OUTER_RIGHT_BOTTOM, block);
+            Identifier innerRightTop = this.ensureModel(VerticalModels.V_STAIRS_INNER_RIGHT_TOP, block);
+            Identifier outerRightTop = this.ensureModel(VerticalModels.V_STAIRS_OUTER_RIGHT_TOP, block);
+            Identifier innerLeftBottom = this.ensureModel(VerticalModels.V_STAIRS_INNER_LEFT_BOTTOM, block);
+            Identifier regularLeft = this.ensureModel(VerticalModels.V_STAIRS_LEFT, block);
+            Identifier outerLeftBottom = this.ensureModel(VerticalModels.V_STAIRS_OUTER_LEFT_BOTTOM, block);
+            Identifier innerLeftTop = this.ensureModel(VerticalModels.V_STAIRS_INNER_LEFT_TOP, block);
+            Identifier outerLeftTop = this.ensureModel(VerticalModels.V_STAIRS_OUTER_LEFT_TOP, block);
             this.field_22836.blockStateCollector.accept(ArmorStateModelGenerator.createVerticalStairsBlockState(
-                    block, inner, regular, outer
+                    block,
+                    innerRightBottom, regularRight, outerRightBottom, innerRightTop, outerRightTop,
+                    innerLeftBottom, regularLeft, outerLeftBottom, innerLeftTop, outerLeftTop
             ));
-            this.field_22836.registerParentedItemModel(block, regular);
+            this.field_22836.registerParentedItemModel(block, regularRight);
             return ((BlockStateModelGenerator.BlockTexturePool)(Object) this);
         }
     }

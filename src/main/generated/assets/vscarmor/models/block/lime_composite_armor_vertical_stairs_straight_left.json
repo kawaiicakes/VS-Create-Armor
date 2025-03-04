@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/vertical_stairs_left",
+  "textures": {
+    "bottom": "vscarmor:block/lime_composite_armor",
+    "east": "vscarmor:block/lime_composite_armor",
+    "north": "vscarmor:block/lime_composite_armor",
+    "south": "vscarmor:block/lime_composite_armor",
+    "top": "vscarmor:block/lime_composite_armor",
+    "west": "vscarmor:block/lime_composite_armor"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/vertical_stairs_left",
+  "textures": {
+    "bottom": "vscarmor:block/black_light_armor",
+    "east": "vscarmor:block/wl_cyan_light_armor",
+    "north": "vscarmor:block/wl_cyan_light_armor",
+    "south": "vscarmor:block/wl_cyan_light_armor",
+    "top": "vscarmor:block/cyan_light_armor",
+    "west": "vscarmor:block/wl_cyan_light_armor"
+  }
+}

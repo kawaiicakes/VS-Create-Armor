@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/inner_vertical_stairs_right_bottom",
+  "textures": {
+    "bottom": "vscarmor:block/black_composite_armor",
+    "east": "vscarmor:block/wl_light_blue_composite_armor",
+    "north": "vscarmor:block/wl_light_blue_composite_armor",
+    "south": "vscarmor:block/wl_light_blue_composite_armor",
+    "top": "vscarmor:block/light_blue_composite_armor",
+    "west": "vscarmor:block/wl_light_blue_composite_armor"
+  }
+}

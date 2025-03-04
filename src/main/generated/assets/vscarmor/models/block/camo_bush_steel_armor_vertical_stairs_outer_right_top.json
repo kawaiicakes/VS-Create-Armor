@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/outer_vertical_stairs_right_top",
+  "textures": {
+    "bottom": "vscarmor:block/camo_bush_steel_armor",
+    "east": "vscarmor:block/camo_bush_steel_armor",
+    "north": "vscarmor:block/camo_bush_steel_armor",
+    "south": "vscarmor:block/camo_bush_steel_armor",
+    "top": "vscarmor:block/camo_bush_steel_armor",
+    "west": "vscarmor:block/camo_bush_steel_armor"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/vertical_stairs_right",
+  "textures": {
+    "bottom": "vscarmor:block/33_reinforced_armor",
+    "east": "vscarmor:block/33_reinforced_armor",
+    "north": "vscarmor:block/33_reinforced_armor",
+    "south": "vscarmor:block/33_reinforced_armor",
+    "top": "vscarmor:block/33_reinforced_armor",
+    "west": "vscarmor:block/33_reinforced_armor"
+  }
+}
