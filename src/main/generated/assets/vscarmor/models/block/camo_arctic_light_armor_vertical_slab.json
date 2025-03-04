@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/vertical_slab",
+  "textures": {
+    "bottom": "vscarmor:block/camo_arctic_light_armor",
+    "east": "vscarmor:block/camo_arctic_light_armor",
+    "north": "vscarmor:block/camo_arctic_light_armor",
+    "south": "vscarmor:block/camo_arctic_light_armor",
+    "top": "vscarmor:block/camo_arctic_light_armor",
+    "west": "vscarmor:block/camo_arctic_light_armor"
+  }
+}

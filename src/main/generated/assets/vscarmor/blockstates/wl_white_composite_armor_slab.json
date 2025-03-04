@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "vscarmor:block/wl_white_composite_armor_slab"
+    },
+    "type=double": {
+      "model": "vscarmor:block/wl_white_composite_armor"
+    },
+    "type=top": {
+      "model": "vscarmor:block/wl_white_composite_armor_slab_top"
+    }
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "vscarmor:block/rainbow_steel",
-    "side": "vscarmor:block/rainbow_steel",
-    "top": "vscarmor:block/rainbow_steel"
-  }
-}

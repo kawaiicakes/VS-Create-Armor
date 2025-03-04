@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "vscarmor:block/white_steel",
-    "side": "vscarmor:block/wl_pink_steel",
-    "top": "vscarmor:block/pink_steel"
-  }
-}

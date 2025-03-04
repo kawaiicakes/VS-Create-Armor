@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/red_composite_armor",
+    "east": "vscarmor:block/red_composite_armor",
+    "north": "vscarmor:block/red_composite_armor",
+    "south": "vscarmor:block/red_composite_armor",
+    "top": "vscarmor:block/red_composite_armor",
+    "west": "vscarmor:block/red_composite_armor"
+  }
+}

@@ -90,75 +90,20 @@ public class Registry implements DataGeneratorEntrypoint {
      */
 
     private static void registerArmor() {
-        registerArmorBlockFamily("light_steel", 3.0F, 5.0F);
-        registerArmorBlockFamily("steel", 10.0F, 7.0F);
-        registerArmorBlockFamily("layered_steel", 28.0F, 8.0F);
-        registerArmorBlockFamily("reinforced_steel", 50.0F, 20.0F);
+        registerArmorBlockFamily("light_armor", 3.0F, 5.0F);
+        registerArmorBlockFamily("steel_armor", 10.0F, 7.0F);
+        registerArmorBlockFamily("composite_armor", 28.0F, 8.0F);
+        registerArmorBlockFamily("reinforced_armor", 50.0F, 20.0F);
 
         for (String color : colors()) {
-            registerArmorBlockFamily(color + "_" + "light_steel", 3.0F, 5.0F);
-            registerArmorBlockFamily(color + "_" + "steel", 10.0F, 7.0F);
-            registerArmorBlockFamily(color + "_" + "layered_steel", 28.0F, 8.0F);
-            registerArmorBlockFamily(color + "_" + "reinforced_steel", 50.0F, 20.0F);
-        }
-
-        // TODO (1.1) - Create for all families.
-        registerArmorBlockFamily("rainbow_steel", 10.0F, 7.0F);
-
-        for (String pattern : waterlinePatterns()) {
-            registerWaterlineArmorFamily(pattern + "_" + "light_steel", 3.0F, 5.0F);
-            registerWaterlineArmorFamily(pattern + "_" + "steel", 10.0F, 7.0F);
-            registerWaterlineArmorFamily(pattern + "_" + "reinforced_steel", 50.0F, 20.0F);
-        }
-
-        for (String pattern : steelBlockOnly()) {
-            registerWaterlineArmorFamily(pattern + "_" + "steel", 10.0F, 7.0F);
+            registerArmorBlockFamily(color + "_" + "light_armor", 3.0F, 5.0F);
+            registerArmorBlockFamily(color + "_" + "steel_armor", 10.0F, 7.0F);
+            registerArmorBlockFamily(color + "_" + "composite_armor", 28.0F, 8.0F);
+            registerArmorBlockFamily(color + "_" + "reinforced_armor", 50.0F, 20.0F);
         }
     }
 
-    // Does not generate a full family of blocks, and skips over layered steel.
-    private static String[] waterlinePatterns() {
-        return new String[] {
-                "wl_29",
-                "wl_31",
-                "wl_32",
-                "wl_33",
-                "wl_black",
-                "wl",
-                "wl_gray"
-        };
-    }
-
-    // TODO (1.1) - Redo waterline textures to make them black; but make more so these can all be moved to #waterlinePatterns()
-    private static String[] steelBlockOnly() {
-        return new String[] {
-                "wl_4bo",
-                "wl_ship_lower",
-                "wl_brown",
-                "wl_cyan",
-                "wl_camo_desert",
-                "wl_camo_forest",
-                "wl_gelb",
-                "wl_green",
-                "wl_camo_jungle",
-                "wl_lime",
-                "wl_magenta",
-                "wl_camo_mesa",
-                "wl_orange",
-                "wl_panzergrau",
-                "wl_parade",
-                "wl_pink",
-                "wl_camo_plains",
-                "wl_rotbraun",
-                "wl_purple",
-                "wl_red",
-                "wl_camo_snow",
-                "wl_camo_swamp",
-                "wl_camo_taiga",
-                "wl_yellow"
-        };
-    }
-
+    // TODO - Add commented colours + patterns.
     private static String[] colors() {
         return new String[] {
                 "white",
@@ -177,24 +122,29 @@ public class Registry implements DataGeneratorEntrypoint {
                 "purple",
                 "magenta",
                 "pink",
-                "4bo",
+                "4b0",
                 "29",
                 "31",
                 "32",
                 "33",
-                "gelb",
+                "dunkelgelb",
                 "panzergrau",
-                "parade",
+                // "parade",
                 "rotbraun",
-                "ship_lower",
+                // "ship_lower",
+                // rainbow,
                 "camo_desert",
                 "camo_forest",
+                /*
                 "camo_jungle",
                 "camo_mesa",
                 "camo_plains",
                 "camo_snow",
                 "camo_swamp",
                 "camo_taiga"
+                 */
+                "camo_bush",
+                "camo_arctic"
         };
     }
 
@@ -231,11 +181,49 @@ public class Registry implements DataGeneratorEntrypoint {
                         .resistance(blastResistance * 0.75F)
         );
 
+        final Block wlBaseBlock = new Block(
+                FabricBlockSettings.copyOf(NETHERITE_BLOCK)
+                        .hardness(hardness)
+                        .resistance(blastResistance)
+        );
+
+        final SlabBlock wlSlabBlock = new SlabBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.5F)
+                        .resistance(blastResistance * 0.5F)
+        );
+
+        final VerticalSlabBlock wlVerticalSlabBlock = new VerticalSlabBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.5F)
+                        .resistance(blastResistance * 0.5F)
+        );
+
+        final StairsBlock wlStairsBlock = new StairsBlock(
+                baseBlock.getDefaultState(),
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+        );
+
+        final VerticalStairsBlock wlVerticalStairsBlock = new VerticalStairsBlock(
+                baseBlock.getDefaultState(),
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+        );
+
         registerBlockWithItem(id, baseBlock);
         registerBlockWithItem(id + "_slab", slabBlock);
         registerBlockWithItem(id + "_vertical_slab", verticalSlabBlock);
         registerBlockWithItem(id + "_stairs", stairsBlock);
         registerBlockWithItem(id + "_vertical_stairs", verticalStairsBlock);
+
+        registerBlockWithItem("wl_" + id, wlBaseBlock);
+        registerBlockWithItem("wl_" + id + "_slab", wlSlabBlock);
+        registerBlockWithItem("wl_" + id + "_vertical_slab", wlVerticalSlabBlock);
+        registerBlockWithItem("wl_" + id + "_stairs", wlStairsBlock);
+        registerBlockWithItem("wl_" + id + "_vertical_stairs", wlVerticalStairsBlock);
 
         BLOCK_FAMILIES.put(
                 baseBlock,
@@ -246,54 +234,14 @@ public class Registry implements DataGeneratorEntrypoint {
                         .verticalStairs(verticalStairsBlock)
                         .build()
         );
-    }
-
-    private static void registerWaterlineArmorFamily(String id, float hardness, float blastResistance) {
-        final Block baseBlock = new Block(
-                FabricBlockSettings.copyOf(NETHERITE_BLOCK)
-                        .hardness(hardness)
-                        .resistance(blastResistance)
-        );
-
-        final SlabBlock slabBlock = new SlabBlock(
-                FabricBlockSettings.copyOf(baseBlock)
-                        .hardness(hardness * 0.5F)
-                        .resistance(blastResistance * 0.5F)
-        );
-
-        final VerticalSlabBlock verticalSlabBlock = new VerticalSlabBlock(
-                FabricBlockSettings.copyOf(baseBlock)
-                        .hardness(hardness * 0.5F)
-                        .resistance(blastResistance * 0.5F)
-        );
-
-        final StairsBlock stairsBlock = new StairsBlock(
-                baseBlock.getDefaultState(),
-                FabricBlockSettings.copyOf(baseBlock)
-                        .hardness(hardness * 0.75F)
-                        .resistance(blastResistance * 0.75F)
-        );
-
-        final VerticalStairsBlock verticalStairsBlock = new VerticalStairsBlock(
-                baseBlock.getDefaultState(),
-                FabricBlockSettings.copyOf(baseBlock)
-                        .hardness(hardness * 0.75F)
-                        .resistance(blastResistance * 0.75F)
-        );
-
-        registerBlockWithItem(id, baseBlock);
-        registerBlockWithItem(id + "_slab", slabBlock);
-        registerBlockWithItem(id + "_vertical_slab", verticalSlabBlock);
-        registerBlockWithItem(id + "_stairs", stairsBlock);
-        registerBlockWithItem(id + "_vertical_stairs", verticalStairsBlock);
 
         WATERLINE_BLOCK_FAMILIES.put(
-                baseBlock,
-                new ArmorFamily.Builder(baseBlock)
-                        .slab(slabBlock)
-                        .verticalSlab(verticalSlabBlock)
-                        .stairs(stairsBlock)
-                        .verticalStairs(verticalStairsBlock)
+                wlBaseBlock,
+                new ArmorFamily.Builder(wlBaseBlock)
+                        .slab(wlSlabBlock)
+                        .verticalSlab(wlVerticalSlabBlock)
+                        .stairs(wlStairsBlock)
+                        .verticalStairs(wlVerticalStairsBlock)
                         .build()
         );
     }
@@ -351,21 +299,21 @@ public class Registry implements DataGeneratorEntrypoint {
         }
     }
 
+    // TODO - new model for steel armour cubes
     private static class VSCArmorModelProvider extends FabricModelProvider {
         public static final TexturedModel.Factory WATERLINE_CUBE
                 = TexturedModel.makeFactory(VSCArmorModelProvider::waterlineCube, Models.CUBE_BOTTOM_TOP);
 
-        // Even more scuffed String handling lol
         public static TextureMap waterlineCube(Block block) {
             Identifier blockId = Registries.BLOCK.getId(block);
 
-            String bottomPath = "white";
-            if (blockId.getPath().contains("_reinforced_steel")) {
-                bottomPath += "_reinforced_steel";
-            } else if (blockId.getPath().contains("_light_steel")) {
-                bottomPath += "_light_steel";
-            } else if (blockId.getPath().contains("_steel")) {
-                bottomPath += "_steel";
+            String bottomPath = "black";
+            if (blockId.getPath().contains("_reinforced_armor")) {
+                bottomPath += "_reinforced_armor";
+            } else if (blockId.getPath().contains("_light_armor")) {
+                bottomPath += "_light_armor";
+            } else if (blockId.getPath().contains("_steel_armor")) {
+                bottomPath += "_steel_armor";
             }
             Identifier bottom = new Identifier(blockId.getNamespace(), bottomPath);
 
@@ -419,13 +367,13 @@ public class Registry implements DataGeneratorEntrypoint {
             TagBuilder diamondTools = getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL);
             TagBuilder witherImmune = getTagBuilder(BlockTags.WITHER_IMMUNE);
             TagBuilder light
-                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "light_steel")));
-            TagBuilder normal
-                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "steel")));
-            TagBuilder layered
-                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "layered_steel")));
+                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "light_armor")));
+            TagBuilder steel
+                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "steel_armor")));
+            TagBuilder composite
+                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "composite_armor")));
             TagBuilder reinforced
-                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "reinforced_steel")));
+                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "reinforced_armor")));
 
             for (BlockItem blockItem : REGISTERED) {
                 pickaxeMineable.add(Registries.BLOCK.getId(blockItem.getBlock()));
@@ -436,16 +384,16 @@ public class Registry implements DataGeneratorEntrypoint {
                     beaconBase.add(Registries.BLOCK.getId(blockItem.getBlock()));
                 }
 
-                // I made this scuffed ass if-else chain to only tag the normal steel as such after all checks are made
-                if (Registries.BLOCK.getId(blockItem.getBlock()).getPath().contains("light_steel")) {
-                    light.add(Registries.BLOCK.getId(blockItem.getBlock()));
-                } else if (Registries.BLOCK.getId(blockItem.getBlock()).getPath().contains("layered_steel")) {
-                    layered.add(Registries.BLOCK.getId(blockItem.getBlock())) ;
-                } else if (Registries.BLOCK.getId(blockItem.getBlock()).getPath().contains("reinforced_steel")) {
-                    reinforced.add(Registries.BLOCK.getId(blockItem.getBlock()));
-                } else if (Registries.BLOCK.getId(blockItem.getBlock()).getPath().contains("steel")) {
-                    normal.add(Registries.BLOCK.getId(blockItem.getBlock()));
-                }
+                String blockPath = Registries.BLOCK.getId(blockItem.getBlock()).getPath();
+
+                TagBuilder addTo;
+
+                if (blockPath.contains("light_armor")) addTo = light;
+                else if (blockPath.contains("steel_armor")) addTo = steel;
+                else if (blockPath.contains("composite_armor")) addTo = composite;
+                else addTo = reinforced;
+
+                addTo.add(Registries.BLOCK.getId(blockItem.getBlock()));
             }
         }
 
@@ -502,7 +450,7 @@ public class Registry implements DataGeneratorEntrypoint {
                     .replaceFirst("31 ", "Gray #31 ")
                     .replaceFirst("32 ", "Gray #32 ")
                     .replaceFirst("33 ", "Blue #33 ")
-                    .replaceFirst("4bo ", "Soviet 4B0 Green ");
+                    .replaceFirst("4b0 ", "Soviet 4B0 Green ");
 
             if (toReturn.contains("Camo ")) {
                 String waterline = toReturn.contains("Waterline ") ? "Waterline " : "";

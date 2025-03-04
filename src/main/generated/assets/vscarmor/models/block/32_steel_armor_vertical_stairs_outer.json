@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/outer_vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/32_steel_armor",
+    "east": "vscarmor:block/32_steel_armor",
+    "north": "vscarmor:block/32_steel_armor",
+    "south": "vscarmor:block/32_steel_armor",
+    "top": "vscarmor:block/32_steel_armor",
+    "west": "vscarmor:block/32_steel_armor"
+  }
+}

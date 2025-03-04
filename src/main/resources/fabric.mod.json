@@ -3,9 +3,10 @@
 	"id": "vscarmor",
 	"version": "${version}",
 	"name": "VS Create Armor",
-	"description": "Elegant metal blocks designed for use with Create: Big Cannons & Valkyrien Skies. Credit owed for texture assets to arhos_minucios on CurseForge. See mod homepage for more details.",
+	"description": "Elegant armor blocks designed for use with Create: Big Cannons & Valkyrien Skies. Texture assets lovingly made by https://x.com/BlackbirdieAnt",
 	"authors": [
-		"kawaiicakes"
+		"kawaiicakes",
+		"BlackBirdAntlion"
 	],
 	"contact": {
 		"homepage": "https://www.curseforge.com/minecraft/mc-mods/vs-create-armor",

@@ -1,0 +1,11 @@
+{
+  "parent": "vscarmor:block/inner_vertical_stairs",
+  "textures": {
+    "bottom": "vscarmor:block/white_composite_armor",
+    "east": "vscarmor:block/white_composite_armor",
+    "north": "vscarmor:block/white_composite_armor",
+    "south": "vscarmor:block/white_composite_armor",
+    "top": "vscarmor:block/white_composite_armor",
+    "west": "vscarmor:block/white_composite_armor"
+  }
+}

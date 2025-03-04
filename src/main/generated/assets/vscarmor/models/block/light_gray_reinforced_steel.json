@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "vscarmor:block/light_gray_reinforced_steel"
-  }
-}
