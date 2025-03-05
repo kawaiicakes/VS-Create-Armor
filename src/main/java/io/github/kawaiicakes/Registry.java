@@ -181,6 +181,25 @@ public class Registry implements DataGeneratorEntrypoint {
                         .resistance(blastResistance * 0.75F)
         );
 
+        registerBlockWithItem(id, baseBlock);
+        registerBlockWithItem(id + "_slab", slabBlock);
+        registerBlockWithItem(id + "_vertical_slab", verticalSlabBlock);
+        registerBlockWithItem(id + "_stairs", stairsBlock);
+        registerBlockWithItem(id + "_vertical_stairs", verticalStairsBlock);
+
+        BLOCK_FAMILIES.put(
+                baseBlock,
+                new ArmorFamily.Builder(baseBlock)
+                        .slab(slabBlock)
+                        .verticalSlab(verticalSlabBlock)
+                        .stairs(stairsBlock)
+                        .verticalStairs(verticalStairsBlock)
+                        .build()
+        );
+
+        // Waterline Black cannot exist
+        if (id.startsWith("black_")) return;
+
         final Block wlBaseBlock = new Block(
                 FabricBlockSettings.copyOf(NETHERITE_BLOCK)
                         .hardness(hardness)
@@ -213,28 +232,6 @@ public class Registry implements DataGeneratorEntrypoint {
                         .resistance(blastResistance * 0.75F)
         );
 
-        registerBlockWithItem(id, baseBlock);
-        registerBlockWithItem(id + "_slab", slabBlock);
-        registerBlockWithItem(id + "_vertical_slab", verticalSlabBlock);
-        registerBlockWithItem(id + "_stairs", stairsBlock);
-        registerBlockWithItem(id + "_vertical_stairs", verticalStairsBlock);
-
-        registerBlockWithItem("wl_" + id, wlBaseBlock);
-        registerBlockWithItem("wl_" + id + "_slab", wlSlabBlock);
-        registerBlockWithItem("wl_" + id + "_vertical_slab", wlVerticalSlabBlock);
-        registerBlockWithItem("wl_" + id + "_stairs", wlStairsBlock);
-        registerBlockWithItem("wl_" + id + "_vertical_stairs", wlVerticalStairsBlock);
-
-        BLOCK_FAMILIES.put(
-                baseBlock,
-                new ArmorFamily.Builder(baseBlock)
-                        .slab(slabBlock)
-                        .verticalSlab(verticalSlabBlock)
-                        .stairs(stairsBlock)
-                        .verticalStairs(verticalStairsBlock)
-                        .build()
-        );
-
         WATERLINE_BLOCK_FAMILIES.put(
                 wlBaseBlock,
                 new ArmorFamily.Builder(wlBaseBlock)
@@ -244,6 +241,12 @@ public class Registry implements DataGeneratorEntrypoint {
                         .verticalStairs(wlVerticalStairsBlock)
                         .build()
         );
+
+        registerBlockWithItem("wl_" + id, wlBaseBlock);
+        registerBlockWithItem("wl_" + id + "_slab", wlSlabBlock);
+        registerBlockWithItem("wl_" + id + "_vertical_slab", wlVerticalSlabBlock);
+        registerBlockWithItem("wl_" + id + "_stairs", wlStairsBlock);
+        registerBlockWithItem("wl_" + id + "_vertical_stairs", wlVerticalStairsBlock);
     }
 
     private static void registerBlockWithItem(String id, Block baseBlock) {
@@ -299,9 +302,6 @@ public class Registry implements DataGeneratorEntrypoint {
         }
     }
 
-    // TODO - new model for steel armour cubes
-    // TODO - Waterline Black shouldn't exist
-    // TODO - Fix flipped top/bottom textures for waterline vertical stair states
     private static class VSCArmorModelProvider extends FabricModelProvider {
         public static final TexturedModel.Factory WATERLINE_CUBE
                 = TexturedModel.makeFactory(VSCArmorModelProvider::waterlineCube, Models.CUBE_BOTTOM_TOP);
