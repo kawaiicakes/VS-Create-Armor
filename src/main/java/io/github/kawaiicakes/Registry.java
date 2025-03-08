@@ -265,6 +265,10 @@ public class Registry implements DataGeneratorEntrypoint {
         );
     }
 
+    /*
+        HELPER METHODS END
+     */
+
     private static class VSCArmorBlockLootTables extends FabricBlockLootTableProvider {
         public VSCArmorBlockLootTables(FabricDataOutput dataOutput) {
             super(dataOutput);
