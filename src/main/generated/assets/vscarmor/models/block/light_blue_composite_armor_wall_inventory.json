@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "vscarmor:block/light_blue_composite_armor"
+  }
+}

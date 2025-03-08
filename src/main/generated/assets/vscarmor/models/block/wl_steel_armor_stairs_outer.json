@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "vscarmor:block/black_steel_armor",
-    "side": "vscarmor:block/wl_steel_armor",
-    "top": "vscarmor:block/steel_armor"
-  }
-}

@@ -1,9 +1,7 @@
 package io.github.kawaiicakes;
 
-import io.github.kawaiicakes.block.PortholeBlock;
 import io.github.kawaiicakes.block.VerticalSlabBlock;
 import io.github.kawaiicakes.block.VerticalStairsBlock;
-import io.github.kawaiicakes.data.ArmorFamily;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -14,8 +12,8 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
+import net.minecraft.block.WallBlock;
 import net.minecraft.data.client.*;
-import net.minecraft.data.family.BlockFamily;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -32,18 +30,15 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagBuilder;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.Direction;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
@@ -52,7 +47,6 @@ import static net.minecraft.block.Blocks.NETHERITE_BLOCK;
 
 public class Registry implements DataGeneratorEntrypoint {
     static List<BlockItem> REGISTERED = new ArrayList<>();
-    static final Map<Block, BlockFamily> BLOCK_FAMILIES = new HashMap<>();
 
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
@@ -92,22 +86,20 @@ public class Registry implements DataGeneratorEntrypoint {
      */
 
     private static void registerArmor() {
-        registerArmorBlockFamily("light_armor", 3.0F, 5.0F);
-        registerArmorBlockFamily("steel_armor", 10.0F, 7.0F);
-        registerArmorBlockFamily("composite_armor", 28.0F, 8.0F);
-        registerArmorBlockFamily("reinforced_armor", 50.0F, 20.0F);
-
         for (String color : colors()) {
-            registerArmorBlockFamily(color + "_" + "light_armor", 3.0F, 5.0F);
-            registerArmorBlockFamily(color + "_" + "steel_armor", 10.0F, 7.0F);
-            registerArmorBlockFamily(color + "_" + "composite_armor", 28.0F, 8.0F);
-            registerArmorBlockFamily(color + "_" + "reinforced_armor", 50.0F, 20.0F);
+            String prefix = color.isEmpty() ? "" : color + "_";
+
+            registerArmorBlockFamily(prefix + "light_armor", 3.0F, 5.0F);
+            registerArmorBlockFamily(prefix + "steel_armor", 10.0F, 7.0F);
+            registerArmorBlockFamily(prefix + "composite_armor", 28.0F, 8.0F);
+            registerArmorBlockFamily(prefix + "reinforced_armor", 50.0F, 20.0F);
         }
     }
 
     // TODO - Add commented colours + patterns.
-    private static String[] colors() {
+    public static String[] colors() {
         return new String[] {
+                "",
                 "white",
                 "light_gray",
                 "gray",
@@ -183,21 +175,20 @@ public class Registry implements DataGeneratorEntrypoint {
                         .resistance(blastResistance * 0.75F)
         );
 
+
+        final WallBlock wallBlock = new WallBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
         registerBlockWithItem(id, baseBlock);
         registerBlockWithItem(id + "_slab", slabBlock);
         registerBlockWithItem(id + "_vertical_slab", verticalSlabBlock);
         registerBlockWithItem(id + "_stairs", stairsBlock);
         registerBlockWithItem(id + "_vertical_stairs", verticalStairsBlock);
-
-        BLOCK_FAMILIES.put(
-                baseBlock,
-                new ArmorFamily.Builder(baseBlock)
-                        .slab(slabBlock)
-                        .verticalSlab(verticalSlabBlock)
-                        .stairs(stairsBlock)
-                        .verticalStairs(verticalStairsBlock)
-                        .build()
-        );
+        registerBlockWithItem(id + "_wall", wallBlock);
 
         // Waterline Black cannot exist
         if (id.startsWith("black_")) return;
@@ -234,11 +225,19 @@ public class Registry implements DataGeneratorEntrypoint {
                         .resistance(blastResistance * 0.75F)
         );
 
+        final WallBlock wlWallBlock = new WallBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
         registerBlockWithItem("wl_" + id, wlBaseBlock);
         registerBlockWithItem("wl_" + id + "_slab", wlSlabBlock);
         registerBlockWithItem("wl_" + id + "_vertical_slab", wlVerticalSlabBlock);
         registerBlockWithItem("wl_" + id + "_stairs", wlStairsBlock);
         registerBlockWithItem("wl_" + id + "_vertical_stairs", wlVerticalStairsBlock);
+        registerBlockWithItem("wl_" + id + "wall", wlWallBlock);
     }
 
     private static void registerBlockWithItem(String id, Block baseBlock) {
@@ -299,76 +298,81 @@ public class Registry implements DataGeneratorEntrypoint {
     }
 
     private static class VSCArmorModelProvider extends FabricModelProvider {
-        public static final TexturedModel.Factory WATERLINE_CUBE
-                = TexturedModel.makeFactory(VSCArmorModelProvider::waterlineCube, Models.CUBE_BOTTOM_TOP);
-
-        public static TextureMap waterlineCube(Block block) {
-            Identifier blockId = Registries.BLOCK.getId(block);
-
-            String bottomPath = "black";
-            if (blockId.getPath().contains("reinforced_armor")) {
-                bottomPath += "_reinforced_armor";
-            } else if (blockId.getPath().contains("light_armor")) {
-                bottomPath += "_light_armor";
-            } else if (blockId.getPath().contains("steel_armor")) {
-                bottomPath += "_steel_armor";
-            } else if (blockId.getPath().contains("composite_armor")) {
-                bottomPath += "_composite_armor";
-            }
-
-            Identifier bottom = new Identifier(blockId.getNamespace(), bottomPath);
-
-            Identifier top = new Identifier(
-                    blockId.getNamespace(),
-                    blockId.getPath().replace("wl_", "")
-            );
-
-            return new TextureMap()
-                    .put(TextureKey.SIDE, TextureMap.getId(block))
-                    .put(TextureKey.TOP, top.withPrefixedPath("block/"))
-                    .put(TextureKey.BOTTOM, bottom.withPrefixedPath("block/"));
-        }
-
         public VSCArmorModelProvider(FabricDataOutput output) {
             super(output);
         }
 
+        // TODO
         @Override
         public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-            for (Map.Entry<Block, BlockFamily> familyEntry : BLOCK_FAMILIES.entrySet()) {
-                blockStateModelGenerator.registerCubeAllModelTexturePool(familyEntry.getKey())
-                        .family(familyEntry.getValue());
+            createSimpleModels(blockStateModelGenerator);
+        }
 
-                Identifier baseId = Registries.BLOCK.getId(familyEntry.getKey());
+        /**
+         * Helper method for generating vanilla block models from a block colour/type.
+         * "Vanilla blocks" include singleton simple cube alls (like an oak plank), slabs, stairs, fences, etc.
+         */
+        public static void createSimpleModels(
+                BlockStateModelGenerator generator
+        ) {
+            for (String pattern : allBlockGradesAndPatternCombinations()) {
+                Identifier baseBlockId = new Identifier(MOD_ID, pattern);
 
-                if (baseId.getPath().startsWith("black_")) continue;
+                Block baseBlock = Registries.BLOCK.get(baseBlockId);
+                Block slabBlock = Registries.BLOCK.get(baseBlockId.withSuffixedPath("_slab"));
+                Block stairsBlock = Registries.BLOCK.get(baseBlockId.withSuffixedPath("_stairs"));
+                Block wallBlock = Registries.BLOCK.get(baseBlockId.withSuffixedPath("_wall"));
 
-                Identifier waterlineBase = baseId.withPrefixedPath("wl_");
-                Block baseWaterlineBlock = Registries.BLOCK.get(waterlineBase);
-                TexturedModel baseWaterlineModel = WATERLINE_CUBE.get(baseWaterlineBlock);
+                Identifier baseBlockModelId = TextureMap.getId(baseBlock);
 
-                Block waterlineSlab = Registries.BLOCK.get(waterlineBase.withSuffixedPath("_slab"));
-                Block waterlineStairs = Registries.BLOCK.get(waterlineBase.withSuffixedPath("_stairs"));
-                Block waterlineVSlab = Registries.BLOCK.get(waterlineBase.withSuffixedPath("_vertical_slab"));
-                Block waterlineVStairs = Registries.BLOCK.get(waterlineBase.withSuffixedPath("_vertical_stairs"));
+                final TextureMap map = TextureMap.all(baseBlockModelId)
+                        .put(TextureKey.SIDE, baseBlockModelId)
+                        .put(TextureKey.TOP, baseBlockModelId)
+                        .put(TextureKey.BOTTOM, baseBlockModelId)
+                        .put(TextureKey.END, baseBlockModelId)
+                        .put(TextureKey.TEXTURE, baseBlockModelId)
+                        .put(TextureKey.WALL, baseBlockModelId);
 
-                BlockFamily waterlineFamily = new ArmorFamily.Builder(baseWaterlineBlock)
-                        .slab(waterlineSlab)
-                        .stairs(waterlineStairs)
-                        .verticalSlab(waterlineVSlab)
-                        .verticalStairs(waterlineVStairs)
-                        .build();
-
-                blockStateModelGenerator.new BlockTexturePool(baseWaterlineModel.getTextures())
-                        .base(baseWaterlineBlock, baseWaterlineModel.getModel())
-                        .family(waterlineFamily);
+                generator.new BlockTexturePool(map)
+                        .base(baseBlock, Models.CUBE_ALL)
+                        .slab(slabBlock)
+                        .stairs(stairsBlock)
+                        .wall(wallBlock);
             }
+        }
+
+        public static Model block(String parent, TextureKey... requiredTextureKeys) {
+            return new Model(
+                    Optional.of(new Identifier("minecraft", "block/" + parent)),
+                    Optional.empty(),
+                    requiredTextureKeys
+            );
+        }
+
+        public static String[] allBlockGradesAndPatternCombinations() {
+            String[] toReturn = new String[colors().length * 4];
+
+            int colorIndex = 0;
+            for (String color : colors()) {
+
+                String prefix = color.isEmpty() ? "" : color + "_";
+
+                toReturn[colorIndex * 4] = (prefix + "light_armor");
+                toReturn[(colorIndex * 4) + 1] = (prefix + "steel_armor");
+                toReturn[(colorIndex * 4) + 2] = (prefix + "composite_armor");
+                toReturn[(colorIndex * 4) + 3] = (prefix + "reinforced_armor");
+
+                colorIndex++;
+            }
+
+            return toReturn;
         }
 
         @Override
         public void generateItemModels(ItemModelGenerator itemModelGenerator) {}
     }
 
+    // TODO - Tags for slabs, blocks, stairs, etc. for VS + CBC block properties
     private static class VSCArmorBlockTagProvider extends FabricTagProvider<Block> {
         public VSCArmorBlockTagProvider(
                 FabricDataOutput output,
@@ -392,6 +396,8 @@ public class Registry implements DataGeneratorEntrypoint {
             TagBuilder reinforced
                     = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "reinforced_armor")));
 
+            TagBuilder wallBlocks = getTagBuilder(BlockTags.WALLS);
+
             for (BlockItem blockItem : REGISTERED) {
                 pickaxeMineable.add(Registries.BLOCK.getId(blockItem.getBlock()));
                 diamondTools.add(Registries.BLOCK.getId(blockItem.getBlock()));
@@ -411,6 +417,9 @@ public class Registry implements DataGeneratorEntrypoint {
                 else addTo = reinforced;
 
                 addTo.add(Registries.BLOCK.getId(blockItem.getBlock()));
+
+                if (isWall(blockItem.getBlock()))
+                    wallBlocks.add(Registries.BLOCK.getId(blockItem.getBlock()));
             }
         }
 
@@ -419,6 +428,10 @@ public class Registry implements DataGeneratorEntrypoint {
                     && !(block instanceof VerticalSlabBlock)
                     && !(block instanceof StairsBlock)
                     && !(block instanceof VerticalStairsBlock);
+        }
+
+        public static boolean isWall(Block block) {
+            return block instanceof WallBlock;
         }
     }
 

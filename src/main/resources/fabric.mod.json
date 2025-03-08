@@ -24,15 +24,8 @@
 			"io.github.kawaiicakes.Registry"
 		]
 	},
-	"mixins": [
-		"vscarmor.mixins.json"
-	],
-	"custom": {
-		"loom:injected_interfaces": {
-			"net/minecraft/data/client/BlockStateModelGenerator\u0024BlockTexturePool": ["io/github/kawaiicakes/data/ArmorTexturePool"],
-			"net/minecraft/data/client/BlockStateModelGenerator": ["io/github/kawaiicakes/data/ArmorStateModelGenerator"]
-		}
-	},
+	"mixins": [],
+	"custom": {},
 	"depends": {
 		"fabricloader": ">=0.16.9",
 		"minecraft": "~1.20.1",

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "vscarmor:block/black_steel_armor",
-    "side": "vscarmor:block/wl_brown_steel_armor",
-    "top": "vscarmor:block/brown_steel_armor"
-  }
-}

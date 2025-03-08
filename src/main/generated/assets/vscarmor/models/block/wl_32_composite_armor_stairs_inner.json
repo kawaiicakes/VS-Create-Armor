@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "vscarmor:block/black_composite_armor",
-    "side": "vscarmor:block/wl_32_composite_armor",
-    "top": "vscarmor:block/32_composite_armor"
-  }
-}

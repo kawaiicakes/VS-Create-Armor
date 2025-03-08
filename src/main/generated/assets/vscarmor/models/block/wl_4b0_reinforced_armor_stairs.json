@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "vscarmor:block/black_reinforced_armor",
-    "side": "vscarmor:block/wl_4b0_reinforced_armor",
-    "top": "vscarmor:block/4b0_reinforced_armor"
-  }
-}

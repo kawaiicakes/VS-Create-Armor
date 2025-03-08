@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_side_tall",
+  "textures": {
+    "wall": "vscarmor:block/32_reinforced_armor"
+  }
+}

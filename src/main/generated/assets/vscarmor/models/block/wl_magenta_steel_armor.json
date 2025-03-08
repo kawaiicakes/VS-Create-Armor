@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "vscarmor:block/black_steel_armor",
-    "side": "vscarmor:block/wl_magenta_steel_armor",
-    "top": "vscarmor:block/magenta_steel_armor"
-  }
-}
