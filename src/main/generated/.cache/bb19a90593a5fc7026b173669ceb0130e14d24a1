@@ -1,9 +1,9 @@
-// 1.20.1	2025-03-05T11:37:41.2502975	VS Create Armor/Tags for minecraft:block
+// 1.20.1	2025-03-07T21:44:35.9245817	VS Create Armor/Tags for minecraft:block
 b99708fde42075defb00ac1e185263ead98ae438 data\vscarmor\tags\blocks\composite_armor.json
 0cc7ddf9e7eb27ad1ac9f44f7e40bab5ac477195 data\vscarmor\tags\blocks\steel_armor.json
 fd00cf27b785d6303cc60f212a3e138eed8e9e03 data\minecraft\tags\blocks\beacon_base_blocks.json
-a08603168f7ffaf2873a8e798a769a66cc02081a data\vscarmor\tags\blocks\reinforced_armor.json
 3cfe611fb412e7e0b908efc33182c02b35cef09c data\minecraft\tags\blocks\wither_immune.json
+a08603168f7ffaf2873a8e798a769a66cc02081a data\vscarmor\tags\blocks\reinforced_armor.json
 3cfe611fb412e7e0b908efc33182c02b35cef09c data\minecraft\tags\blocks\mineable\pickaxe.json
 3cfe611fb412e7e0b908efc33182c02b35cef09c data\minecraft\tags\blocks\needs_diamond_tool.json
 dd707332f647652bf8500a5ff3bfacea3f07501e data\vscarmor\tags\blocks\light_armor.json

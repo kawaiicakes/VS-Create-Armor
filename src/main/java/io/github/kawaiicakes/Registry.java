@@ -1,5 +1,6 @@
 package io.github.kawaiicakes;
 
+import io.github.kawaiicakes.block.PortholeBlock;
 import io.github.kawaiicakes.block.VerticalSlabBlock;
 import io.github.kawaiicakes.block.VerticalStairsBlock;
 import io.github.kawaiicakes.data.ArmorFamily;
@@ -31,9 +32,11 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagBuilder;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.Direction;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.nio.file.Path;
@@ -50,7 +53,6 @@ import static net.minecraft.block.Blocks.NETHERITE_BLOCK;
 public class Registry implements DataGeneratorEntrypoint {
     static List<BlockItem> REGISTERED = new ArrayList<>();
     static final Map<Block, BlockFamily> BLOCK_FAMILIES = new HashMap<>();
-    static final Map<Block, BlockFamily> WATERLINE_BLOCK_FAMILIES = new HashMap<>();
 
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
@@ -232,16 +234,6 @@ public class Registry implements DataGeneratorEntrypoint {
                         .resistance(blastResistance * 0.75F)
         );
 
-        WATERLINE_BLOCK_FAMILIES.put(
-                wlBaseBlock,
-                new ArmorFamily.Builder(wlBaseBlock)
-                        .slab(wlSlabBlock)
-                        .verticalSlab(wlVerticalSlabBlock)
-                        .stairs(wlStairsBlock)
-                        .verticalStairs(wlVerticalStairsBlock)
-                        .build()
-        );
-
         registerBlockWithItem("wl_" + id, wlBaseBlock);
         registerBlockWithItem("wl_" + id + "_slab", wlSlabBlock);
         registerBlockWithItem("wl_" + id + "_vertical_slab", wlVerticalSlabBlock);
@@ -346,14 +338,30 @@ public class Registry implements DataGeneratorEntrypoint {
             for (Map.Entry<Block, BlockFamily> familyEntry : BLOCK_FAMILIES.entrySet()) {
                 blockStateModelGenerator.registerCubeAllModelTexturePool(familyEntry.getKey())
                         .family(familyEntry.getValue());
-            }
 
-            for (Map.Entry<Block, BlockFamily> familyEntry : WATERLINE_BLOCK_FAMILIES.entrySet()) {
-                TexturedModel baseModel = WATERLINE_CUBE.get(familyEntry.getKey());
+                Identifier baseId = Registries.BLOCK.getId(familyEntry.getKey());
 
-                blockStateModelGenerator.new BlockTexturePool(baseModel.getTextures())
-                        .base(familyEntry.getKey(), baseModel.getModel())
-                        .family(familyEntry.getValue());
+                if (baseId.getPath().startsWith("black_")) continue;
+
+                Identifier waterlineBase = baseId.withPrefixedPath("wl_");
+                Block baseWaterlineBlock = Registries.BLOCK.get(waterlineBase);
+                TexturedModel baseWaterlineModel = WATERLINE_CUBE.get(baseWaterlineBlock);
+
+                Block waterlineSlab = Registries.BLOCK.get(waterlineBase.withSuffixedPath("_slab"));
+                Block waterlineStairs = Registries.BLOCK.get(waterlineBase.withSuffixedPath("_stairs"));
+                Block waterlineVSlab = Registries.BLOCK.get(waterlineBase.withSuffixedPath("_vertical_slab"));
+                Block waterlineVStairs = Registries.BLOCK.get(waterlineBase.withSuffixedPath("_vertical_stairs"));
+
+                BlockFamily waterlineFamily = new ArmorFamily.Builder(baseWaterlineBlock)
+                        .slab(waterlineSlab)
+                        .stairs(waterlineStairs)
+                        .verticalSlab(waterlineVSlab)
+                        .verticalStairs(waterlineVStairs)
+                        .build();
+
+                blockStateModelGenerator.new BlockTexturePool(baseWaterlineModel.getTextures())
+                        .base(baseWaterlineBlock, baseWaterlineModel.getModel())
+                        .family(waterlineFamily);
             }
         }
 
