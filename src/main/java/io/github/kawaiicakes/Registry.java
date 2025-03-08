@@ -32,11 +32,9 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagBuilder;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.Direction;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.nio.file.Path;
@@ -183,11 +181,19 @@ public class Registry implements DataGeneratorEntrypoint {
                         .resistance(blastResistance * 0.75F)
         );
 
+        final PortholeBlock portholeBlock = new PortholeBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+        );
+
         registerBlockWithItem(id, baseBlock);
         registerBlockWithItem(id + "_slab", slabBlock);
         registerBlockWithItem(id + "_vertical_slab", verticalSlabBlock);
         registerBlockWithItem(id + "_stairs", stairsBlock);
         registerBlockWithItem(id + "_vertical_stairs", verticalStairsBlock);
+
+        registerBlockWithItem(id + "_porthole", portholeBlock);
 
         BLOCK_FAMILIES.put(
                 baseBlock,
@@ -329,6 +335,13 @@ public class Registry implements DataGeneratorEntrypoint {
                     .put(TextureKey.BOTTOM, bottom.withPrefixedPath("block/"));
         }
 
+        public static TextureMap windowMap(Block block, String suffix) {
+            return new TextureMap()
+                    .put(TextureKey.SIDE, TextureMap.getId(block))
+                    .put(TextureKey.END, TextureMap.getSubId(block, suffix))
+                    .put(TextureKey.of("glass"), new Identifier(MOD_ID, "block/porthole_glass"));
+        }
+
         public VSCArmorModelProvider(FabricDataOutput output) {
             super(output);
         }
@@ -336,10 +349,22 @@ public class Registry implements DataGeneratorEntrypoint {
         @Override
         public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
             for (Map.Entry<Block, BlockFamily> familyEntry : BLOCK_FAMILIES.entrySet()) {
-                blockStateModelGenerator.registerCubeAllModelTexturePool(familyEntry.getKey())
+                Block block = familyEntry.getKey();
+
+                blockStateModelGenerator.registerCubeAllModelTexturePool(block)
                         .family(familyEntry.getValue());
 
-                Identifier baseId = Registries.BLOCK.getId(familyEntry.getKey());
+                Identifier baseId = Registries.BLOCK.getId(block);
+
+                Block portholeBlock = Registries.BLOCK.get(baseId.withSuffixedPath("_porthole"));
+
+                BlockFamily portholeFamily = new ArmorFamily.Builder(portholeBlock)
+                        .porthole(portholeBlock)
+                        // TODO - add panel
+                        .build();
+
+                blockStateModelGenerator.new BlockTexturePool(windowMap(block, "_porthole"))
+                        .family(portholeFamily);
 
                 if (baseId.getPath().startsWith("black_")) continue;
 

@@ -13,4 +13,9 @@ public interface ArmorTexturePool {
     default BlockStateModelGenerator.BlockTexturePool vSCreateArmor$verticalStairs(Block block) {
         return (BlockStateModelGenerator.BlockTexturePool)(Object) this;
     }
+
+    @SuppressWarnings("RedundantCast")
+    default BlockStateModelGenerator.BlockTexturePool vSCreateArmor$portholeBlock(Block block) {
+        return (BlockStateModelGenerator.BlockTexturePool)(Object) this;
+    }
 }

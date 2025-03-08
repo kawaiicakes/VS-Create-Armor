@@ -42,11 +42,17 @@ public class ArmorFamily extends BlockFamily {
             ((ArmorFamily) this.family).armorVariants.put(Variant.VERTICAL_STAIRS, block);
             return this;
         }
+
+        public Builder porthole(Block block) {
+            ((ArmorFamily) this.family).armorVariants.put(Variant.PORTHOLE, block);
+            return this;
+        }
     }
 
     public enum Variant {
         VERTICAL_SLAB("vertical_slab"),
-        VERTICAL_STAIRS("vertical_stairs");
+        VERTICAL_STAIRS("vertical_stairs"),
+        PORTHOLE("porthole");
 
         private final String name;
 

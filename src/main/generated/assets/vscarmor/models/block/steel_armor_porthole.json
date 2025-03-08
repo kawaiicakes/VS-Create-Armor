@@ -1,0 +1,7 @@
+{
+  "parent": "vscarmor:block/porthole",
+  "textures": {
+    "end": "vscarmor:block/steel_armor_porthole",
+    "side": "vscarmor:block/steel_armor"
+  }
+}

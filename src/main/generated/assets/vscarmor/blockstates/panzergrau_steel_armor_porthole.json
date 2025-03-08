@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "vscarmor:block/panzergrau_steel_armor_porthole",
+      "y": 90
+    },
+    "axis=y": {
+      "model": "vscarmor:block/panzergrau_steel_armor_porthole",
+      "x": 90
+    },
+    "axis=z": {
+      "model": "vscarmor:block/panzergrau_steel_armor_porthole"
+    }
+  }
+}

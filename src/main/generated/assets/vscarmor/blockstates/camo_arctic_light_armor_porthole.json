@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "vscarmor:block/camo_arctic_light_armor_porthole",
+      "y": 90
+    },
+    "axis=y": {
+      "model": "vscarmor:block/camo_arctic_light_armor_porthole",
+      "x": 90
+    },
+    "axis=z": {
+      "model": "vscarmor:block/camo_arctic_light_armor_porthole"
+    }
+  }
+}

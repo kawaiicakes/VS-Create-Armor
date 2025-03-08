@@ -89,4 +89,14 @@ public abstract class BlockTexturePoolMixin implements ArmorTexturePool {
             return ((BlockStateModelGenerator.BlockTexturePool)(Object) this);
         }
     }
+
+    @Override
+    public BlockStateModelGenerator.BlockTexturePool vSCreateArmor$portholeBlock(Block block) {
+        Identifier portholeId = this.ensureModel(VerticalModels.PORTHOLE, block);
+        this.field_22836.blockStateCollector.accept(
+                ArmorStateModelGenerator.createAxisRotatedWindow(block, portholeId)
+        );
+        this.field_22836.registerParentedItemModel(block, portholeId);
+        return ((BlockStateModelGenerator.BlockTexturePool)(Object) this);
+    }
 }

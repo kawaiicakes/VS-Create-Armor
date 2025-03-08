@@ -6,6 +6,7 @@ import io.github.kawaiicakes.block.VerticalStairsBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.data.client.*;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 
@@ -17,6 +18,7 @@ public interface ArmorStateModelGenerator {
             = ImmutableMap.<ArmorFamily.Variant, BiConsumer<BlockStateModelGenerator.BlockTexturePool, Block>>builder()
             .put(ArmorFamily.Variant.VERTICAL_SLAB, BlockStateModelGenerator.BlockTexturePool::vSCreateArmor$verticalSlab)
             .put(ArmorFamily.Variant.VERTICAL_STAIRS, BlockStateModelGenerator.BlockTexturePool::vSCreateArmor$verticalStairs)
+            .put(ArmorFamily.Variant.PORTHOLE, BlockStateModelGenerator.BlockTexturePool::vSCreateArmor$portholeBlock)
             .build();
 
     static BlockStateSupplier createVerticalSlabBlockState(Block slabBlock, Identifier slabId, Identifier full) {
@@ -408,6 +410,32 @@ public interface ArmorStateModelGenerator {
                                                 .put(VariantSettings.MODEL, innerModelLeftTopId)
                                                 .put(VariantSettings.Y, VariantSettings.Rotation.R270)
                                                 .put(VariantSettings.UVLOCK, true)
+                                )
+                );
+    }
+
+    static BlockStateSupplier createAxisRotatedWindow(
+            Block block, Identifier modelId
+    ) {
+        return VariantsBlockStateSupplier.create(block)
+                .coordinate(
+                        BlockStateVariantMap.create(Properties.AXIS)
+                                .register(
+                                        Direction.Axis.Z,
+                                        BlockStateVariant.create()
+                                                .put(VariantSettings.MODEL, modelId)
+                                )
+                                .register(
+                                        Direction.Axis.X,
+                                        BlockStateVariant.create()
+                                                .put(VariantSettings.MODEL, modelId)
+                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                )
+                                .register(
+                                        Direction.Axis.Y,
+                                        BlockStateVariant.create()
+                                                .put(VariantSettings.MODEL, modelId)
+                                                .put(VariantSettings.X, VariantSettings.Rotation.R90)
                                 )
                 );
     }

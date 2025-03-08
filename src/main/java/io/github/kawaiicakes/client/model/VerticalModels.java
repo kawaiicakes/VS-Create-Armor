@@ -64,6 +64,8 @@ public class VerticalModels {
             TextureKey.BOTTOM, TextureKey.TOP, TextureKey.NORTH, TextureKey.EAST, TextureKey.SOUTH, TextureKey.WEST
     );
 
+    public static final Model PORTHOLE = block("porthole", TextureKey.END, TextureKey.SIDE);
+
     private static Model block(String parent, TextureKey... requiredTextureKeys) {
         return new Model(
                 Optional.of(new Identifier(MOD_ID, "block/" + parent)),
