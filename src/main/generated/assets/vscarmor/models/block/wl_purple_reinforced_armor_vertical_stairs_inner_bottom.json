@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/inner_vertical_stairs_bottom",
+  "textures": {
+    "bottom": "vscarmor:block/black_reinforced_armor",
+    "side": "vscarmor:block/wl_purple_reinforced_armor",
+    "top": "vscarmor:block/purple_reinforced_armor"
+  }
+}
