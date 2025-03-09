@@ -2,6 +2,7 @@ package io.github.kawaiicakes;
 
 import io.github.kawaiicakes.block.VerticalSlabBlock;
 import io.github.kawaiicakes.block.VerticalStairsBlock;
+import io.github.kawaiicakes.client.model.VerticalModels;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -9,10 +10,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.block.WallBlock;
+import net.minecraft.block.*;
 import net.minecraft.data.client.*;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.item.BlockItem;
@@ -30,17 +28,19 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagBuilder;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.Direction;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static io.github.kawaiicakes.VSCreateArmor.MOD_ID;
 import static net.minecraft.block.Blocks.NETHERITE_BLOCK;
@@ -302,19 +302,26 @@ public class Registry implements DataGeneratorEntrypoint {
             super(output);
         }
 
-        // TODO
         @Override
         public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
             createSimpleModels(blockStateModelGenerator);
+            createVerticalSlabs(
+                    blockStateModelGenerator,
+                    allBlockGradesAndPatternCombinations(),
+                    VSCArmorModelProvider::sideTopBottomSimple
+            );
+            createVerticalStairs(
+                    blockStateModelGenerator,
+                    allBlockGradesAndPatternCombinations(),
+                    VSCArmorModelProvider::sideTopBottomSimple
+            );
         }
 
         /**
          * Helper method for generating vanilla block models from a block colour/type.
          * "Vanilla blocks" include singleton simple cube alls (like an oak plank), slabs, stairs, fences, etc.
          */
-        public static void createSimpleModels(
-                BlockStateModelGenerator generator
-        ) {
+        public static void createSimpleModels(BlockStateModelGenerator generator) {
             for (String pattern : allBlockGradesAndPatternCombinations()) {
                 Identifier baseBlockId = new Identifier(MOD_ID, pattern);
 
@@ -341,12 +348,472 @@ public class Registry implements DataGeneratorEntrypoint {
             }
         }
 
-        public static Model block(String parent, TextureKey... requiredTextureKeys) {
-            return new Model(
-                    Optional.of(new Identifier("minecraft", "block/" + parent)),
-                    Optional.empty(),
-                    requiredTextureKeys
-            );
+        public static void createVerticalSlabs(
+                BlockStateModelGenerator generator, String[] patterns, Function<Block, TextureMap> mapFunction
+        ) {
+            createVerticalSlabs(generator, patterns, mapFunction, "");
+        }
+
+        public static void createVerticalSlabs(
+                BlockStateModelGenerator generator, String[] patterns, Function<Block, TextureMap> mapFunction,
+                String additionalPrefix
+        ) {
+            for (String pattern : patterns) {
+                Identifier baseBlockId = new Identifier(MOD_ID, pattern);
+                Block baseBlock = Registries.BLOCK.get(baseBlockId);
+                Block vSlabBlock = Registries.BLOCK.get(
+                        baseBlockId.withSuffixedPath("_vertical_slab" + additionalPrefix)
+                );
+
+                TextureMap map = mapFunction.apply(baseBlock);
+
+                Identifier baseModelId = TextureMap.getId(baseBlock);
+                Identifier vSlabBlockModelId = VerticalModels.V_SLAB.upload(vSlabBlock, map, generator.modelCollector);
+
+                generator.blockStateCollector.accept(
+                        VariantsBlockStateSupplier
+                                .create(vSlabBlock)
+                                .coordinate(
+                                        BlockStateVariantMap
+                                                .create(Properties.HORIZONTAL_FACING, VerticalSlabBlock.DOUBLET)
+                                                .register(
+                                                        Direction.EAST, Boolean.FALSE,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, vSlabBlockModelId)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH, Boolean.FALSE,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, vSlabBlockModelId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                                                .put(VariantSettings.UVLOCK, Boolean.TRUE)
+                                                )
+                                                .register(
+                                                        Direction.WEST, Boolean.FALSE,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, vSlabBlockModelId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R180)
+                                                                .put(VariantSettings.UVLOCK, Boolean.TRUE)
+                                                )
+                                                .register(
+                                                        Direction.NORTH, Boolean.FALSE,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, vSlabBlockModelId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                                                .put(VariantSettings.UVLOCK, Boolean.TRUE)
+                                                )
+                                                .register(
+                                                        Direction.EAST, Boolean.TRUE,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, baseModelId)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH, Boolean.TRUE,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, baseModelId)
+                                                )
+                                                .register(Direction.WEST, Boolean.TRUE,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, baseModelId)
+                                                )
+                                                .register(Direction.NORTH, Boolean.TRUE,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, baseModelId)
+                                                )
+                                )
+                );
+
+                generator.registerParentedItemModel(vSlabBlock, vSlabBlockModelId);
+            }
+        }
+
+        public static void createVerticalStairs(
+                BlockStateModelGenerator generator, String[] patterns, Function<Block, TextureMap> mapFunction
+        ) {
+            for (String pattern : patterns) {
+                Identifier baseBlockId = new Identifier(MOD_ID, pattern);
+                Block baseBlock = Registries.BLOCK.get(baseBlockId);
+                Block vStairsBlock = Registries.BLOCK.get(
+                        baseBlockId.withSuffixedPath("_vertical_stairs")
+                );
+
+                TextureMap map = mapFunction.apply(baseBlock);
+
+                Identifier regularModelId = VerticalModels.V_STAIRS_STRAIGHT
+                        .upload(vStairsBlock, map, generator.modelCollector);
+
+                Identifier innerModelBottomId = VerticalModels.V_STAIRS_INNER_BOTTOM
+                        .upload(vStairsBlock, map, generator.modelCollector);
+
+                Identifier innerModelTopId = VerticalModels.V_STAIRS_INNER_TOP
+                        .upload(vStairsBlock, map, generator.modelCollector);
+
+                Identifier outerModelRightBottomId = VerticalModels.V_STAIRS_OUTER_RIGHT_BOTTOM
+                        .upload(vStairsBlock, map, generator.modelCollector);
+
+                Identifier outerModelRightTopId = VerticalModels.V_STAIRS_OUTER_RIGHT_TOP
+                        .upload(vStairsBlock, map, generator.modelCollector);
+
+                Identifier outerModelLeftBottomId = VerticalModels.V_STAIRS_OUTER_LEFT_BOTTOM
+                        .upload(vStairsBlock, map, generator.modelCollector);
+
+                Identifier outerModelLeftTopId = VerticalModels.V_STAIRS_OUTER_LEFT_TOP
+                        .upload(vStairsBlock, map, generator.modelCollector);
+
+                generator.blockStateCollector.accept(
+                        VariantsBlockStateSupplier.create(vStairsBlock)
+                                .coordinate(
+                                        BlockStateVariantMap
+                                                .create(
+                                                        HorizontalFacingBlock.FACING,
+                                                        VerticalStairsBlock.HALF,
+                                                        VerticalStairsBlock.V_SHAPE
+                                                )
+                                                .register(
+                                                        Direction.EAST,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.STRAIGHT,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, regularModelId)
+                                                )
+                                                .register(
+                                                        Direction.WEST,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.STRAIGHT,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, regularModelId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R180)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.STRAIGHT,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, regularModelId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.NORTH,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.STRAIGHT,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, regularModelId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.EAST,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelRightBottomId)
+                                                )
+                                                .register(
+                                                        Direction.WEST,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelRightBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R180)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelRightBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.NORTH,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelRightBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.EAST,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelRightTopId)
+                                                )
+                                                .register(
+                                                        Direction.WEST,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelRightTopId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R180)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                                                .put(VariantSettings.MODEL, outerModelRightTopId)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.NORTH,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelRightTopId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.EAST,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelBottomId)
+                                                )
+                                                .register(
+                                                        Direction.WEST,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R180)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.NORTH,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.EAST,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelTopId)
+                                                )
+                                                .register(
+                                                        Direction.WEST,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelTopId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R180)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                                                .put(VariantSettings.MODEL, innerModelTopId)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.NORTH,
+                                                        VerticalStairsBlock.BlockHalf.RIGHT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelTopId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.EAST,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.STRAIGHT,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, regularModelId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.WEST,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.STRAIGHT,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, regularModelId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.STRAIGHT,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, regularModelId)
+                                                )
+                                                .register(
+                                                        Direction.NORTH,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.STRAIGHT,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, regularModelId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R180)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.EAST,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelLeftBottomId)
+                                                )
+                                                .register(
+                                                        Direction.WEST,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelLeftBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R180)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelLeftBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.NORTH,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelLeftBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.EAST,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelLeftTopId)
+                                                )
+                                                .register(
+                                                        Direction.WEST,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelLeftTopId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R180)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelLeftTopId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.NORTH,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.OUTER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, outerModelLeftTopId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.EAST,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.WEST,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelBottomId)
+                                                )
+                                                .register(
+                                                        Direction.NORTH,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_BOTTOM,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelBottomId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R180)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.EAST,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelTopId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.WEST,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelTopId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                                .register(
+                                                        Direction.SOUTH,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelTopId)
+                                                )
+                                                .register(
+                                                        Direction.NORTH,
+                                                        VerticalStairsBlock.BlockHalf.LEFT,
+                                                        VerticalStairsBlock.VerticalStairShape.INNER_TOP,
+                                                        BlockStateVariant.create()
+                                                                .put(VariantSettings.MODEL, innerModelTopId)
+                                                                .put(VariantSettings.Y, VariantSettings.Rotation.R180)
+                                                                .put(VariantSettings.UVLOCK, true)
+                                                )
+                                )
+                );
+
+                generator.registerParentedItemModel(vStairsBlock, regularModelId);
+            }
         }
 
         public static String[] allBlockGradesAndPatternCombinations() {
@@ -366,6 +833,13 @@ public class Registry implements DataGeneratorEntrypoint {
             }
 
             return toReturn;
+        }
+
+        public static TextureMap sideTopBottomSimple(Block block) {
+            return new TextureMap()
+                    .put(TextureKey.SIDE, TextureMap.getId(block))
+                    .put(TextureKey.TOP, TextureMap.getId(block))
+                    .put(TextureKey.BOTTOM, TextureMap.getId(block));
         }
 
         @Override

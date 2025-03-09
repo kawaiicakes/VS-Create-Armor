@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "doublet=false,facing=east": {
+      "model": "vscarmor:block/32_reinforced_armor_vertical_slab"
+    },
+    "doublet=false,facing=north": {
+      "model": "vscarmor:block/32_reinforced_armor_vertical_slab",
+      "uvlock": true,
+      "y": 270
+    },
+    "doublet=false,facing=south": {
+      "model": "vscarmor:block/32_reinforced_armor_vertical_slab",
+      "uvlock": true,
+      "y": 90
+    },
+    "doublet=false,facing=west": {
+      "model": "vscarmor:block/32_reinforced_armor_vertical_slab",
+      "uvlock": true,
+      "y": 180
+    },
+    "doublet=true,facing=east": {
+      "model": "vscarmor:block/32_reinforced_armor"
+    },
+    "doublet=true,facing=north": {
+      "model": "vscarmor:block/32_reinforced_armor"
+    },
+    "doublet=true,facing=south": {
+      "model": "vscarmor:block/32_reinforced_armor"
+    },
+    "doublet=true,facing=west": {
+      "model": "vscarmor:block/32_reinforced_armor"
+    }
+  }
+}
