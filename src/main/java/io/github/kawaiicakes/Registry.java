@@ -311,7 +311,6 @@ public class Registry implements DataGeneratorEntrypoint {
             createWaterlineModels(blockStateModelGenerator);
         }
 
-        // TODO - Simple & Waterline Block, Slab, Vertical Slabs for Porthole, Horizontal Window, Vertical Window.
         public static void createSimpleModels(BlockStateModelGenerator generator) {
             for (String pattern : allBlockGradesAndPatternCombinations()) {
                 Identifier baseBlockId = new Identifier(MOD_ID, pattern);
