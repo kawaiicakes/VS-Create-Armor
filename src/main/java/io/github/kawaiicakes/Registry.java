@@ -308,23 +308,10 @@ public class Registry implements DataGeneratorEntrypoint {
         @Override
         public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
             createSimpleModels(blockStateModelGenerator);
-            createVerticalSlabs(
-                    blockStateModelGenerator,
-                    allBlockGradesAndPatternCombinations(),
-                    VSCArmorModelProvider::sideTopBottomSimple
-            );
-            createVerticalStairs(
-                    blockStateModelGenerator,
-                    allBlockGradesAndPatternCombinations(),
-                    VSCArmorModelProvider::sideTopBottomSimple
-            );
             createWaterlineModels(blockStateModelGenerator);
         }
 
-        /**
-         * Helper method for generating vanilla block models from a block colour/type.
-         * "Vanilla blocks" include singleton simple cube alls (like an oak plank), slabs, stairs, fences, etc.
-         */
+        // TODO - Simple & Waterline Block, Slab, Vertical Slabs for Porthole, Horizontal Window, Vertical Window.
         public static void createSimpleModels(BlockStateModelGenerator generator) {
             for (String pattern : allBlockGradesAndPatternCombinations()) {
                 Identifier baseBlockId = new Identifier(MOD_ID, pattern);
@@ -349,6 +336,17 @@ public class Registry implements DataGeneratorEntrypoint {
                         .slab(slabBlock)
                         .stairs(stairsBlock)
                         .wall(wallBlock);
+
+                createVerticalSlab(
+                        generator,
+                        pattern,
+                        VSCArmorModelProvider::sideTopBottomSimple
+                );
+                createVerticalStairs(
+                        generator,
+                        pattern,
+                        VSCArmorModelProvider::sideTopBottomSimple
+                );
             }
         }
 
@@ -437,20 +435,30 @@ public class Registry implements DataGeneratorEntrypoint {
                 Identifier wallInventoryId
                         = MiscModels.WALL_INVENTORY.upload(wallBlock, map, generator.modelCollector);
                 generator.registerParentedItemModel(wallBlock, wallInventoryId);
+
+                createVerticalSlab(
+                        generator,
+                        "wl_" + pattern,
+                        VSCArmorModelProvider::sideTopBottomWaterline
+                );
+                createVerticalStairs(
+                        generator,
+                        "wl_" + pattern,
+                        VSCArmorModelProvider::sideTopBottomWaterline
+                );
             }
         }
 
-        public static void createVerticalSlabs(
-                BlockStateModelGenerator generator, String[] patterns, Function<Block, TextureMap> mapFunction
+        public static void createVerticalSlab(
+                BlockStateModelGenerator generator, String pattern, Function<Block, TextureMap> mapFunction
         ) {
-            createVerticalSlabs(generator, patterns, mapFunction, "");
+            createVerticalSlab(generator, pattern, mapFunction, "");
         }
 
-        public static void createVerticalSlabs(
-                BlockStateModelGenerator generator, String[] patterns, Function<Block, TextureMap> mapFunction,
+        public static void createVerticalSlab(
+                BlockStateModelGenerator generator, String pattern, Function<Block, TextureMap> mapFunction,
                 String additionalPrefix
         ) {
-            for (String pattern : patterns) {
                 Identifier baseBlockId = new Identifier(MOD_ID, pattern);
                 Block baseBlock = Registries.BLOCK.get(baseBlockId);
                 Block vSlabBlock = Registries.BLOCK.get(
@@ -516,13 +524,11 @@ public class Registry implements DataGeneratorEntrypoint {
                 );
 
                 generator.registerParentedItemModel(vSlabBlock, vSlabBlockModelId);
-            }
         }
 
         public static void createVerticalStairs(
-                BlockStateModelGenerator generator, String[] patterns, Function<Block, TextureMap> mapFunction
+                BlockStateModelGenerator generator, String pattern, Function<Block, TextureMap> mapFunction
         ) {
-            for (String pattern : patterns) {
                 Identifier baseBlockId = new Identifier(MOD_ID, pattern);
                 Block baseBlock = Registries.BLOCK.get(baseBlockId);
                 Block vStairsBlock = Registries.BLOCK.get(
@@ -905,7 +911,6 @@ public class Registry implements DataGeneratorEntrypoint {
                 );
 
                 generator.registerParentedItemModel(vStairsBlock, regularModelId);
-            }
         }
 
         public static BlockStateSupplier createWaterlineStairsBlockstate(
@@ -1231,6 +1236,34 @@ public class Registry implements DataGeneratorEntrypoint {
                     .put(TextureKey.SIDE, TextureMap.getId(block))
                     .put(TextureKey.TOP, TextureMap.getId(block))
                     .put(TextureKey.BOTTOM, TextureMap.getId(block));
+        }
+
+        public static TextureMap sideTopBottomWaterline(Block block) {
+            String pattern = Registries.BLOCK.getId(block).getPath();
+
+            Identifier topPatternId = new Identifier(
+                    MOD_ID, pattern.replaceFirst("wl_", "")
+            ).withPrefixedPath("block/");
+
+            Identifier waterlineBaseId = new Identifier(MOD_ID, pattern).withPrefixedPath("block/");
+
+            String bottomPath = "black";
+            if (topPatternId.getPath().contains("reinforced_armor")) {
+                bottomPath += "_reinforced_armor";
+            } else if (topPatternId.getPath().contains("light_armor")) {
+                bottomPath += "_light_armor";
+            } else if (topPatternId.getPath().contains("steel_armor")) {
+                bottomPath += "_steel_armor";
+            } else if (topPatternId.getPath().contains("composite_armor")) {
+                bottomPath += "_composite_armor";
+            }
+
+            Identifier blackPatternId = new Identifier(MOD_ID, bottomPath).withPrefixedPath("block/");
+
+            return new TextureMap()
+                    .put(TextureKey.SIDE, waterlineBaseId)
+                    .put(TextureKey.TOP, topPatternId)
+                    .put(TextureKey.BOTTOM, blackPatternId);
         }
 
         @Override
