@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/template_wall_side_tall",
+  "textures": {
+    "bottom": "vscarmor:block/black_reinforced_armor",
+    "side": "vscarmor:block/wl_camo_desert_reinforced_armor",
+    "top": "vscarmor:block/camo_desert_reinforced_armor"
+  }
+}

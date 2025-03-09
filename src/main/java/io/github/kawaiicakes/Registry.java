@@ -418,9 +418,25 @@ public class Registry implements DataGeneratorEntrypoint {
                                 innerTopId, straightTopId, outerTopId
                         )
                 );
+
                 generator.registerParentedItemModel(stairsBlock, straightBottomId);
 
-                // TODO - wall block
+                Identifier wallPostId
+                        = MiscModels.TEMPLATE_WALL_POST.upload(wallBlock, map, generator.modelCollector);
+                Identifier wallSideId
+                        = MiscModels.TEMPLATE_WALL_SIDE.upload(wallBlock, map, generator.modelCollector);
+                Identifier wallSideTallId
+                        = MiscModels.TEMPLATE_WALL_SIDE_TALL.upload(wallBlock, map, generator.modelCollector);
+
+                generator.blockStateCollector.accept(
+                        BlockStateModelGenerator.createWallBlockState(
+                                wallBlock, wallPostId, wallSideId, wallSideTallId
+                        )
+                );
+
+                Identifier wallInventoryId
+                        = MiscModels.WALL_INVENTORY.upload(wallBlock, map, generator.modelCollector);
+                generator.registerParentedItemModel(wallBlock, wallInventoryId);
             }
         }
 
