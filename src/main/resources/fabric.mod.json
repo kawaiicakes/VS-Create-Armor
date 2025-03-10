@@ -22,6 +22,9 @@
 		],
 		"fabric-datagen": [
 			"io.github.kawaiicakes.Registry"
+		],
+		"client": [
+			"io.github.kawaiicakes.VSCreateArmor"
 		]
 	},
 	"mixins": [],

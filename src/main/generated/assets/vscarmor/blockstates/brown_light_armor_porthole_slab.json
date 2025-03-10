@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "vscarmor:block/brown_light_armor_porthole_slab"
+    },
+    "type=double": {
+      "model": "vscarmor:block/brown_light_armor_porthole_vertical"
+    },
+    "type=top": {
+      "model": "vscarmor:block/brown_light_armor_porthole_slab_top"
+    }
+  }
+}

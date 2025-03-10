@@ -10,9 +10,9 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
-// TODO
+// TODO (1.1) - Implement empty blockstate
 @SuppressWarnings("deprecation")
-public class PortholeBlock extends PillarBlock {
+public class PortholeBlock extends PillarBlock implements WindowBlock {
     public PortholeBlock(Settings settings) {
         super(
                 settings
@@ -25,23 +25,12 @@ public class PortholeBlock extends PillarBlock {
     }
 
     @Override
-    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-        return stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
-    }
-
-    // TODO
-    @Override
     public VoxelShape getCameraCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.empty();
     }
 
     @Override
-    public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
-        return 1.0F;
-    }
-
-    @Override
-    public boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
-        return true;
+    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+        return stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
     }
 }

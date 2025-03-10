@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/vertical_porthole_empty",
+  "textures": {
+    "bottom": "vscarmor:block/panzergrau_reinforced_armor",
+    "side": "vscarmor:block/panzergrau_reinforced_armor",
+    "top": "vscarmor:block/panzergrau_reinforced_armor"
+  }
+}

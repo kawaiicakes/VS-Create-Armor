@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/porthole_vertical_slab",
+  "textures": {
+    "bottom": "vscarmor:block/rotbraun_composite_armor",
+    "end": "vscarmor:block/rotbraun_composite_armor",
+    "side": "vscarmor:block/rotbraun_composite_armor",
+    "top": "vscarmor:block/rotbraun_composite_armor"
+  }
+}

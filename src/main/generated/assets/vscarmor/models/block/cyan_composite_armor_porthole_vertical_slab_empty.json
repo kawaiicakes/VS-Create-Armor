@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/porthole_vertical_slab_empty",
+  "textures": {
+    "bottom": "vscarmor:block/cyan_composite_armor",
+    "end": "vscarmor:block/cyan_composite_armor",
+    "side": "vscarmor:block/cyan_composite_armor",
+    "top": "vscarmor:block/cyan_composite_armor"
+  }
+}

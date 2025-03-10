@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/vertical_porthole_empty",
+  "textures": {
+    "bottom": "vscarmor:block/rotbraun_steel_armor",
+    "side": "vscarmor:block/rotbraun_steel_armor",
+    "top": "vscarmor:block/rotbraun_steel_armor"
+  }
+}
