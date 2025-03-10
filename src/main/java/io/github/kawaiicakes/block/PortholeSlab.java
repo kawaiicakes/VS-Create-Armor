@@ -3,16 +3,13 @@ package io.github.kawaiicakes.block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.block.SlabBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
-// TODO (1.1) - Implement empty blockstate
-@SuppressWarnings("deprecation")
-public class PortholeSlab extends SlabBlock implements WindowBlock {
+public class PortholeSlab extends AbstractWindowSlab {
     public PortholeSlab(Settings settings) {
         super(
                 settings
@@ -31,6 +28,6 @@ public class PortholeSlab extends SlabBlock implements WindowBlock {
 
     @Override
     public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-        return stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
+        return stateFrom.isOf(this);
     }
 }

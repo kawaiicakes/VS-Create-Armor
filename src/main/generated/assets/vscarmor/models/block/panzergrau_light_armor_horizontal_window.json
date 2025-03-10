@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/horizontal_window",
+  "textures": {
+    "bottom": "vscarmor:block/panzergrau_light_armor",
+    "end": "vscarmor:block/panzergrau_light_armor",
+    "side": "vscarmor:block/panzergrau_light_armor",
+    "top": "vscarmor:block/panzergrau_light_armor"
+  }
+}

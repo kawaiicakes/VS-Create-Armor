@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "vscarmor:block/camo_desert_light_armor_vertical_window"
+    },
+    "axis=y": {
+      "model": "vscarmor:block/camo_desert_light_armor_vertical_window_vertical"
+    },
+    "axis=z": {
+      "model": "vscarmor:block/camo_desert_light_armor_vertical_window",
+      "uvlock": true,
+      "y": 90
+    }
+  }
+}

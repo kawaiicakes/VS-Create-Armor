@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/horizontal_window",
+  "textures": {
+    "bottom": "vscarmor:block/blue_steel_armor",
+    "end": "vscarmor:block/blue_steel_armor",
+    "side": "vscarmor:block/blue_steel_armor",
+    "top": "vscarmor:block/blue_steel_armor"
+  }
+}

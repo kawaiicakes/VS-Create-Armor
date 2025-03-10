@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/horizontal_window_empty",
+  "textures": {
+    "bottom": "vscarmor:block/light_gray_reinforced_armor",
+    "end": "vscarmor:block/light_gray_reinforced_armor",
+    "side": "vscarmor:block/light_gray_reinforced_armor",
+    "top": "vscarmor:block/light_gray_reinforced_armor"
+  }
+}

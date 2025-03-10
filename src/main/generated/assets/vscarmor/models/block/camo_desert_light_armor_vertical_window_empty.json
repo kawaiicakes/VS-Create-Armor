@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/vertical_window_empty",
+  "textures": {
+    "bottom": "vscarmor:block/camo_desert_light_armor",
+    "end": "vscarmor:block/camo_desert_light_armor",
+    "side": "vscarmor:block/camo_desert_light_armor",
+    "top": "vscarmor:block/camo_desert_light_armor"
+  }
+}

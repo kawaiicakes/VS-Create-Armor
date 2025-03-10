@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/vertical_window_vertical_slab_empty",
+  "textures": {
+    "bottom": "vscarmor:block/cyan_steel_armor",
+    "end": "vscarmor:block/cyan_steel_armor",
+    "side": "vscarmor:block/cyan_steel_armor",
+    "top": "vscarmor:block/cyan_steel_armor"
+  }
+}

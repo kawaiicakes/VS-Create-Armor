@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/vertical_window",
+  "textures": {
+    "bottom": "vscarmor:block/lime_light_armor",
+    "end": "vscarmor:block/lime_light_armor",
+    "side": "vscarmor:block/lime_light_armor",
+    "top": "vscarmor:block/lime_light_armor"
+  }
+}

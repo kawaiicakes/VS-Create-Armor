@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "vscarmor:block/wl_green_reinforced_armor_vertical_window_slab"
+    },
+    "type=double": {
+      "model": "vscarmor:block/wl_green_reinforced_armor_vertical_window"
+    },
+    "type=top": {
+      "model": "vscarmor:block/wl_green_reinforced_armor_vertical_window_slab_top"
+    }
+  }
+}

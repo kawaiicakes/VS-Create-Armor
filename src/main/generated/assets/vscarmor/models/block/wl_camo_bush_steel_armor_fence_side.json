@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "vscarmor:block/wl_camo_bush_steel_armor"
+  }
+}

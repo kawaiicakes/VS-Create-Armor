@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/vertical_window_vertical_slab_empty",
+  "textures": {
+    "bottom": "vscarmor:block/4b0_reinforced_armor",
+    "end": "vscarmor:block/4b0_reinforced_armor",
+    "side": "vscarmor:block/4b0_reinforced_armor",
+    "top": "vscarmor:block/4b0_reinforced_armor"
+  }
+}

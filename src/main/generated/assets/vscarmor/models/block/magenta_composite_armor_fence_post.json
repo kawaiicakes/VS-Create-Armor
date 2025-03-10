@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "vscarmor:block/magenta_composite_armor"
+  }
+}

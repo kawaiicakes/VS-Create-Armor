@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "vscarmor:block/33_light_armor_vertical_window"
+    },
+    "axis=y": {
+      "model": "vscarmor:block/33_light_armor_vertical_window_vertical"
+    },
+    "axis=z": {
+      "model": "vscarmor:block/33_light_armor_vertical_window",
+      "uvlock": true,
+      "y": 90
+    }
+  }
+}

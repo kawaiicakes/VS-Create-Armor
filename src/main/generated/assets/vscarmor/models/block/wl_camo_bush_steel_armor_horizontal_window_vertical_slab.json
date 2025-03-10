@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/horizontal_window_vertical_slab",
+  "textures": {
+    "bottom": "vscarmor:block/black_steel_armor",
+    "end": "vscarmor:block/wl_camo_bush_steel_armor",
+    "side": "vscarmor:block/wl_camo_bush_steel_armor",
+    "top": "vscarmor:block/camo_bush_steel_armor"
+  }
+}

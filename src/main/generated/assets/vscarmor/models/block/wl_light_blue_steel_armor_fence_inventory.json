@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_inventory",
+  "textures": {
+    "texture": "vscarmor:block/wl_light_blue_steel_armor"
+  }
+}

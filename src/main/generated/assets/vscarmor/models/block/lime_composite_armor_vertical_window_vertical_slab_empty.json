@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/vertical_window_vertical_slab_empty",
+  "textures": {
+    "bottom": "vscarmor:block/lime_composite_armor",
+    "end": "vscarmor:block/lime_composite_armor",
+    "side": "vscarmor:block/lime_composite_armor",
+    "top": "vscarmor:block/lime_composite_armor"
+  }
+}

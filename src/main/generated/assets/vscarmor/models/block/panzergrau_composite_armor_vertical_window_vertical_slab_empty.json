@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/vertical_window_vertical_slab_empty",
+  "textures": {
+    "bottom": "vscarmor:block/panzergrau_composite_armor",
+    "end": "vscarmor:block/panzergrau_composite_armor",
+    "side": "vscarmor:block/panzergrau_composite_armor",
+    "top": "vscarmor:block/panzergrau_composite_armor"
+  }
+}

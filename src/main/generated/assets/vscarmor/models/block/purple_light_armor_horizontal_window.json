@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/horizontal_window",
+  "textures": {
+    "bottom": "vscarmor:block/purple_light_armor",
+    "end": "vscarmor:block/purple_light_armor",
+    "side": "vscarmor:block/purple_light_armor",
+    "top": "vscarmor:block/purple_light_armor"
+  }
+}

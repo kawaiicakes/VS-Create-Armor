@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_inventory",
+  "textures": {
+    "texture": "vscarmor:block/wl_camo_desert_composite_armor"
+  }
+}

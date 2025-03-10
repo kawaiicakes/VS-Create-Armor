@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "vscarmor:block/wl_31_reinforced_armor"
+  }
+}

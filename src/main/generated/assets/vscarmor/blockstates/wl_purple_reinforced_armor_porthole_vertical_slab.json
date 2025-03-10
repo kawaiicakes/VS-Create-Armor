@@ -19,20 +19,20 @@
       "y": 180
     },
     "doublet=true,facing=east": {
-      "model": "vscarmor:block/wl_purple_reinforced_armor_porthole"
+      "model": "vscarmor:block/wl_purple_reinforced_armor_porthole_vertical"
     },
     "doublet=true,facing=north": {
-      "model": "vscarmor:block/wl_purple_reinforced_armor_porthole",
+      "model": "vscarmor:block/wl_purple_reinforced_armor_porthole_vertical",
       "uvlock": true,
       "y": 270
     },
     "doublet=true,facing=south": {
-      "model": "vscarmor:block/wl_purple_reinforced_armor_porthole",
+      "model": "vscarmor:block/wl_purple_reinforced_armor_porthole_vertical",
       "uvlock": true,
       "y": 90
     },
     "doublet=true,facing=west": {
-      "model": "vscarmor:block/wl_purple_reinforced_armor_porthole",
+      "model": "vscarmor:block/wl_purple_reinforced_armor_porthole_vertical",
       "uvlock": true,
       "y": 180
     }

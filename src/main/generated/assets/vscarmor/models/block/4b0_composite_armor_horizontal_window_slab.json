@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/horizontal_window_slab",
+  "textures": {
+    "bottom": "vscarmor:block/4b0_composite_armor",
+    "side": "vscarmor:block/4b0_composite_armor",
+    "top": "vscarmor:block/4b0_composite_armor"
+  }
+}

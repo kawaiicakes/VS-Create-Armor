@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/horizontal_window_vertical_slab",
+  "textures": {
+    "bottom": "vscarmor:block/green_reinforced_armor",
+    "end": "vscarmor:block/green_reinforced_armor",
+    "side": "vscarmor:block/green_reinforced_armor",
+    "top": "vscarmor:block/green_reinforced_armor"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "vscarmor:block/wl_blue_composite_armor"
+  }
+}

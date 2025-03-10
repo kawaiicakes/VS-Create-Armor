@@ -95,6 +95,114 @@ public class ArmorBlockModels {
             TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM, TextureKey.END
     );
 
+    public static final Model VERTICAL_WINDOW = block(
+            MOD_ID, "vertical_window", TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM, TextureKey.END
+    );
+
+    public static final Model VERTICAL_WINDOW_EMPTY = block(
+            MOD_ID, "vertical_window_empty", "_empty", TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM, TextureKey.END
+    );
+
+    public static final Model VERTICAL_WINDOW_VERTICAL = block(
+            MOD_ID,
+            "vertical_window_vertical", "_vertical",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model VERTICAL_WINDOW_VERTICAL_EMPTY = block(
+            MOD_ID,
+            "vertical_window_vertical_empty", "_vertical_empty",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model VERTICAL_WINDOW_SLAB = block(
+            MOD_ID,
+            "vertical_window_slab",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model VERTICAL_WINDOW_SLAB_TOP = block(
+            MOD_ID,
+            "vertical_window_slab_top", "_top",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model VERTICAL_WINDOW_SLAB_EMPTY = block(
+            MOD_ID,
+            "vertical_window_slab_empty", "_empty",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model VERTICAL_WINDOW_SLAB_TOP_EMPTY = block(
+            MOD_ID,
+            "vertical_window_slab_top_empty", "_top_empty",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model VERTICAL_WINDOW_VERTICAL_SLAB = block(
+            MOD_ID, "vertical_window_vertical_slab",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM, TextureKey.END
+    );
+
+    public static final Model VERTICAL_WINDOW_VERTICAL_SLAB_EMPTY = block(
+            MOD_ID, "vertical_window_vertical_slab_empty", "_empty",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM, TextureKey.END
+    );
+
+    public static final Model HORIZONTAL_WINDOW = block(
+            MOD_ID, "horizontal_window", TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM, TextureKey.END
+    );
+
+    public static final Model HORIZONTAL_WINDOW_EMPTY = block(
+            MOD_ID, "horizontal_window_empty", "_empty", TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM, TextureKey.END
+    );
+
+    public static final Model HORIZONTAL_WINDOW_VERTICAL = block(
+            MOD_ID,
+            "horizontal_window_vertical", "_vertical",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model HORIZONTAL_WINDOW_VERTICAL_EMPTY = block(
+            MOD_ID,
+            "horizontal_window_vertical_empty", "_vertical_empty",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model HORIZONTAL_WINDOW_SLAB = block(
+            MOD_ID,
+            "horizontal_window_slab",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model HORIZONTAL_WINDOW_SLAB_TOP = block(
+            MOD_ID,
+            "horizontal_window_slab_top", "_top",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model HORIZONTAL_WINDOW_SLAB_EMPTY = block(
+            MOD_ID,
+            "horizontal_window_slab_empty", "_empty",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model HORIZONTAL_WINDOW_SLAB_TOP_EMPTY = block(
+            MOD_ID,
+            "horizontal_window_slab_top_empty", "_top_empty",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
+    public static final Model HORIZONTAL_WINDOW_VERTICAL_SLAB = block(
+            MOD_ID, "horizontal_window_vertical_slab",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM, TextureKey.END
+    );
+
+    public static final Model HORIZONTAL_WINDOW_VERTICAL_SLAB_EMPTY = block(
+            MOD_ID, "horizontal_window_vertical_slab_empty", "_empty",
+            TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM, TextureKey.END
+    );
+
     private static Model block(String namespace, String parent, String variant, TextureKey... requiredTextureKeys) {
         return new Model(
                 Optional.of(new Identifier(namespace, "block/" + parent)),

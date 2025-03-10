@@ -179,6 +179,13 @@ public class Registry implements DataGeneratorEntrypoint {
                         .resistance(blastResistance * 0.75F)
         );
 
+        final FenceBlock fenceBlock = new FenceBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
         final WallBlock wallBlock = new WallBlock(
                 FabricBlockSettings.copyOf(baseBlock)
                         .hardness(hardness * 0.25F)
@@ -207,15 +214,64 @@ public class Registry implements DataGeneratorEntrypoint {
                         .solid()
         );
 
+        final VerticalWindowBlock verticalWindowBlock = new VerticalWindowBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+                        .solid()
+        );
+
+        final VerticalWindowSlab verticalWindowSlab = new VerticalWindowSlab(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
+        final VerticalWindowVerticalSlab verticalWindowVerticalSlab = new VerticalWindowVerticalSlab(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
+        final HorizontalWindowBlock horizontalWindowBlock = new HorizontalWindowBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+                        .solid()
+        );
+
+        final HorizontalWindowSlab horizontalWindowSlab = new HorizontalWindowSlab(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
+        final HorizontalWindowVerticalSlab horizontalWindowVerticalSlab = new HorizontalWindowVerticalSlab(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
         registerBlockWithItem(id, baseBlock);
         registerBlockWithItem(id + "_slab", slabBlock);
         registerBlockWithItem(id + "_vertical_slab", verticalSlabBlock);
         registerBlockWithItem(id + "_stairs", stairsBlock);
         registerBlockWithItem(id + "_vertical_stairs", verticalStairsBlock);
+        registerBlockWithItem(id + "_fence", fenceBlock);
         registerBlockWithItem(id + "_wall", wallBlock);
         registerBlockWithItem(id + "_porthole", portholeBlock);
         registerBlockWithItem(id + "_porthole_slab", portholeSlab);
         registerBlockWithItem(id + "_porthole_vertical_slab", portholeVerticalSlab);
+        registerBlockWithItem(id + "_vertical_window", verticalWindowBlock);
+        registerBlockWithItem(id + "_vertical_window_slab", verticalWindowSlab);
+        registerBlockWithItem(id + "_vertical_window_vertical_slab", verticalWindowVerticalSlab);
+        registerBlockWithItem(id + "_horizontal_window", horizontalWindowBlock);
+        registerBlockWithItem(id + "_horizontal_window_slab", horizontalWindowSlab);
+        registerBlockWithItem(id + "_horizontal_window_vertical_slab", horizontalWindowVerticalSlab);
 
         // Waterline Black cannot exist
         if (id.startsWith("black_")) return;
@@ -252,6 +308,13 @@ public class Registry implements DataGeneratorEntrypoint {
                         .resistance(blastResistance * 0.75F)
         );
 
+        final FenceBlock wlFenceBlock = new FenceBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
         final WallBlock wlWallBlock = new WallBlock(
                 FabricBlockSettings.copyOf(baseBlock)
                         .hardness(hardness * 0.25F)
@@ -280,15 +343,64 @@ public class Registry implements DataGeneratorEntrypoint {
                         .solid()
         );
 
+        final VerticalWindowBlock wlVerticalWindowBlock = new VerticalWindowBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+                        .solid()
+        );
+
+        final VerticalWindowSlab wlVerticalWindowSlab = new VerticalWindowSlab(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
+        final VerticalWindowVerticalSlab wlVerticalWindowVerticalSlab = new VerticalWindowVerticalSlab(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
+        final HorizontalWindowBlock wlHorizontalWindowBlock = new HorizontalWindowBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+                        .solid()
+        );
+
+        final HorizontalWindowSlab wlHorizontalWindowSlab = new HorizontalWindowSlab(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
+        final HorizontalWindowVerticalSlab wlHorizontalWindowVerticalSlab = new HorizontalWindowVerticalSlab(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
         registerBlockWithItem("wl_" + id, wlBaseBlock);
         registerBlockWithItem("wl_" + id + "_slab", wlSlabBlock);
         registerBlockWithItem("wl_" + id + "_vertical_slab", wlVerticalSlabBlock);
         registerBlockWithItem("wl_" + id + "_stairs", wlStairsBlock);
         registerBlockWithItem("wl_" + id + "_vertical_stairs", wlVerticalStairsBlock);
+        registerBlockWithItem("wl_" + id + "_fence", wlFenceBlock);
         registerBlockWithItem("wl_" + id + "_wall", wlWallBlock);
         registerBlockWithItem("wl_" + id + "_porthole", wlPortholeBlock);
         registerBlockWithItem("wl_" + id + "_porthole_slab", wlPortholeSlab);
         registerBlockWithItem("wl_" + id + "_porthole_vertical_slab", wlPortholeVerticalSlab);
+        registerBlockWithItem("wl_" + id + "_vertical_window", wlVerticalWindowBlock);
+        registerBlockWithItem("wl_" + id + "_vertical_window_slab", wlVerticalWindowSlab);
+        registerBlockWithItem("wl_" + id + "_vertical_window_vertical_slab", wlVerticalWindowVerticalSlab);
+        registerBlockWithItem("wl_" + id + "_horizontal_window", wlHorizontalWindowBlock);
+        registerBlockWithItem("wl_" + id + "_horizontal_window_slab", wlHorizontalWindowSlab);
+        registerBlockWithItem("wl_" + id + "_horizontal_window_vertical_slab", wlHorizontalWindowVerticalSlab);
     }
 
     private static void registerBlockWithItem(String id, Block baseBlock) {
@@ -343,6 +455,16 @@ public class Registry implements DataGeneratorEntrypoint {
                     continue;
                 }
 
+                if (blockItem.getBlock() instanceof AbstractWindowVerticalSlab verticalSlab) {
+                    addDrop(verticalSlab, verticalSlabDrops(verticalSlab));
+                    continue;
+                }
+
+                if (blockItem.getBlock() instanceof AbstractWindowSlab verticalSlab) {
+                    addDrop(verticalSlab, slabDrops(verticalSlab));
+                    continue;
+                }
+
                 addDrop(blockItem.getBlock(), drops(blockItem));
             }
         }
@@ -353,13 +475,14 @@ public class Registry implements DataGeneratorEntrypoint {
             super(output);
         }
 
-        // TODO - Simple & Waterline Block, Slab, Vertical Slabs for Horizontal Window, Vertical Window.
         @Override
         public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
             createSimpleModels(blockStateModelGenerator);
             createWaterlineModels(blockStateModelGenerator);
         }
 
+        // FIXME (1.1) - inner top face of V window, V window V slab are invis
+        // FIXME (1.1) - waterline fences have weird inventory appearance
         public static void createSimpleModels(BlockStateModelGenerator generator) {
             for (String pattern : allBlockGradesAndPatternCombinations()) {
                 Identifier baseBlockId = new Identifier(MOD_ID, pattern);
@@ -368,6 +491,7 @@ public class Registry implements DataGeneratorEntrypoint {
                 Block slabBlock = Registries.BLOCK.get(baseBlockId.withSuffixedPath("_slab"));
                 Block stairsBlock = Registries.BLOCK.get(baseBlockId.withSuffixedPath("_stairs"));
                 Block wallBlock = Registries.BLOCK.get(baseBlockId.withSuffixedPath("_wall"));
+                Block fenceBlock = Registries.BLOCK.get(baseBlockId.withSuffixedPath("_fence"));
 
                 Identifier baseBlockModelId = TextureMap.getId(baseBlock);
 
@@ -382,6 +506,7 @@ public class Registry implements DataGeneratorEntrypoint {
                 generator.new BlockTexturePool(map)
                         .base(baseBlock, Models.CUBE_ALL)
                         .slab(slabBlock)
+                        .fence(fenceBlock)
                         .stairs(stairsBlock)
                         .wall(wallBlock);
 
@@ -406,7 +531,7 @@ public class Registry implements DataGeneratorEntrypoint {
                 );
 
                 createWindowSlab(
-                        "_porthole_slab",
+                        "_porthole_slab", "_porthole_vertical",
                         generator,
                         pattern,
                         block -> window(block, "", "", ""),
@@ -415,11 +540,65 @@ public class Registry implements DataGeneratorEntrypoint {
                 );
 
                 createWindowVerticalSlab(
-                        "_porthole_vertical_slab",
+                        "_porthole_vertical_slab", "_porthole",
                         generator,
                         pattern,
                         block -> window(block, "", "", ""),
                         ArmorBlockModels.PORTHOLE_VERTICAL_SLAB, ArmorBlockModels.PORTHOLE_VERTICAL_SLAB_EMPTY
+                );
+
+                createWindow(
+                        "_vertical_window",
+                        generator,
+                        pattern,
+                        block -> window(block, "", "", ""),
+                        ArmorBlockModels.VERTICAL_WINDOW, ArmorBlockModels.VERTICAL_WINDOW_EMPTY,
+                        ArmorBlockModels.VERTICAL_WINDOW_VERTICAL, ArmorBlockModels.VERTICAL_WINDOW_VERTICAL_EMPTY
+                );
+
+                createWindowSlab(
+                        "_vertical_window_slab", "_vertical_window_vertical",
+                        generator,
+                        pattern,
+                        block -> window(block, "", "", ""),
+                        ArmorBlockModels.VERTICAL_WINDOW_SLAB, ArmorBlockModels.VERTICAL_WINDOW_SLAB_EMPTY,
+                        ArmorBlockModels.VERTICAL_WINDOW_SLAB_TOP, ArmorBlockModels.VERTICAL_WINDOW_SLAB_TOP_EMPTY
+                );
+
+                createWindowVerticalSlab(
+                        "_vertical_window_vertical_slab", "_vertical_window",
+                        generator,
+                        pattern,
+                        block -> window(block, "", "", ""),
+                        ArmorBlockModels.VERTICAL_WINDOW_VERTICAL_SLAB,
+                        ArmorBlockModels.VERTICAL_WINDOW_VERTICAL_SLAB_EMPTY
+                );
+
+                createWindow(
+                        "_horizontal_window",
+                        generator,
+                        pattern,
+                        block -> window(block, "", "", ""),
+                        ArmorBlockModels.HORIZONTAL_WINDOW, ArmorBlockModels.HORIZONTAL_WINDOW_EMPTY,
+                        ArmorBlockModels.HORIZONTAL_WINDOW_VERTICAL, ArmorBlockModels.HORIZONTAL_WINDOW_VERTICAL_EMPTY
+                );
+
+                createWindowSlab(
+                        "_horizontal_window_slab", "_horizontal_window_vertical",
+                        generator,
+                        pattern,
+                        block -> window(block, "", "", ""),
+                        ArmorBlockModels.HORIZONTAL_WINDOW_SLAB, ArmorBlockModels.HORIZONTAL_WINDOW_SLAB_EMPTY,
+                        ArmorBlockModels.HORIZONTAL_WINDOW_SLAB_TOP, ArmorBlockModels.HORIZONTAL_WINDOW_SLAB_TOP_EMPTY
+                );
+
+                createWindowVerticalSlab(
+                        "_horizontal_window_vertical_slab", "_horizontal_window",
+                        generator,
+                        pattern,
+                        block -> window(block, "", "", ""),
+                        ArmorBlockModels.HORIZONTAL_WINDOW_VERTICAL_SLAB,
+                        ArmorBlockModels.HORIZONTAL_WINDOW_VERTICAL_SLAB_EMPTY
                 );
             }
         }
@@ -439,6 +618,7 @@ public class Registry implements DataGeneratorEntrypoint {
                 Block slabBlock = Registries.BLOCK.get(waterlineBaseId.withSuffixedPath("_slab"));
                 Block stairsBlock = Registries.BLOCK.get(waterlineBaseId.withSuffixedPath("_stairs"));
                 Block wallBlock = Registries.BLOCK.get(waterlineBaseId.withSuffixedPath("_wall"));
+                Block fenceBlock = Registries.BLOCK.get(waterlineBaseId.withSuffixedPath("_fence"));
 
                 Identifier baseBlockModelId = TextureMap.getId(baseBlock);
 
@@ -460,7 +640,8 @@ public class Registry implements DataGeneratorEntrypoint {
 
                 generator.new BlockTexturePool(map)
                         .base(baseBlock, Models.CUBE_BOTTOM_TOP)
-                        .slab(slabBlock);
+                        .slab(slabBlock)
+                        .fence(fenceBlock);
 
                 Identifier innerBottomId
                         = Models.INNER_STAIRS.upload(stairsBlock, map, generator.modelCollector);
@@ -526,7 +707,7 @@ public class Registry implements DataGeneratorEntrypoint {
                 );
 
                 createWindowSlab(
-                        "_porthole_slab",
+                        "_porthole_slab", "_porthole_vertical",
                         generator,
                         "wl_" + pattern,
                         block -> window(
@@ -539,7 +720,7 @@ public class Registry implements DataGeneratorEntrypoint {
                 );
 
                 createWindowVerticalSlab(
-                        "_porthole_vertical_slab",
+                        "_porthole_vertical_slab", "_porthole_vertical",
                         generator,
                         "wl_" + pattern,
                         block -> window(
@@ -548,6 +729,84 @@ public class Registry implements DataGeneratorEntrypoint {
                                 MOD_ID + ":" + getWaterlineBottomPath(Registries.BLOCK.getId(block))
                         ),
                         ArmorBlockModels.PORTHOLE_VERTICAL_SLAB, ArmorBlockModels.PORTHOLE_VERTICAL_SLAB_EMPTY
+                );
+
+                createWindow(
+                        "_vertical_window",
+                        generator,
+                        "wl_" + pattern,
+                        block -> window(
+                                block, "",
+                                MOD_ID + ":" + pattern,
+                                MOD_ID + ":" + getWaterlineBottomPath(Registries.BLOCK.getId(block))
+                        ),
+                        ArmorBlockModels.VERTICAL_WINDOW, ArmorBlockModels.VERTICAL_WINDOW_EMPTY,
+                        ArmorBlockModels.VERTICAL_WINDOW_VERTICAL, ArmorBlockModels.VERTICAL_WINDOW_VERTICAL_EMPTY
+                );
+
+                createWindowSlab(
+                        "_vertical_window_slab", "_vertical_window",
+                        generator,
+                        "wl_" + pattern,
+                        block -> window(
+                                block, "",
+                                MOD_ID + ":" + pattern,
+                                MOD_ID + ":" + getWaterlineBottomPath(Registries.BLOCK.getId(block))
+                        ),
+                        ArmorBlockModels.VERTICAL_WINDOW_SLAB, ArmorBlockModels.VERTICAL_WINDOW_SLAB_EMPTY,
+                        ArmorBlockModels.VERTICAL_WINDOW_SLAB_TOP, ArmorBlockModels.VERTICAL_WINDOW_SLAB_TOP_EMPTY
+                );
+
+                createWindowVerticalSlab(
+                        "_vertical_window_vertical_slab", "_vertical_window",
+                        generator,
+                        "wl_" + pattern,
+                        block -> window(
+                                block, "",
+                                MOD_ID + ":" + pattern,
+                                MOD_ID + ":" + getWaterlineBottomPath(Registries.BLOCK.getId(block))
+                        ),
+                        ArmorBlockModels.VERTICAL_WINDOW_VERTICAL_SLAB,
+                        ArmorBlockModels.VERTICAL_WINDOW_VERTICAL_SLAB_EMPTY
+                );
+
+                createWindow(
+                        "_horizontal_window",
+                        generator,
+                        "wl_" + pattern,
+                        block -> window(
+                                block, "",
+                                MOD_ID + ":" + pattern,
+                                MOD_ID + ":" + getWaterlineBottomPath(Registries.BLOCK.getId(block))
+                        ),
+                        ArmorBlockModels.HORIZONTAL_WINDOW, ArmorBlockModels.HORIZONTAL_WINDOW_EMPTY,
+                        ArmorBlockModels.HORIZONTAL_WINDOW_VERTICAL, ArmorBlockModels.HORIZONTAL_WINDOW_VERTICAL_EMPTY
+                );
+
+                createWindowSlab(
+                        "_horizontal_window_slab", "_horizontal_window",
+                        generator,
+                        "wl_" + pattern,
+                        block -> window(
+                                block, "",
+                                MOD_ID + ":" + pattern,
+                                MOD_ID + ":" + getWaterlineBottomPath(Registries.BLOCK.getId(block))
+                        ),
+                        ArmorBlockModels.HORIZONTAL_WINDOW_SLAB, ArmorBlockModels.HORIZONTAL_WINDOW_SLAB_EMPTY,
+                        ArmorBlockModels.HORIZONTAL_WINDOW_SLAB_TOP, ArmorBlockModels.HORIZONTAL_WINDOW_SLAB_TOP_EMPTY
+                );
+
+                createWindowVerticalSlab(
+                        "_horizontal_window_vertical_slab", "_horizontal_window",
+                        generator,
+                        "wl_" + pattern,
+                        block -> window(
+                                block, "",
+                                MOD_ID + ":" + pattern,
+                                MOD_ID + ":" + getWaterlineBottomPath(Registries.BLOCK.getId(block))
+                        ),
+                        ArmorBlockModels.HORIZONTAL_WINDOW_VERTICAL_SLAB,
+                        ArmorBlockModels.HORIZONTAL_WINDOW_VERTICAL_SLAB_EMPTY
                 );
             }
         }
@@ -655,7 +914,7 @@ public class Registry implements DataGeneratorEntrypoint {
         }
 
         public static void createWindowSlab(
-                String windowSuffix,
+                String windowSuffix, String suffix2,
                 BlockStateModelGenerator generator, String pattern, Function<Block, TextureMap> mapFunction,
                 Model windowBase, Model emptyWindow, Model topWindow, Model emptyTopWindow
         ) {
@@ -666,9 +925,9 @@ public class Registry implements DataGeneratorEntrypoint {
             );
 
 
-            Identifier portholeDoubleModelId = TextureMap.getSubId(baseBlock, "_porthole_vertical");
+            Identifier portholeDoubleModelId = TextureMap.getSubId(baseBlock, suffix2);
 
-            Identifier portholeDoubleEmptyModelId = TextureMap.getSubId(baseBlock, "_porthole_vertical_empty");
+            Identifier portholeDoubleEmptyModelId = TextureMap.getSubId(baseBlock, suffix2 + "_empty");
 
             Identifier portholeSlabModelId = windowBase.upload(
                     portholeSlab, mapFunction.apply(baseBlock), generator.modelCollector
@@ -696,7 +955,7 @@ public class Registry implements DataGeneratorEntrypoint {
         }
 
         public static void createWindowVerticalSlab(
-                String windowSuffix,
+                String windowSuffix, String suffix2,
                 BlockStateModelGenerator generator, String pattern, Function<Block, TextureMap> mapFunction,
                 Model windowSlabModelId, Model emptyWindowSlabModelId
         ) {
@@ -706,8 +965,8 @@ public class Registry implements DataGeneratorEntrypoint {
                     baseBlockId.withSuffixedPath(windowSuffix)
             );
 
-            Identifier portholeDoubleModelId = TextureMap.getSubId(baseBlock, "_porthole");
-            Identifier portholeDoubleEmptyModelId = TextureMap.getSubId(baseBlock, "_porthole_empty");
+            Identifier portholeDoubleModelId = TextureMap.getSubId(baseBlock, suffix2);
+            Identifier portholeDoubleEmptyModelId = TextureMap.getSubId(baseBlock, suffix2 + "_empty");
 
             Identifier portholeSlabModelId = windowSlabModelId.upload(
                     portholeVSlab, mapFunction.apply(baseBlock), generator.modelCollector
@@ -1677,6 +1936,7 @@ public class Registry implements DataGeneratorEntrypoint {
             TagBuilder reinforced
                     = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "reinforced_armor")));
 
+            TagBuilder fenceBlocks = getTagBuilder(BlockTags.FENCES);
             TagBuilder wallBlocks = getTagBuilder(BlockTags.WALLS);
 
             for (BlockItem blockItem : REGISTERED) {
@@ -1701,6 +1961,9 @@ public class Registry implements DataGeneratorEntrypoint {
 
                 if (isWall(blockItem.getBlock()))
                     wallBlocks.add(Registries.BLOCK.getId(blockItem.getBlock()));
+
+                if (blockItem.getBlock() instanceof FenceBlock)
+                    fenceBlocks.add(Registries.BLOCK.getId(blockItem.getBlock()));
             }
         }
 

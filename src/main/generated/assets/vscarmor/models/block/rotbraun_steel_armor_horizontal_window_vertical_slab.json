@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/horizontal_window_vertical_slab",
+  "textures": {
+    "bottom": "vscarmor:block/rotbraun_steel_armor",
+    "end": "vscarmor:block/rotbraun_steel_armor",
+    "side": "vscarmor:block/rotbraun_steel_armor",
+    "top": "vscarmor:block/rotbraun_steel_armor"
+  }
+}

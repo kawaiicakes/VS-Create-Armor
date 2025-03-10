@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "vscarmor:block/31_reinforced_armor"
+  }
+}

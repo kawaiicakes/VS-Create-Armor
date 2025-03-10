@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/vertical_window_vertical_slab",
+  "textures": {
+    "bottom": "vscarmor:block/pink_reinforced_armor",
+    "end": "vscarmor:block/pink_reinforced_armor",
+    "side": "vscarmor:block/pink_reinforced_armor",
+    "top": "vscarmor:block/pink_reinforced_armor"
+  }
+}

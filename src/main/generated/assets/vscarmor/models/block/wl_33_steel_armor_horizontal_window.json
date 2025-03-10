@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/horizontal_window",
+  "textures": {
+    "bottom": "vscarmor:block/black_steel_armor",
+    "end": "vscarmor:block/wl_33_steel_armor",
+    "side": "vscarmor:block/wl_33_steel_armor",
+    "top": "vscarmor:block/33_steel_armor"
+  }
+}
