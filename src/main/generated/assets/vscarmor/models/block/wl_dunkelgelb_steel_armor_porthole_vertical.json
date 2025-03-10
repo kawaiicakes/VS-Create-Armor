@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/vertical_porthole",
+  "textures": {
+    "bottom": "vscarmor:block/black_steel_armor",
+    "side": "vscarmor:block/wl_dunkelgelb_steel_armor",
+    "top": "vscarmor:block/dunkelgelb_steel_armor"
+  }
+}

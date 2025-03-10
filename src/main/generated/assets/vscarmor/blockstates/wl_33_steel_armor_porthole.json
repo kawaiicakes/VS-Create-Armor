@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "vscarmor:block/wl_33_steel_armor_porthole"
+    },
+    "axis=y": {
+      "model": "vscarmor:block/wl_33_steel_armor_porthole_vertical"
+    },
+    "axis=z": {
+      "model": "vscarmor:block/wl_33_steel_armor_porthole",
+      "uvlock": true,
+      "y": 90
+    }
+  }
+}

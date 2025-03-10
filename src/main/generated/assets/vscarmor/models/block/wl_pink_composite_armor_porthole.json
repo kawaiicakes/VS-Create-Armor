@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/porthole",
+  "textures": {
+    "bottom": "vscarmor:block/black_composite_armor",
+    "end": "vscarmor:block/wl_pink_composite_armor",
+    "side": "vscarmor:block/wl_pink_composite_armor",
+    "top": "vscarmor:block/pink_composite_armor"
+  }
+}

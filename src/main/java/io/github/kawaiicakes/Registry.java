@@ -259,12 +259,36 @@ public class Registry implements DataGeneratorEntrypoint {
                         .solid()
         );
 
+        final PortholeBlock wlPortholeBlock = new PortholeBlock(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.75F)
+                        .resistance(blastResistance * 0.75F)
+                        .solid()
+        );
+
+        final PortholeSlab wlPortholeSlab = new PortholeSlab(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
+        final PortholeVerticalSlab wlPortholeVerticalSlab = new PortholeVerticalSlab(
+                FabricBlockSettings.copyOf(baseBlock)
+                        .hardness(hardness * 0.25F)
+                        .resistance(blastResistance * 0.25F)
+                        .solid()
+        );
+
         registerBlockWithItem("wl_" + id, wlBaseBlock);
         registerBlockWithItem("wl_" + id + "_slab", wlSlabBlock);
         registerBlockWithItem("wl_" + id + "_vertical_slab", wlVerticalSlabBlock);
         registerBlockWithItem("wl_" + id + "_stairs", wlStairsBlock);
         registerBlockWithItem("wl_" + id + "_vertical_stairs", wlVerticalStairsBlock);
         registerBlockWithItem("wl_" + id + "_wall", wlWallBlock);
+        registerBlockWithItem("wl_" + id + "_porthole", wlPortholeBlock);
+        registerBlockWithItem("wl_" + id + "_porthole_slab", wlPortholeSlab);
+        registerBlockWithItem("wl_" + id + "_porthole_vertical_slab", wlPortholeVerticalSlab);
     }
 
     private static void registerBlockWithItem(String id, Block baseBlock) {
@@ -329,7 +353,7 @@ public class Registry implements DataGeneratorEntrypoint {
             super(output);
         }
 
-        // TODO - Simple & Waterline Block, Slab, Vertical Slabs for Porthole, Horizontal Window, Vertical Window.
+        // TODO - Simple & Waterline Block, Slab, Vertical Slabs for Horizontal Window, Vertical Window.
         @Override
         public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
             createSimpleModels(blockStateModelGenerator);
@@ -486,6 +510,44 @@ public class Registry implements DataGeneratorEntrypoint {
                         generator,
                         "wl_" + pattern,
                         VSCArmorModelProvider::sideTopBottomWaterline
+                );
+
+                createWindow(
+                        "_porthole",
+                        generator,
+                        "wl_" + pattern,
+                        block -> window(
+                                block, "",
+                                MOD_ID + ":" + pattern,
+                                MOD_ID + ":" + getWaterlineBottomPath(Registries.BLOCK.getId(block))
+                        ),
+                        ArmorBlockModels.PORTHOLE, ArmorBlockModels.PORTHOLE_EMPTY,
+                        ArmorBlockModels.VERTICAL_PORTHOLE, ArmorBlockModels.VERTICAL_PORTHOLE_EMPTY
+                );
+
+                createWindowSlab(
+                        "_porthole_slab",
+                        generator,
+                        "wl_" + pattern,
+                        block -> window(
+                                block, "",
+                                MOD_ID + ":" + pattern,
+                                MOD_ID + ":" + getWaterlineBottomPath(Registries.BLOCK.getId(block))
+                        ),
+                        ArmorBlockModels.PORTHOLE_SLAB, ArmorBlockModels.PORTHOLE_SLAB_EMPTY,
+                        ArmorBlockModels.PORTHOLE_SLAB_TOP, ArmorBlockModels.PORTHOLE_SLAB_TOP_EMPTY
+                );
+
+                createWindowVerticalSlab(
+                        "_porthole_vertical_slab",
+                        generator,
+                        "wl_" + pattern,
+                        block -> window(
+                                block, "",
+                                MOD_ID + ":" + pattern,
+                                MOD_ID + ":" + getWaterlineBottomPath(Registries.BLOCK.getId(block))
+                        ),
+                        ArmorBlockModels.PORTHOLE_VERTICAL_SLAB, ArmorBlockModels.PORTHOLE_VERTICAL_SLAB_EMPTY
                 );
             }
         }
@@ -1578,7 +1640,7 @@ public class Registry implements DataGeneratorEntrypoint {
                     : new Identifier(top).withPrefixedPath("block/");
             Identifier bottomTextureId = bottom.isEmpty()
                     ? baseBlockTextureId
-                    : new Identifier(top).withPrefixedPath("block/");
+                    : new Identifier(bottom).withPrefixedPath("block/");
 
             return new TextureMap()
                     .put(TextureKey.SIDE, baseBlockTextureId)
