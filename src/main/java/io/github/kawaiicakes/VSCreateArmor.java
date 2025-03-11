@@ -14,7 +14,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 // TODO (1.1) - Porthole texture/model improvement. Infrastructure is already in place
 // TODO (1.1) - LargeWindow
 // TODO (1.1) - Hatches, bulkhead doors
-// TODO (1.2) - Connecting textures
+// TODO (2.0) - Connecting textures
 public class VSCreateArmor implements ModInitializer, ClientModInitializer {
 	public static final String MOD_ID = "vscarmor";
 

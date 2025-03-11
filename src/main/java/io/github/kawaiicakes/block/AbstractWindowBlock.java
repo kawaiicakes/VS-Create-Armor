@@ -9,7 +9,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
-// TODO - Less cringe placement logic
 // TODO (1.1) - Collision and shape methods are required to be implemented from here for empty blockstates
 @SuppressWarnings("deprecation")
 public abstract class AbstractWindowBlock extends PillarBlock implements WindowBlock {

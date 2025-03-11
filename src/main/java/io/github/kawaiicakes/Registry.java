@@ -1,5 +1,7 @@
 package io.github.kawaiicakes;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import io.github.kawaiicakes.block.*;
 import io.github.kawaiicakes.client.model.ArmorBlockModels;
 import io.github.kawaiicakes.client.model.VerticalModels;
@@ -14,6 +16,9 @@ import net.minecraft.block.*;
 import net.minecraft.block.enums.BlockHalf;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.block.enums.StairShape;
+import net.minecraft.data.DataOutput;
+import net.minecraft.data.DataProvider;
+import net.minecraft.data.DataWriter;
 import net.minecraft.data.client.*;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.item.BlockItem;
@@ -62,6 +67,7 @@ public class Registry implements DataGeneratorEntrypoint {
         pack.addProvider(VSCArmorItemTagProvider::new);
         pack.addProvider(VSCArmorRecipeProvider::new);
         pack.addProvider(VSCArmorLangProvider::new);
+        pack.addProvider(ValkyrienSkiesPropertyProvider::new);
     }
 
     // TODO (1.1) - new organization scheme
@@ -100,7 +106,8 @@ public class Registry implements DataGeneratorEntrypoint {
         }
     }
 
-    // TODO - Add commented colours + patterns.
+    // TODO - Add ship_lower
+    // TODO (1.1) - Add commented colours + patterns.
     public static String[] colors() {
         return new String[] {
                 "",
@@ -1919,7 +1926,6 @@ public class Registry implements DataGeneratorEntrypoint {
         public void generateItemModels(ItemModelGenerator itemModelGenerator) {}
     }
 
-    // TODO - Tags for slabs, blocks, stairs, etc. for VS + CBC block properties
     private static class VSCArmorBlockTagProvider extends FabricTagProvider<Block> {
         public VSCArmorBlockTagProvider(
                 FabricDataOutput output,
@@ -1934,14 +1940,6 @@ public class Registry implements DataGeneratorEntrypoint {
             TagBuilder beaconBase = getTagBuilder(BlockTags.BEACON_BASE_BLOCKS);
             TagBuilder diamondTools = getTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL);
             TagBuilder witherImmune = getTagBuilder(BlockTags.WITHER_IMMUNE);
-            TagBuilder light
-                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "light_armor")));
-            TagBuilder steel
-                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "steel_armor")));
-            TagBuilder composite
-                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "composite_armor")));
-            TagBuilder reinforced
-                    = getTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "reinforced_armor")));
 
             TagBuilder fenceBlocks = getTagBuilder(BlockTags.FENCES);
             TagBuilder wallBlocks = getTagBuilder(BlockTags.WALLS);
@@ -1957,14 +1955,34 @@ public class Registry implements DataGeneratorEntrypoint {
 
                 String blockPath = Registries.BLOCK.getId(blockItem.getBlock()).getPath();
 
-                TagBuilder addTo;
+                String grade;
 
-                if (blockPath.contains("light_armor")) addTo = light;
-                else if (blockPath.contains("steel_armor")) addTo = steel;
-                else if (blockPath.contains("composite_armor")) addTo = composite;
-                else addTo = reinforced;
+                if (blockPath.contains("light_armor")) grade = "light_armor";
+                else if (blockPath.contains("steel_armor")) grade = "steel_armor";
+                else if (blockPath.contains("composite_armor")) grade = "composite_armor";
+                else grade = "reinforced_armor";
 
-                addTo.add(Registries.BLOCK.getId(blockItem.getBlock()));
+                // looks for vertical and horizontal too instead of just window in prep for full window block
+                if (blockPath.contains("vertical_window") || blockPath.contains("horizontal_window"))
+                    grade += "_window_slits";
+
+                if (blockPath.contains("porthole"))
+                    grade += "_porthole";
+
+                if (blockPath.contains("slab"))
+                    grade += "_slab";
+                else if (blockPath.contains("stairs"))
+                    grade += "_stairs";
+                else if (blockPath.contains("fence"))
+                    grade += "_fence";
+                else if (blockPath.contains("wall"))
+                    grade += "_wall";
+
+                TagBuilder gradeTag = getTagBuilder(
+                        TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, grade))
+                );
+
+                gradeTag.add(Registries.BLOCK.getId(blockItem.getBlock()));
 
                 if (isWall(blockItem.getBlock()))
                     wallBlocks.add(Registries.BLOCK.getId(blockItem.getBlock()));
@@ -2000,7 +2018,7 @@ public class Registry implements DataGeneratorEntrypoint {
         }
     }
 
-    // TODO (1.1) - rudimentary recipes
+    // TODO (2.0+) - rudimentary recipes
     private static class VSCArmorRecipeProvider extends FabricRecipeProvider {
         public VSCArmorRecipeProvider(FabricDataOutput output) {
             super(output);
@@ -2065,6 +2083,90 @@ public class Registry implements DataGeneratorEntrypoint {
             } catch (Exception e) {
                 throw new RuntimeException("Failed to add existing language file!", e);
             }
+        }
+    }
+
+    public static class ValkyrienSkiesPropertyProvider implements DataProvider {
+        public final DataOutput.PathResolver pathResolver;
+
+        public ValkyrienSkiesPropertyProvider(FabricDataOutput output) {
+            this.pathResolver = output.getResolver(DataOutput.OutputType.DATA_PACK, "vs_mass");
+        }
+
+        @Override
+        public CompletableFuture<?> run(DataWriter writer) {
+            return DataProvider.writeToPath(
+                    writer,
+                    properties(),
+                    this.pathResolver.resolveJson(new Identifier("valkyrienskies", MOD_ID))
+            );
+        }
+
+        public static JsonArray properties() {
+            JsonArray toReturn = new JsonArray(REGISTERED.size());
+
+            for (BlockItem blockItem : REGISTERED) {
+                double frictionCoefficient = 0.2;
+                int priority = 420;
+
+                Block block = blockItem.getBlock();
+
+                JsonObject propertyObject = new JsonObject();
+
+                propertyObject.addProperty("block", Registries.BLOCK.getId(block).toString());
+                propertyObject.addProperty("mass", getMass(block));
+                propertyObject.addProperty("friction", frictionCoefficient);
+                propertyObject.addProperty("priority", priority);
+
+                toReturn.add(propertyObject);
+            }
+
+            return toReturn;
+        }
+
+        public static double getMass(Block block) {
+            double reinforcedMass = 4312;
+            double compositeMass = 2744;
+            double steelMass = 1176;
+            double lightMass = 392;
+
+            String blockPath = Registries.BLOCK.getId(block).getPath();
+
+            final double glassWeight = 200;
+            double multiplier = 1;
+            double glassMultiplier = 0;
+            final double grade;
+
+            if (blockPath.contains("light_armor")) grade = lightMass;
+            else if (blockPath.contains("steel_armor")) grade = steelMass;
+            else if (blockPath.contains("composite_armor")) grade = compositeMass;
+            else grade = reinforcedMass;
+
+            if (blockPath.contains("porthole")) {
+                multiplier = 0.75;
+                glassMultiplier = 0.25;
+            }
+            // looks for vertical and horizontal too instead of just window in prep for full window block
+            else if (blockPath.contains("vertical_window") || blockPath.contains("horizontal_window")) {
+                multiplier = 0.4375;
+                glassMultiplier = 0.5625;
+            }
+
+            if (blockPath.contains("slab"))
+                multiplier *= 0.5;
+            else if (blockPath.contains("stairs"))
+                multiplier *= 0.75;
+            else if (blockPath.contains("fence"))
+                multiplier = 0.0625;
+            else if (blockPath.contains("wall"))
+                multiplier = 0.25;
+
+            return (grade * multiplier) + (glassWeight * glassMultiplier);
+        }
+
+        @Override
+        public String getName() {
+            return "VS2 Block Properties";
         }
     }
 }

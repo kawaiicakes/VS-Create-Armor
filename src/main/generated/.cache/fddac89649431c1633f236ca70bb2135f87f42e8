@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-11T08:14:01.7470121	VS Create Armor/Block Loot Tables
+// 1.20.1	2025-03-11T10:34:27.5788057	VS Create Armor/Block Loot Tables
 ed32777732a4f8ef0109c171f502ef7d483a0ee5 data\vscarmor\loot_tables\blocks\wl_gray_steel_armor_fence.json
 d4ae290d39efb9113d1230902b09adc080e4bda2 data\vscarmor\loot_tables\blocks\wl_light_blue_reinforced_armor_porthole_slab.json
 d3cd81257e0aa48b8890eaec8cae94bfc97e2e0e data\vscarmor\loot_tables\blocks\red_reinforced_armor_slab.json
@@ -343,8 +343,8 @@ d4c7e3da43d378f367c006604d549b4677aae9e0 data\vscarmor\loot_tables\blocks\wl_cam
 22eea4df07e20e0c9c799a52e7ca216fa97ec6f2 data\vscarmor\loot_tables\blocks\red_reinforced_armor_vertical_window.json
 6ec00faff44f0dbd4dfe2792a05c9a2f4221a4c4 data\vscarmor\loot_tables\blocks\green_reinforced_armor_vertical_slab.json
 4d5003c29a293eb4786d585d093713cf51575c93 data\vscarmor\loot_tables\blocks\cyan_steel_armor_vertical_window.json
-4ad44358e260f50fdaa2ba83aea72558d901db65 data\vscarmor\loot_tables\blocks\29_reinforced_armor_vertical_window.json
 acacfb62308dd83d47a53ecef43a4d86c5ec5b76 data\vscarmor\loot_tables\blocks\camo_desert_light_armor.json
+4ad44358e260f50fdaa2ba83aea72558d901db65 data\vscarmor\loot_tables\blocks\29_reinforced_armor_vertical_window.json
 0741d2c1f013da75f30887f79dd786c7e215cc74 data\vscarmor\loot_tables\blocks\29_light_armor_vertical_stairs.json
 f6c18db14e84a09f15b7f23be314e9dbe257482f data\vscarmor\loot_tables\blocks\wl_4b0_composite_armor_fence.json
 3a1216bc78068798be72628bd898889f3be82c1f data\vscarmor\loot_tables\blocks\blue_light_armor_vertical_window.json
