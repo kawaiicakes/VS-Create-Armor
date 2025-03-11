@@ -18816,6 +18816,774 @@
     "priority": 420
   },
   {
+    "block": "vscarmor:ship_lower_light_armor",
+    "friction": 0.2,
+    "mass": 392.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_slab",
+    "friction": 0.2,
+    "mass": 196.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_vertical_slab",
+    "friction": 0.2,
+    "mass": 196.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_stairs",
+    "friction": 0.2,
+    "mass": 294.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_vertical_stairs",
+    "friction": 0.2,
+    "mass": 294.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_fence",
+    "friction": 0.2,
+    "mass": 24.5,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_wall",
+    "friction": 0.2,
+    "mass": 98.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_porthole",
+    "friction": 0.2,
+    "mass": 344.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_porthole_slab",
+    "friction": 0.2,
+    "mass": 197.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_porthole_vertical_slab",
+    "friction": 0.2,
+    "mass": 197.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_vertical_window",
+    "friction": 0.2,
+    "mass": 284.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_vertical_window_slab",
+    "friction": 0.2,
+    "mass": 198.25,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_vertical_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 198.25,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_horizontal_window",
+    "friction": 0.2,
+    "mass": 284.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_horizontal_window_slab",
+    "friction": 0.2,
+    "mass": 198.25,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_light_armor_horizontal_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 198.25,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor",
+    "friction": 0.2,
+    "mass": 392.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_slab",
+    "friction": 0.2,
+    "mass": 196.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_vertical_slab",
+    "friction": 0.2,
+    "mass": 196.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_stairs",
+    "friction": 0.2,
+    "mass": 294.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_vertical_stairs",
+    "friction": 0.2,
+    "mass": 294.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_fence",
+    "friction": 0.2,
+    "mass": 24.5,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_wall",
+    "friction": 0.2,
+    "mass": 98.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_porthole",
+    "friction": 0.2,
+    "mass": 344.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_porthole_slab",
+    "friction": 0.2,
+    "mass": 197.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_porthole_vertical_slab",
+    "friction": 0.2,
+    "mass": 197.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_vertical_window",
+    "friction": 0.2,
+    "mass": 284.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_vertical_window_slab",
+    "friction": 0.2,
+    "mass": 198.25,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_vertical_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 198.25,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_horizontal_window",
+    "friction": 0.2,
+    "mass": 284.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_horizontal_window_slab",
+    "friction": 0.2,
+    "mass": 198.25,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_light_armor_horizontal_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 198.25,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor",
+    "friction": 0.2,
+    "mass": 1176.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_slab",
+    "friction": 0.2,
+    "mass": 588.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_vertical_slab",
+    "friction": 0.2,
+    "mass": 588.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_stairs",
+    "friction": 0.2,
+    "mass": 882.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_vertical_stairs",
+    "friction": 0.2,
+    "mass": 882.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_fence",
+    "friction": 0.2,
+    "mass": 73.5,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_wall",
+    "friction": 0.2,
+    "mass": 294.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_porthole",
+    "friction": 0.2,
+    "mass": 932.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_porthole_slab",
+    "friction": 0.2,
+    "mass": 491.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_porthole_vertical_slab",
+    "friction": 0.2,
+    "mass": 491.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_vertical_window",
+    "friction": 0.2,
+    "mass": 627.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_vertical_window_slab",
+    "friction": 0.2,
+    "mass": 369.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_vertical_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 369.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_horizontal_window",
+    "friction": 0.2,
+    "mass": 627.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_horizontal_window_slab",
+    "friction": 0.2,
+    "mass": 369.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_steel_armor_horizontal_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 369.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor",
+    "friction": 0.2,
+    "mass": 1176.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_slab",
+    "friction": 0.2,
+    "mass": 588.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_vertical_slab",
+    "friction": 0.2,
+    "mass": 588.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_stairs",
+    "friction": 0.2,
+    "mass": 882.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_vertical_stairs",
+    "friction": 0.2,
+    "mass": 882.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_fence",
+    "friction": 0.2,
+    "mass": 73.5,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_wall",
+    "friction": 0.2,
+    "mass": 294.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_porthole",
+    "friction": 0.2,
+    "mass": 932.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_porthole_slab",
+    "friction": 0.2,
+    "mass": 491.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_porthole_vertical_slab",
+    "friction": 0.2,
+    "mass": 491.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_vertical_window",
+    "friction": 0.2,
+    "mass": 627.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_vertical_window_slab",
+    "friction": 0.2,
+    "mass": 369.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_vertical_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 369.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_horizontal_window",
+    "friction": 0.2,
+    "mass": 627.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_horizontal_window_slab",
+    "friction": 0.2,
+    "mass": 369.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_steel_armor_horizontal_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 369.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor",
+    "friction": 0.2,
+    "mass": 2744.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_slab",
+    "friction": 0.2,
+    "mass": 1372.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_vertical_slab",
+    "friction": 0.2,
+    "mass": 1372.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_stairs",
+    "friction": 0.2,
+    "mass": 2058.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_vertical_stairs",
+    "friction": 0.2,
+    "mass": 2058.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_fence",
+    "friction": 0.2,
+    "mass": 171.5,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_wall",
+    "friction": 0.2,
+    "mass": 686.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_porthole",
+    "friction": 0.2,
+    "mass": 2108.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_porthole_slab",
+    "friction": 0.2,
+    "mass": 1079.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_porthole_vertical_slab",
+    "friction": 0.2,
+    "mass": 1079.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_vertical_window",
+    "friction": 0.2,
+    "mass": 1313.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_vertical_window_slab",
+    "friction": 0.2,
+    "mass": 712.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_vertical_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 712.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_horizontal_window",
+    "friction": 0.2,
+    "mass": 1313.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_horizontal_window_slab",
+    "friction": 0.2,
+    "mass": 712.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_composite_armor_horizontal_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 712.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor",
+    "friction": 0.2,
+    "mass": 2744.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_slab",
+    "friction": 0.2,
+    "mass": 1372.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_vertical_slab",
+    "friction": 0.2,
+    "mass": 1372.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_stairs",
+    "friction": 0.2,
+    "mass": 2058.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_vertical_stairs",
+    "friction": 0.2,
+    "mass": 2058.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_fence",
+    "friction": 0.2,
+    "mass": 171.5,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_wall",
+    "friction": 0.2,
+    "mass": 686.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_porthole",
+    "friction": 0.2,
+    "mass": 2108.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_porthole_slab",
+    "friction": 0.2,
+    "mass": 1079.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_porthole_vertical_slab",
+    "friction": 0.2,
+    "mass": 1079.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_vertical_window",
+    "friction": 0.2,
+    "mass": 1313.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_vertical_window_slab",
+    "friction": 0.2,
+    "mass": 712.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_vertical_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 712.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_horizontal_window",
+    "friction": 0.2,
+    "mass": 1313.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_horizontal_window_slab",
+    "friction": 0.2,
+    "mass": 712.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_composite_armor_horizontal_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 712.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor",
+    "friction": 0.2,
+    "mass": 4312.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_slab",
+    "friction": 0.2,
+    "mass": 2156.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_vertical_slab",
+    "friction": 0.2,
+    "mass": 2156.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_stairs",
+    "friction": 0.2,
+    "mass": 3234.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_vertical_stairs",
+    "friction": 0.2,
+    "mass": 3234.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_fence",
+    "friction": 0.2,
+    "mass": 269.5,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_wall",
+    "friction": 0.2,
+    "mass": 1078.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_porthole",
+    "friction": 0.2,
+    "mass": 3284.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_porthole_slab",
+    "friction": 0.2,
+    "mass": 1667.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_porthole_vertical_slab",
+    "friction": 0.2,
+    "mass": 1667.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_vertical_window",
+    "friction": 0.2,
+    "mass": 1999.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_vertical_window_slab",
+    "friction": 0.2,
+    "mass": 1055.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_vertical_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 1055.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_horizontal_window",
+    "friction": 0.2,
+    "mass": 1999.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_horizontal_window_slab",
+    "friction": 0.2,
+    "mass": 1055.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:ship_lower_reinforced_armor_horizontal_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 1055.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor",
+    "friction": 0.2,
+    "mass": 4312.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_slab",
+    "friction": 0.2,
+    "mass": 2156.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_vertical_slab",
+    "friction": 0.2,
+    "mass": 2156.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_stairs",
+    "friction": 0.2,
+    "mass": 3234.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_vertical_stairs",
+    "friction": 0.2,
+    "mass": 3234.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_fence",
+    "friction": 0.2,
+    "mass": 269.5,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_wall",
+    "friction": 0.2,
+    "mass": 1078.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_porthole",
+    "friction": 0.2,
+    "mass": 3284.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_porthole_slab",
+    "friction": 0.2,
+    "mass": 1667.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_porthole_vertical_slab",
+    "friction": 0.2,
+    "mass": 1667.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_vertical_window",
+    "friction": 0.2,
+    "mass": 1999.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_vertical_window_slab",
+    "friction": 0.2,
+    "mass": 1055.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_vertical_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 1055.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_horizontal_window",
+    "friction": 0.2,
+    "mass": 1999.0,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_horizontal_window_slab",
+    "friction": 0.2,
+    "mass": 1055.75,
+    "priority": 420
+  },
+  {
+    "block": "vscarmor:wl_ship_lower_reinforced_armor_horizontal_window_vertical_slab",
+    "friction": 0.2,
+    "mass": 1055.75,
+    "priority": 420
+  },
+  {
     "block": "vscarmor:camo_desert_light_armor",
     "friction": 0.2,
     "mass": 392.0,

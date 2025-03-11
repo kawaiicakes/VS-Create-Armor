@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "vscarmor:block/ship_lower_reinforced_armor_horizontal_window"
+    },
+    "axis=y": {
+      "model": "vscarmor:block/ship_lower_reinforced_armor_horizontal_window_vertical"
+    },
+    "axis=z": {
+      "model": "vscarmor:block/ship_lower_reinforced_armor_horizontal_window",
+      "uvlock": true,
+      "y": 90
+    }
+  }
+}

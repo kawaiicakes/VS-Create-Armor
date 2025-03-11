@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/vertical_window",
+  "textures": {
+    "bottom": "vscarmor:block/ship_lower_steel_armor",
+    "end": "vscarmor:block/ship_lower_steel_armor",
+    "side": "vscarmor:block/ship_lower_steel_armor",
+    "top": "vscarmor:block/ship_lower_steel_armor"
+  }
+}

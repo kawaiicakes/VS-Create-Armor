@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_inventory",
+  "textures": {
+    "texture": "vscarmor:block/ship_lower_light_armor"
+  }
+}

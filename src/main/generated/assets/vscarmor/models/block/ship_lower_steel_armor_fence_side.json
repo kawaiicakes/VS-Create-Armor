@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "vscarmor:block/ship_lower_steel_armor"
+  }
+}

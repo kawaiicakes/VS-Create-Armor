@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/porthole_vertical_slab",
+  "textures": {
+    "bottom": "vscarmor:block/ship_lower_reinforced_armor",
+    "end": "vscarmor:block/ship_lower_reinforced_armor",
+    "side": "vscarmor:block/ship_lower_reinforced_armor",
+    "top": "vscarmor:block/ship_lower_reinforced_armor"
+  }
+}

@@ -106,7 +106,6 @@ public class Registry implements DataGeneratorEntrypoint {
         }
     }
 
-    // TODO - Add ship_lower
     // TODO (1.1) - Add commented colours + patterns.
     public static String[] colors() {
         return new String[] {
@@ -136,7 +135,7 @@ public class Registry implements DataGeneratorEntrypoint {
                 "panzergrau",
                 // "parade",
                 "rotbraun",
-                // "ship_lower",
+                "ship_lower",
                 // rainbow,
                 "camo_desert",
                 "camo_forest",
