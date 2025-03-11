@@ -1,6 +1,7 @@
 package io.github.kawaiicakes.block;
 
 import net.minecraft.block.*;
+import net.minecraft.block.enums.SlabType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -19,5 +20,13 @@ public abstract class AbstractWindowSlab extends SlabBlock implements WindowBloc
     );
 
     @Override
-    public abstract boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction);
+    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+        if (!stateFrom.isOf(this)) return false;
+
+        return switch (direction) {
+            case DOWN -> !state.get(TYPE).equals(SlabType.TOP) && !stateFrom.get(TYPE).equals(SlabType.BOTTOM);
+            case UP -> !state.get(TYPE).equals(SlabType.BOTTOM) && !stateFrom.get(TYPE).equals(SlabType.TOP);
+            default -> false;
+        };
+    }
 }

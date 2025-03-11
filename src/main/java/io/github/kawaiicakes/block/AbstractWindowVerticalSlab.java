@@ -28,5 +28,17 @@ public abstract class AbstractWindowVerticalSlab extends VerticalSlabBlock imple
     );
 
     @Override
-    public abstract boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction);
+    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+        if (!stateFrom.isOf(this)) return false;
+        if (direction.equals(Direction.UP) || direction.equals(Direction.DOWN)) return false;
+        if (!state.get(FACING).getAxis().equals(stateFrom.get(FACING).getAxis())) return false;
+
+        if (stateFrom.get(DOUBLET)) {
+            return state.get(DOUBLET) || state.get(FACING).equals(stateFrom.get(FACING).getOpposite());
+        } else {
+            return state.get(DOUBLET)
+                    ? stateFrom.get(FACING).equals(direction)
+                    : state.get(FACING).equals(stateFrom.get(FACING).getOpposite());
+        }
+    }
 }

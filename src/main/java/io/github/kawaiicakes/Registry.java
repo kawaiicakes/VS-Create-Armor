@@ -481,8 +481,6 @@ public class Registry implements DataGeneratorEntrypoint {
             createWaterlineModels(blockStateModelGenerator);
         }
 
-        // FIXME (1.1) - inner top face of V window, V window V slab are invis
-        // FIXME (1.1) - waterline fences have weird inventory appearance
         public static void createSimpleModels(BlockStateModelGenerator generator) {
             for (String pattern : allBlockGradesAndPatternCombinations()) {
                 Identifier baseBlockId = new Identifier(MOD_ID, pattern);
@@ -640,8 +638,7 @@ public class Registry implements DataGeneratorEntrypoint {
 
                 generator.new BlockTexturePool(map)
                         .base(baseBlock, Models.CUBE_BOTTOM_TOP)
-                        .slab(slabBlock)
-                        .fence(fenceBlock);
+                        .slab(slabBlock);
 
                 Identifier innerBottomId
                         = Models.INNER_STAIRS.upload(stairsBlock, map, generator.modelCollector);
@@ -681,6 +678,16 @@ public class Registry implements DataGeneratorEntrypoint {
                 Identifier wallInventoryId
                         = ArmorBlockModels.WALL_INVENTORY.upload(wallBlock, map, generator.modelCollector);
                 generator.registerParentedItemModel(wallBlock, wallInventoryId);
+
+                Identifier fencePost = ArmorBlockModels.FENCE_POST.upload(fenceBlock, map, generator.modelCollector);
+                Identifier fenceSide = ArmorBlockModels.FENCE_SIDE.upload(fenceBlock, map, generator.modelCollector);
+                generator.blockStateCollector.accept(
+                        BlockStateModelGenerator.createFenceBlockState(fenceBlock, fencePost, fenceSide)
+                );
+                Identifier fenceInventory = ArmorBlockModels.FENCE_INVENTORY.upload(
+                        fenceBlock, map, generator.modelCollector
+                );
+                generator.registerParentedItemModel(fenceBlock, fenceInventory);
 
                 createVerticalSlab(
                         generator,

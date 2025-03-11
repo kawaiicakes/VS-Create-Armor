@@ -203,6 +203,19 @@ public class ArmorBlockModels {
             TextureKey.SIDE, TextureKey.TOP, TextureKey.BOTTOM, TextureKey.END
     );
 
+    public static final Model FENCE_INVENTORY = block(
+            MOD_ID, "fence_inventory", "_inventory",
+            TextureKey.TEXTURE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+    public static final Model FENCE_SIDE = block(
+            MOD_ID, "fence_side", "_side",
+            TextureKey.TEXTURE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+    public static final Model FENCE_POST = block(
+            MOD_ID, "fence_post", "_post",
+            TextureKey.TEXTURE, TextureKey.TOP, TextureKey.BOTTOM
+    );
+
     private static Model block(String namespace, String parent, String variant, TextureKey... requiredTextureKeys) {
         return new Model(
                 Optional.of(new Identifier(namespace, "block/" + parent)),

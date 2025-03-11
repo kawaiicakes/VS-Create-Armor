@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/fence_side",
+  "parent": "vscarmor:block/fence_side",
   "textures": {
-    "texture": "vscarmor:block/wl_red_reinforced_armor"
+    "bottom": "vscarmor:block/black_reinforced_armor",
+    "texture": "vscarmor:block/wl_red_reinforced_armor",
+    "top": "vscarmor:block/red_reinforced_armor"
   }
 }

@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/fence_inventory",
+  "parent": "vscarmor:block/fence_inventory",
   "textures": {
-    "texture": "vscarmor:block/wl_green_reinforced_armor"
+    "bottom": "vscarmor:block/black_reinforced_armor",
+    "texture": "vscarmor:block/wl_green_reinforced_armor",
+    "top": "vscarmor:block/green_reinforced_armor"
   }
 }

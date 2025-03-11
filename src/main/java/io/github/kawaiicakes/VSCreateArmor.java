@@ -5,7 +5,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 
-// FIXME - Overzealous face culling on window blocks
 // TODO (1.1) - Eighths
 // TODO (1.1) - Reactive armour
 // TODO (1.1) - Alphabet shit.

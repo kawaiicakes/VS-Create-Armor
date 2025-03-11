@@ -12,3 +12,4 @@ replay_*.log
 /.github/
 /src/main/generated/logs/
 /src/main/generated/mods/
+/old gradle/

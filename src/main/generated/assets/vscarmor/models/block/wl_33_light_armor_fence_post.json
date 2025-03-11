@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/fence_post",
+  "parent": "vscarmor:block/fence_post",
   "textures": {
-    "texture": "vscarmor:block/wl_33_light_armor"
+    "bottom": "vscarmor:block/black_light_armor",
+    "texture": "vscarmor:block/wl_33_light_armor",
+    "top": "vscarmor:block/33_light_armor"
   }
 }
