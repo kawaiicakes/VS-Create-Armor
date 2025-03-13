@@ -19,20 +19,20 @@
       "y": 180
     },
     "doublet=true,facing=east": {
-      "model": "vscarmor:block/wl_camo_arctic_reinforced_armor_porthole_vertical"
+      "model": "vscarmor:block/wl_camo_arctic_reinforced_armor_porthole"
     },
     "doublet=true,facing=north": {
-      "model": "vscarmor:block/wl_camo_arctic_reinforced_armor_porthole_vertical",
+      "model": "vscarmor:block/wl_camo_arctic_reinforced_armor_porthole",
       "uvlock": true,
       "y": 270
     },
     "doublet=true,facing=south": {
-      "model": "vscarmor:block/wl_camo_arctic_reinforced_armor_porthole_vertical",
+      "model": "vscarmor:block/wl_camo_arctic_reinforced_armor_porthole",
       "uvlock": true,
       "y": 90
     },
     "doublet=true,facing=west": {
-      "model": "vscarmor:block/wl_camo_arctic_reinforced_armor_porthole_vertical",
+      "model": "vscarmor:block/wl_camo_arctic_reinforced_armor_porthole",
       "uvlock": true,
       "y": 180
     }

@@ -15,6 +15,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 // TODO (1.1) - LargeWindow
 // TODO (1.1) - Hatches, bulkhead doors
 // TODO (2.0) - Connecting textures
+// NOTE: Fixed culling issues + wrong blockstate model used for 1.0 already.
 public class VSCreateArmor implements ModInitializer, ClientModInitializer {
 	public static final String MOD_ID = "vscarmor";
 

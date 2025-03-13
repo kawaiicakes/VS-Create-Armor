@@ -4,7 +4,7 @@
       "model": "vscarmor:block/lime_steel_armor_horizontal_window_slab"
     },
     "type=double": {
-      "model": "vscarmor:block/lime_steel_armor_horizontal_window_vertical"
+      "model": "vscarmor:block/lime_steel_armor_horizontal_window"
     },
     "type=top": {
       "model": "vscarmor:block/lime_steel_armor_horizontal_window_slab_top"

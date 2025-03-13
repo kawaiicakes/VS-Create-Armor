@@ -4,7 +4,7 @@
       "model": "vscarmor:block/ship_lower_reinforced_armor_vertical_window_slab"
     },
     "type=double": {
-      "model": "vscarmor:block/ship_lower_reinforced_armor_vertical_window_vertical"
+      "model": "vscarmor:block/ship_lower_reinforced_armor_vertical_window"
     },
     "type=top": {
       "model": "vscarmor:block/ship_lower_reinforced_armor_vertical_window_slab_top"

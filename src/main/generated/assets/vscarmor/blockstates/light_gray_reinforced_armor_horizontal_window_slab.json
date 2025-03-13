@@ -4,7 +4,7 @@
       "model": "vscarmor:block/light_gray_reinforced_armor_horizontal_window_slab"
     },
     "type=double": {
-      "model": "vscarmor:block/light_gray_reinforced_armor_horizontal_window_vertical"
+      "model": "vscarmor:block/light_gray_reinforced_armor_horizontal_window"
     },
     "type=top": {
       "model": "vscarmor:block/light_gray_reinforced_armor_horizontal_window_slab_top"

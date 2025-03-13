@@ -32,6 +32,7 @@ public abstract class AbstractWindowVerticalSlab extends VerticalSlabBlock imple
         if (!stateFrom.isOf(this)) return false;
         if (direction.equals(Direction.UP) || direction.equals(Direction.DOWN)) return false;
         if (!state.get(FACING).getAxis().equals(stateFrom.get(FACING).getAxis())) return false;
+        if (!direction.getAxis().equals(state.get(FACING).getAxis())) return false;
 
         if (stateFrom.get(DOUBLET)) {
             return state.get(DOUBLET) || state.get(FACING).equals(stateFrom.get(FACING).getOpposite());
