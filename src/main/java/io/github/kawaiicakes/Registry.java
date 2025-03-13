@@ -561,7 +561,7 @@ public class Registry implements DataGeneratorEntrypoint {
                 );
 
                 createWindowSlab(
-                        "_vertical_window_slab", "_vertical_window",
+                        "_vertical_window_slab", "_vertical_window_vertical",
                         generator,
                         pattern,
                         block -> window(block, "", "", ""),
