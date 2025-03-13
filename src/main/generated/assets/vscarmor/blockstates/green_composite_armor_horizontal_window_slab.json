@@ -4,7 +4,7 @@
       "model": "vscarmor:block/green_composite_armor_horizontal_window_slab"
     },
     "type=double": {
-      "model": "vscarmor:block/green_composite_armor_horizontal_window"
+      "model": "vscarmor:block/green_composite_armor_horizontal_window_vertical"
     },
     "type=top": {
       "model": "vscarmor:block/green_composite_armor_horizontal_window_slab_top"
