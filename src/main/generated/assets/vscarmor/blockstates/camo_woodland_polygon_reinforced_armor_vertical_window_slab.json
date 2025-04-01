@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "vscarmor:block/camo_woodland_polygon_reinforced_armor_vertical_window_slab"
+    },
+    "type=double": {
+      "model": "vscarmor:block/camo_woodland_polygon_reinforced_armor_vertical_window_vertical"
+    },
+    "type=top": {
+      "model": "vscarmor:block/camo_woodland_polygon_reinforced_armor_vertical_window_slab_top"
+    }
+  }
+}

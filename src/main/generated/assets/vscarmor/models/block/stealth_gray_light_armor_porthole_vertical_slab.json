@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/porthole_vertical_slab",
+  "textures": {
+    "bottom": "vscarmor:block/stealth_gray_light_armor",
+    "end": "vscarmor:block/stealth_gray_light_armor",
+    "side": "vscarmor:block/stealth_gray_light_armor",
+    "top": "vscarmor:block/stealth_gray_light_armor"
+  }
+}

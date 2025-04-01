@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/vertical_porthole",
+  "textures": {
+    "bottom": "vscarmor:block/fern_green_light_armor",
+    "side": "vscarmor:block/fern_green_light_armor",
+    "top": "vscarmor:block/fern_green_light_armor"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/vertical_slab",
+  "textures": {
+    "bottom": "vscarmor:block/black_composite_armor",
+    "side": "vscarmor:block/wl_fern_green_composite_armor",
+    "top": "vscarmor:block/fern_green_composite_armor"
+  }
+}

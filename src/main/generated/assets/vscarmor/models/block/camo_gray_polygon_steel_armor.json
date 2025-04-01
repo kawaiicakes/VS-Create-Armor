@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "vscarmor:block/camo_gray_polygon_steel_armor"
+  }
+}

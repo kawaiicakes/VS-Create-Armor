@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "vscarmor:block/camo_gray_polygon_steel_armor_slab"
+    },
+    "type=double": {
+      "model": "vscarmor:block/camo_gray_polygon_steel_armor"
+    },
+    "type=top": {
+      "model": "vscarmor:block/camo_gray_polygon_steel_armor_slab_top"
+    }
+  }
+}

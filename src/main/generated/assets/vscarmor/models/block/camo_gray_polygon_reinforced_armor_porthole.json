@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/porthole",
+  "textures": {
+    "bottom": "vscarmor:block/camo_gray_polygon_reinforced_armor",
+    "end": "vscarmor:block/camo_gray_polygon_reinforced_armor",
+    "side": "vscarmor:block/camo_gray_polygon_reinforced_armor",
+    "top": "vscarmor:block/camo_gray_polygon_reinforced_armor"
+  }
+}

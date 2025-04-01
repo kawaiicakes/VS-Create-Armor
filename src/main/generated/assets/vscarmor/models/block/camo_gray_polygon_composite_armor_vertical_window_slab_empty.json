@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/vertical_window_slab_empty",
+  "textures": {
+    "bottom": "vscarmor:block/camo_gray_polygon_composite_armor",
+    "side": "vscarmor:block/camo_gray_polygon_composite_armor",
+    "top": "vscarmor:block/camo_gray_polygon_composite_armor"
+  }
+}

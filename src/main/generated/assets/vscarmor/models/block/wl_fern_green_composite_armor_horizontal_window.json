@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/horizontal_window",
+  "textures": {
+    "bottom": "vscarmor:block/black_composite_armor",
+    "end": "vscarmor:block/wl_fern_green_composite_armor",
+    "side": "vscarmor:block/wl_fern_green_composite_armor",
+    "top": "vscarmor:block/fern_green_composite_armor"
+  }
+}

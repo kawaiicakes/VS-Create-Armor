@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/vertical_porthole_empty",
+  "textures": {
+    "bottom": "vscarmor:block/camo_woodland_polygon_light_armor",
+    "side": "vscarmor:block/camo_woodland_polygon_light_armor",
+    "top": "vscarmor:block/camo_woodland_polygon_light_armor"
+  }
+}

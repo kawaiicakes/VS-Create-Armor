@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "vscarmor:block/camo_woodland_polygon_reinforced_armor"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/horizontal_window_vertical_slab_empty",
+  "textures": {
+    "bottom": "vscarmor:block/black_reinforced_armor",
+    "end": "vscarmor:block/wl_stealth_gray_reinforced_armor",
+    "side": "vscarmor:block/wl_stealth_gray_reinforced_armor",
+    "top": "vscarmor:block/stealth_gray_reinforced_armor"
+  }
+}

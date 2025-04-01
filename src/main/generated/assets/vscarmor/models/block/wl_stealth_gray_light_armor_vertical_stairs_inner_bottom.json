@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/inner_vertical_stairs_bottom",
+  "textures": {
+    "bottom": "vscarmor:block/black_light_armor",
+    "side": "vscarmor:block/wl_stealth_gray_light_armor",
+    "top": "vscarmor:block/stealth_gray_light_armor"
+  }
+}

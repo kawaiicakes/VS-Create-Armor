@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "vscarmor:block/wl_camo_gray_polygon_composite_armor_horizontal_window_slab"
+    },
+    "type=double": {
+      "model": "vscarmor:block/wl_camo_gray_polygon_composite_armor_horizontal_window_vertical"
+    },
+    "type=top": {
+      "model": "vscarmor:block/wl_camo_gray_polygon_composite_armor_horizontal_window_slab_top"
+    }
+  }
+}

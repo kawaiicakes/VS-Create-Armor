@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "vscarmor:block/camo_gray_polygon_composite_armor"
+  }
+}
