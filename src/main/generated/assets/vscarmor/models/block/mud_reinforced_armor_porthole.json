@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/porthole",
+  "textures": {
+    "bottom": "vscarmor:block/mud_reinforced_armor",
+    "end": "vscarmor:block/mud_reinforced_armor",
+    "side": "vscarmor:block/mud_reinforced_armor",
+    "top": "vscarmor:block/mud_reinforced_armor"
+  }
+}

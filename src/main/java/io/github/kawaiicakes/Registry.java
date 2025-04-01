@@ -132,6 +132,7 @@ public class Registry implements DataGeneratorEntrypoint {
                 "32",
                 "33",
                 "dunkelgelb",
+                "mud",
                 "fern_green",
                 "panzergrau",
                 "rotbraun",

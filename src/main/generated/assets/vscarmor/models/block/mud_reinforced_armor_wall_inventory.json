@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "vscarmor:block/mud_reinforced_armor"
+  }
+}

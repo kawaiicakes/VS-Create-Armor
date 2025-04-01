@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "vscarmor:block/mud_composite_armor"
+  }
+}

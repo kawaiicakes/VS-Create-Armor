@@ -1,0 +1,9 @@
+{
+  "parent": "vscarmor:block/vertical_window_vertical_slab_empty",
+  "textures": {
+    "bottom": "vscarmor:block/mud_composite_armor",
+    "end": "vscarmor:block/mud_composite_armor",
+    "side": "vscarmor:block/mud_composite_armor",
+    "top": "vscarmor:block/mud_composite_armor"
+  }
+}

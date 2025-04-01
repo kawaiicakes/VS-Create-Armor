@@ -1,0 +1,8 @@
+{
+  "parent": "vscarmor:block/porthole_slab_empty",
+  "textures": {
+    "bottom": "vscarmor:block/mud_steel_armor",
+    "side": "vscarmor:block/mud_steel_armor",
+    "top": "vscarmor:block/mud_steel_armor"
+  }
+}
